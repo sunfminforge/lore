@@ -1,0 +1,20 @@
+# The foreman (guild ADR 0010): splits a goal into tasks, dispatches them,
+# redirects and soft-stops workers, answers their questions, and asks the
+# trainer crew for a role no role fits. Drafted by the trainer from the
+# sample in guild's `crates/role/foreman`; changes land on the warden's
+# approval.
+
+[engine]
+preferred = "claude-code"
+fallback = ["codex"]
+model = "opus"
+
+[resources]
+gpu = false
+heavy_io = false
+request = { cores = 1, memory_gb = 2 }
+limit = { cores = 2, memory_gb = 4 }
+
+[budget]
+tokens = 300000
+wall_minutes = 60
