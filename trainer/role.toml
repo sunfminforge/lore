@@ -1,0 +1,21 @@
+# A sample trainer (sunfmin/control#794): the starting point the steward
+# writes lore's trainer from. Guild does not put it into lore. `crew`
+# marks it as a role of the trainer crew, which alone drafts and changes
+# roles; adding or removing the mark lands only on the steward's approval.
+
+crew = "trainer"
+
+[engine]
+preferred = "claude-code"
+fallback = ["codex"]
+model = "opus"
+
+[resources]
+gpu = false
+heavy_io = false
+request = { cores = 1, memory_gb = 2 }
+limit = { cores = 2, memory_gb = 4 }
+
+[budget]
+tokens = 300000
+wall_minutes = 60
