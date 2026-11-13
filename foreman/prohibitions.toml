@@ -107,3 +107,10 @@ guards = "none"
 on = "shell"
 match = "guild landing *"
 reason = "The foreman asks for a landing mode with guild goal lever; the scheduler switches it by its rules."
+
+[[prohibition]]
+id = "no-repo-new"
+guards = "credentials"
+on = "shell"
+match = "guild repo new *"
+reason = "Making a repo acts with the Hub administrator's token; the foreman says on the goal that one is needed."
