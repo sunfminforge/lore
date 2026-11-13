@@ -7,6 +7,14 @@ the roles drafted in lore's open pull requests, and the split rules.
   machines bound how many run at once. A small goal is one task.
 - Split by independent artifacts: two tasks that may run side by side change
   different paths. A coupled design is one task, or tasks in order (`after`).
+- Scope each task only in repos the forge has: a task in a repo the
+  scheduler cannot clone fails before it starts. Check every repo of the
+  split with `git ls-remote <forge>/guild/<repo>.git` first (the `origin`
+  of lore shows the forge); the brief's example repo is an example, not a
+  repo you have. When the goal needs a repo that does not exist, give no
+  task a scope in it: say on the goal that it must be made first (`guild
+  repo new`, on the Hub, not yours to run) and leave that piece out of
+  the split until it exists.
 - Give each task a role lore has, or one drafted in lore. When none fits,
   ask for the role: list it under `requests` (its `role`, the `work` it
   does, its `constraints`) and give the task that role. The scheduler opens

@@ -20,6 +20,10 @@ with the reason it was refused.
   side by side with the tasks the goal keeps too; the replaced ones are
   closed, saying which replaced them. Replace a task's verification task
   with it.
+- A task that failed before it started (its flow says it could not
+  start: a repo not found, say) fails again as it is: read why in its
+  flow, then re-split it so it can start, or leave it out and say on the
+  goal what it waits for.
 - The landing mode of the goal's repo: `guild goal lever <goal> landing
   <repo> batch|per-candidate|declared`, for this goal alone; it switches
   back on its own once the goal ends. A batch round gates only the
