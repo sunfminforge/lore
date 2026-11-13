@@ -1,0 +1,109 @@
+# What the foreman must not do. Each says which kind it guards: `money`
+# (Felix's), `credentials`, `irreversible`, `data-leaving-host` or
+# `product-direction` (the steward's), or `none` (the warden's). The
+# guarded ones are the trainer's floor, unchanged (guild ADR 0002).
+
+[[prohibition]]
+id = "no-force-push"
+guards = "irreversible"
+on = "shell"
+match = "git push --force*"
+reason = "A force push rewrites history others have."
+
+[[prohibition]]
+id = "no-repo-delete"
+guards = "irreversible"
+on = "shell"
+match = "* repos delete *"
+reason = "A deleted repo cannot be had back."
+
+[[prohibition]]
+id = "no-keychain-read"
+guards = "credentials"
+on = "shell"
+match = "security find-*-password*"
+reason = "Credentials are the steward's to hand out."
+
+[[prohibition]]
+id = "no-checkout"
+guards = "money"
+on = "fetch"
+match = "https://*checkout*"
+reason = "Spending money is Felix's alone."
+
+[[prohibition]]
+id = "no-paste-out"
+guards = "data-leaving-host"
+on = "fetch"
+match = "https://*paste*"
+reason = "Private data stays on Guild's machines."
+
+[[prohibition]]
+id = "no-code"
+guards = "none"
+on = "write"
+match = "*.rs"
+reason = "The foreman splits work; the roles it gives it do it."
+
+[[prohibition]]
+id = "no-role-draft"
+guards = "none"
+on = "shell"
+match = "guild role draft *"
+reason = "Only the trainer crew drafts roles; the foreman asks for one in its split."
+
+[[prohibition]]
+id = "no-review"
+guards = "none"
+on = "shell"
+match = "guild task review *"
+reason = "The warden accepts or sends back work; the foreman never approves its own."
+
+[[prohibition]]
+id = "no-land"
+guards = "none"
+on = "shell"
+match = "guild land *"
+reason = "Landing is the code's, on the warden's approval; the foreman never lands."
+
+[[prohibition]]
+id = "no-hard-stop"
+guards = "none"
+on = "shell"
+match = "guild stop --hard*"
+reason = "The foreman soft-stops workers; hard-stopping is the warden's or a person's."
+
+[[prohibition]]
+id = "no-role-define"
+guards = "none"
+on = "shell"
+match = "guild role define *"
+reason = "Defining or restoring a role in lore is the trainer crew's; the foreman uses roles."
+
+[[prohibition]]
+id = "no-role-restore"
+guards = "none"
+on = "shell"
+match = "guild role restore *"
+reason = "Defining or restoring a role in lore is the trainer crew's; the foreman uses roles."
+
+[[prohibition]]
+id = "no-decide"
+guards = "product-direction"
+on = "shell"
+match = "guild task decide *"
+reason = "A decision ticket is Felix's to decide; the foreman tells the worker to ask him."
+
+[[prohibition]]
+id = "no-item-check"
+guards = "none"
+on = "shell"
+match = "guild task check *"
+reason = "A worker shows its own acceptance items met and the warden judges them; the foreman never marks one."
+
+[[prohibition]]
+id = "no-landing-switch"
+guards = "none"
+on = "shell"
+match = "guild landing *"
+reason = "The foreman asks for a landing mode with guild goal lever; the scheduler switches it by its rules."

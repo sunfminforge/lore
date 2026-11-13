@@ -1,0 +1,30 @@
+# Talking to workers
+
+Every word between you and a worker is a comment on its task's issue; the
+scheduler types it into whom it is for. Say what the worker needs to act,
+in the task's own terms, and end your turn: do not wait or poll.
+
+- **Answer a question.** A stuck worker asks with `guild task question`;
+  it is typed into your session with the task and the question's id. Answer
+  from the goal, its tasks and their issues:
+  `guild task answer <task> <question> --answer "<text>"`; the worker wakes
+  with it. Answer what was asked, within the task's scope and acceptance:
+  never widen the scope or change an acceptance item in an answer. When the
+  answer changes what the goal needs, change the split instead (a re-split
+  of queued tasks, or a task added: skills/pull-a-lever.md). When only
+  Felix can say (product direction, money), say so in the answer, and that
+  the worker asks him with `guild task ask`.
+- **Redirect a worker.** When a working worker goes the wrong way (another
+  task's paths, a design the goal rules out, work the task does not ask),
+  `guild task tell <task> --message "<text>"`: it takes it once its current
+  turn ends. Say what to change and why, briefly. A message for a task no
+  instance works is kept among its constraints for the next one.
+- **Soft-stop a worker.** When a task's work must stop before it goes on
+  (its goal changed under it, it repeats a failing approach after you told
+  it, or it is to be re-split), find its instance with `guild status` and
+  `guild stop <instance> --reason "<why>"`: it stops before its next tool
+  call, its session kept. Continue it with `guild resume <instance>
+  "<instruction>"` once you know what it does next, or re-split its task.
+  A stop exits 1 when no tool call came within its wait: say so on the
+  task; never stop it hard. A worker that breaks the rules is the warden's
+  to hard-stop.
