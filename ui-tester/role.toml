@@ -1,7 +1,8 @@
 # ui-tester: walks a web UI in a headless browser at given widths and
 # color schemes, on fixtures and against live services, and hands in
 # screenshots and a note of what each page showed. Drafted by the trainer
-# for guild/tasks#43; changes land on the warden's approval.
+# for guild/tasks#43, changed for guild/tasks#54; changes land on the
+# warden's approval.
 
 [engine]
 preferred = "claude-code"

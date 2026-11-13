@@ -170,3 +170,31 @@ guards = "product-direction"
 on = "shell"
 match = "guild task decide *"
 reason = "A decision ticket is Felix's to decide; this role asks with guild task ask."
+
+[[prohibition]]
+id = "no-edit-manifest"
+guards = "none"
+on = "write"
+match = "*package.json"
+reason = "This role never changes the code it walks, its manifest least of all; it installs the lockfile's way."
+
+[[prohibition]]
+id = "no-edit-npm-lock"
+guards = "none"
+on = "write"
+match = "*package-lock.json"
+reason = "Dependencies install the lockfile's way (npm ci); the lockfile is never changed."
+
+[[prohibition]]
+id = "no-edit-yarn-lock"
+guards = "none"
+on = "write"
+match = "*yarn.lock"
+reason = "Dependencies install the lockfile's way; the lockfile is never changed."
+
+[[prohibition]]
+id = "no-edit-pnpm-lock"
+guards = "none"
+on = "write"
+match = "*pnpm-lock.yaml"
+reason = "Dependencies install the lockfile's way; the lockfile is never changed."

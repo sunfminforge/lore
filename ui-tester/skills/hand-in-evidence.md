@@ -12,15 +12,24 @@ One entry per cell, in the matrix's order:
 
 - **cell**: page, URL (secrets stripped), width, scheme, state;
 - **of**: the build or fixture, or the live service and the time;
-- **showed**: what is on the page in plain words: what renders, what is
-  missing, what overlaps, overflows, is cut off or unreadable in the
-  scheme; console errors and failed requests;
-- **file**: the screenshot's name.
+- **showed**: what is on the page in plain words: what renders, what the
+  step expected that is not there, what overlaps, overflows or is cut
+  off, text whose color matches its background; console errors and failed
+  requests, quoted;
+- **file**: the screenshot's name, or the recording's and the time.
+
+A step that failed is reported in its place, as plainly as one that did
+not: what the step did, what happened instead, the error text. No word of
+verdict: not "passes", "fails", "broken", "looks good" or "should"; no
+guess at the cause beyond the error the browser gave, no suggested fix.
 
 Then, apart, what was not seen and why (a page that would not load, a step
 not taken because it would change data, a cell out of budget), and each
 acceptance item with the cells that bear on it. You say what was seen; you
 do not say the work passes.
+
+Before you hand in, stop every server and browser you started, and
+`git status` in the UI's repo shows nothing changed.
 
 ## No secret in evidence
 
@@ -39,6 +48,7 @@ Before handing in, for every shot, URL, log line and the note:
 
 Put the screenshots and the note where the task says. When the task
 scopes a path for evidence, that path only; never beside the UI's code.
-When it says nothing, ask the foreman before you hand in. Mark each
-acceptance item with `guild task check <task> <item> --evidence "<the
-cells and what they showed>"`. Then stop: the warden judges.
+When it says nothing, ask the foreman before you hand in. Mark an
+acceptance item only where it asks for evidence to exist, with `guild
+task check <task> <item> --evidence "<the cells and what they showed>"`;
+one that asks whether the UI is right is left for whoever judges. Then stop: the warden judges.

@@ -2,13 +2,19 @@
 
 ## The matrix
 
-- List every page or flow step the task names. For each, the widths
+- List every page or flow step the task names, numbered in the order you
+  walk them. For each, the widths
   (default 375, 768 and 1280 CSS pixels when the task names none, and say
   that you chose them) and the color schemes (`light`, `dark`; both when
   the task names none).
-- One screenshot per cell: page × width × scheme, plus each state the task
+- One screenshot per cell: step × width × scheme, plus each state the task
   cares about (empty, loading, error, long content, signed out).
-- Name each file so it says its cell: `<page>-<width>-<scheme>[-<state>].png`.
+- Name each file so it says its cell:
+  `<nn>-<step>-<width>-<scheme>[-<state>].png`.
+- Where the task asks for a recording, record each width × scheme as one
+  video of the whole walk (Playwright's `recordVideo` on the context), and
+  note at what time each step starts; take the shots as well unless the
+  task says the recording alone.
 
 ## Driving the browser
 
@@ -32,8 +38,11 @@
 ## Fixtures and live services
 
 - On fixtures, record which fixture and which build (commit, or version)
-  you walked. Start the app the way the repo documents; change nothing to
-  make it start. A UI that will not start is a finding.
+  you walked. Build and serve the app the way the repo documents, its
+  dependencies installed the lockfile's way (`npm ci`, `pnpm install
+  --frozen-lockfile`), on `127.0.0.1` only; change nothing to make it
+  start. A UI that will not build or start is a finding: the command, its
+  exit code and the last lines of its log.
 - On a live service, record its URL and the time. Use only the read-only
   credential you were handed, passed by the environment, never written in
   a script, a URL or a file. Take no step that changes data: no submit,
