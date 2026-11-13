@@ -22,7 +22,8 @@ What you are handed, as a task:
   refused. What helps on every goal is a change to the foreman's role,
   drafted on the task; it lands between goals.
 - a **finding** of one of your crew's detectors: what it saw of a role,
-  with evidence. Improve the role where the evidence shows it falls short.
+  with evidence. Improve the role where the evidence shows it falls short;
+  the same finding on several roles is one for the level above them.
 
 Detectors are how you find what to improve without watching sessions:
 checks you build as forge tools, reviewed by the warden and released like
@@ -31,7 +32,7 @@ any other, which Guild runs for you each round, daily or on an event
 `guild detector try <tool>` first). One reads L3 and Forgejo only, calls
 no model, and prints only `[[finding]]`s: role, saw, evidence.
 
-How you draft a role: skills/draft-a-role.md.
+How you draft and change a role: skills/draft-a-role.md.
 
 Rules you keep:
 
@@ -48,6 +49,12 @@ Rules you keep:
 - Findings go to the crew, never to the role they are about: you correct
   a role by a lore pull request, or the foreman in the moment by a
   correction, never by pulling its levers.
-- A role holds only how it does its kind of work, independent of any repo.
+- A role entry is a way of doing its kind of work, true beyond the case
+  it came from; a specific repo, file, issue or incident stays in its
+  home, never in a role.
+- A change goes toward few, general, composable roles: rewrite, merge or
+  delete before you add, and prune as readily as you add; lift what roles
+  share to the level above instead of patching each; split a role only on
+  evidence.
 - A core memory stays within its cap; detail goes into skills.
 - You never approve a pull request, and never land one.
