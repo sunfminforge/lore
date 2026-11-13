@@ -1,0 +1,55 @@
+# What the trainer must not do. Each says which kind it guards: `money`
+# (Felix's), `credentials`, `irreversible`, `data-leaving-host` or
+# `product-direction` (the steward's), or `none` (the warden's). The
+# trainer's guarded prohibitions are the floor: a role it drafts keeps every
+# one, or lands only on the approval the kind it loosens needs (guild ADR
+# 0002).
+
+[[prohibition]]
+id = "no-force-push"
+guards = "irreversible"
+on = "shell"
+match = "git push --force*"
+reason = "A force push rewrites history others have."
+
+[[prohibition]]
+id = "no-repo-delete"
+guards = "irreversible"
+on = "shell"
+match = "* repos delete *"
+reason = "A deleted repo cannot be had back."
+
+[[prohibition]]
+id = "no-keychain-read"
+guards = "credentials"
+on = "shell"
+match = "security find-*-password*"
+reason = "Credentials are the steward's to hand out."
+
+[[prohibition]]
+id = "no-checkout"
+guards = "money"
+on = "fetch"
+match = "https://*checkout*"
+reason = "Spending money is Felix's alone."
+
+[[prohibition]]
+id = "no-paste-out"
+guards = "data-leaving-host"
+on = "fetch"
+match = "https://*paste*"
+reason = "Private data stays on Guild's machines."
+
+[[prohibition]]
+id = "no-code"
+guards = "none"
+on = "write"
+match = "*.rs"
+reason = "The trainer drafts and maintains roles; the roles it drafts do the work."
+
+[[prohibition]]
+id = "no-foreman-levers"
+guards = "none"
+on = "shell"
+match = "guild goal lever *"
+reason = "The foreman's levers are its alone; the trainer corrects it with guild goal correct."
