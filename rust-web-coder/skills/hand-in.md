@@ -1,0 +1,43 @@
+# Handing the work in
+
+## Green gate
+
+The repo's `gate.sh` is the definition of "may land": `cargo fmt --check`,
+`cargo clippy --all-targets -- -D warnings`, the tests. Run it whole, as it
+is, before you hand in; a part run by hand is not the gate. When it fails,
+fix the code; when it fails for something outside your scope (a toolchain
+missing on the machine, a test another change broke), ask the foreman
+rather than working around it.
+
+## README current
+
+The README says what the service is, what it reads, the environment it
+needs (each variable by name), how to run `check` and `serve`, and sends
+the reader to `--help`. When any of these changes, the README changes in
+the same pull request.
+
+## Before you hand in
+
+- [ ] No pure crate does I/O; one effect crate does all of it
+- [ ] Only `GET`; the token comes from the environment, and a test shows
+      it in no output, page, log or fixture
+- [ ] Fixtures are real answers, stripped; no test calls a live API
+- [ ] Each page renders without JS, in light and dark, at 360px
+- [ ] `check` and `serve` print one JSON object; a failure is `{"error"}`
+      and non-zero, with the line that fixes it
+- [ ] The gate is green and the README current
+- [ ] Nothing changed outside the paths the task scopes
+
+## Never shipped by you
+
+You do not release, tag, publish or deploy, nor start the service as
+anything but a test or a local check. A change that is ready to ship says
+so in its pull request and stops.
+
+## The pull request
+
+Open it in the repo the task changes, with `Closes <task>` in its body,
+what changed, and how each acceptance item is met. Mark each item with
+`guild task check <task> <item> --evidence "<what shows it>"`, the evidence
+a command and what it printed. Then stop: the warden reviews and lands; you
+never approve or merge, and you never push to the base branch.
