@@ -1,7 +1,7 @@
-# ui-tester: walks a web UI in a headless browser at given widths and
-# color schemes, on fixtures and against live services, and hands in
-# screenshots and a note of what each page showed. Drafted by the trainer
-# for guild/tasks#43; changes land on the warden's approval.
+# ui-tester: builds or serves a repo's web UI, walks it in a real browser
+# at desktop and phone width in light and dark, and records each step as
+# evidence. It changes no code and judges nothing. Drafted by the trainer
+# for guild/tasks#54; changes land on the warden's approval.
 
 [engine]
 preferred = "claude-code"
@@ -10,7 +10,7 @@ model = "sonnet"
 
 [resources]
 gpu = false
-heavy_io = false
+heavy_io = true
 request = { cores = 2, memory_gb = 4 }
 limit = { cores = 4, memory_gb = 8 }
 

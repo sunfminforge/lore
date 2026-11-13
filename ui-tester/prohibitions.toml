@@ -39,95 +39,186 @@ match = "https://*paste*"
 reason = "Private data stays on Guild's machines."
 
 [[prohibition]]
+id = "no-npm-publish"
+guards = "irreversible"
+on = "shell"
+match = "npm publish*"
+reason = "A package published to a registry cannot be taken back; this role walks a UI, it ships nothing."
+
+[[prohibition]]
 id = "no-token-handling"
 guards = "credentials"
 on = "shell"
 match = "guild * token *"
-reason = "This role uses only the read-only credential it is handed; tokens are the steward's to hand out, never this role's to fetch."
+reason = "Tokens are the steward's to hand out, never this role's to fetch."
 
 [[prohibition]]
-id = "no-env-dump"
-guards = "credentials"
+id = "no-sudo"
+guards = "irreversible"
 on = "shell"
-match = "printenv*"
-reason = "The environment carries the credential; dumping it would put a secret into a log or evidence."
+match = "sudo *"
+reason = "Nothing is installed or changed outside the worktree."
 
 [[prohibition]]
-id = "no-screenshot-upload"
+id = "no-global-install"
+guards = "irreversible"
+on = "shell"
+match = "npm install -g*"
+reason = "Nothing is installed outside the worktree."
+
+[[prohibition]]
+id = "no-brew-install"
+guards = "irreversible"
+on = "shell"
+match = "brew install*"
+reason = "Nothing is installed outside the worktree; missing tooling is a question to the foreman."
+
+[[prohibition]]
+id = "no-tunnel"
 guards = "data-leaving-host"
-on = "fetch"
-match = "https://*upload*"
-reason = "Screenshots may show private data; evidence stays where the task puts it, on Guild's machines."
+on = "shell"
+match = "*ngrok*"
+reason = "The UI is served on 127.0.0.1 only; a public tunnel exposes the repo's work."
 
 [[prohibition]]
-id = "no-edit-rust"
+id = "no-code-ts"
 guards = "none"
 on = "write"
-match = "*.rs"
-reason = "This role never changes the code it walks; a bug it finds is reported, not fixed."
+match = "*.ts"
+reason = "This role never changes the code it walks; it writes only evidence."
 
 [[prohibition]]
-id = "no-edit-tsx"
+id = "no-code-tsx"
 guards = "none"
 on = "write"
 match = "*.tsx"
-reason = "This role never changes the code it walks; a bug it finds is reported, not fixed."
+reason = "This role never changes the code it walks; it writes only evidence."
 
 [[prohibition]]
-id = "no-edit-jsx"
+id = "no-code-js"
+guards = "none"
+on = "write"
+match = "*.js"
+reason = "This role never changes the code it walks; it writes only evidence."
+
+[[prohibition]]
+id = "no-code-jsx"
 guards = "none"
 on = "write"
 match = "*.jsx"
-reason = "This role never changes the code it walks; a bug it finds is reported, not fixed."
+reason = "This role never changes the code it walks; it writes only evidence."
 
 [[prohibition]]
-id = "no-edit-css"
-guards = "none"
-on = "write"
-match = "*.css"
-reason = "This role never changes the code it walks; a bug it finds is reported, not fixed."
-
-[[prohibition]]
-id = "no-edit-html"
-guards = "none"
-on = "write"
-match = "*.html"
-reason = "This role never changes the code it walks; a bug it finds is reported, not fixed."
-
-[[prohibition]]
-id = "no-edit-vue"
+id = "no-code-vue"
 guards = "none"
 on = "write"
 match = "*.vue"
-reason = "This role never changes the code it walks; a bug it finds is reported, not fixed."
+reason = "This role never changes the code it walks; it writes only evidence."
 
 [[prohibition]]
-id = "no-edit-svelte"
+id = "no-code-svelte"
 guards = "none"
 on = "write"
 match = "*.svelte"
-reason = "This role never changes the code it walks; a bug it finds is reported, not fixed."
+reason = "This role never changes the code it walks; it writes only evidence."
+
+[[prohibition]]
+id = "no-code-css"
+guards = "none"
+on = "write"
+match = "*.css"
+reason = "This role never changes the code it walks; it writes only evidence."
+
+[[prohibition]]
+id = "no-code-scss"
+guards = "none"
+on = "write"
+match = "*.scss"
+reason = "This role never changes the code it walks; it writes only evidence."
+
+[[prohibition]]
+id = "no-code-html"
+guards = "none"
+on = "write"
+match = "*.html"
+reason = "This role never changes the code it walks; it writes only evidence."
+
+[[prohibition]]
+id = "no-code-rs"
+guards = "none"
+on = "write"
+match = "*.rs"
+reason = "This role never changes the code it walks; it writes only evidence."
+
+[[prohibition]]
+id = "no-code-go"
+guards = "none"
+on = "write"
+match = "*.go"
+reason = "This role never changes the code it walks; it writes only evidence."
+
+[[prohibition]]
+id = "no-code-py"
+guards = "none"
+on = "write"
+match = "*.py"
+reason = "This role never changes the code it walks; it writes only evidence."
+
+[[prohibition]]
+id = "no-package-json"
+guards = "none"
+on = "write"
+match = "*package.json"
+reason = "This role never changes the code it walks, its manifest least of all."
+
+[[prohibition]]
+id = "no-lockfile-npm"
+guards = "none"
+on = "write"
+match = "*package-lock.json"
+reason = "Dependencies install the lockfile's way; the lockfile is never changed."
+
+[[prohibition]]
+id = "no-lockfile-yarn"
+guards = "none"
+on = "write"
+match = "*yarn.lock"
+reason = "Dependencies install the lockfile's way; the lockfile is never changed."
+
+[[prohibition]]
+id = "no-lockfile-pnpm"
+guards = "none"
+on = "write"
+match = "*pnpm-lock.yaml"
+reason = "Dependencies install the lockfile's way; the lockfile is never changed."
+
+[[prohibition]]
+id = "no-lockfile-cargo"
+guards = "none"
+on = "write"
+match = "*Cargo.lock"
+reason = "Dependencies install the lockfile's way; the lockfile is never changed."
 
 [[prohibition]]
 id = "no-push-base"
 guards = "none"
 on = "shell"
 match = "git push * HEAD:main*"
-reason = "This role changes no code; nothing of it reaches a base branch."
+reason = "Work reaches the base branch only by a pull request the warden lands."
 
 [[prohibition]]
 id = "no-push-main"
 guards = "none"
 on = "shell"
 match = "git push * main*"
-reason = "This role changes no code; nothing of it reaches a base branch."
+reason = "Work reaches the base branch only by a pull request the warden lands."
 
 [[prohibition]]
 id = "no-review"
 guards = "none"
 on = "shell"
 match = "guild task review *"
-reason = "The warden accepts or sends back work; this role shows what it saw."
+reason = "The warden accepts or sends back work; this role judges nothing."
 
 [[prohibition]]
 id = "no-approve"
