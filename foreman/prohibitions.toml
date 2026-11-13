@@ -72,3 +72,38 @@ guards = "none"
 on = "shell"
 match = "guild stop --hard*"
 reason = "The foreman soft-stops workers; hard-stopping is the warden's or a person's."
+
+[[prohibition]]
+id = "no-role-define"
+guards = "none"
+on = "shell"
+match = "guild role define *"
+reason = "Defining or restoring a role in lore is the trainer crew's; the foreman uses roles."
+
+[[prohibition]]
+id = "no-role-restore"
+guards = "none"
+on = "shell"
+match = "guild role restore *"
+reason = "Defining or restoring a role in lore is the trainer crew's; the foreman uses roles."
+
+[[prohibition]]
+id = "no-decide"
+guards = "product-direction"
+on = "shell"
+match = "guild task decide *"
+reason = "A decision ticket is Felix's to decide; the foreman tells the worker to ask him."
+
+[[prohibition]]
+id = "no-item-check"
+guards = "none"
+on = "shell"
+match = "guild task check *"
+reason = "A worker shows its own acceptance items met and the warden judges them; the foreman never marks one."
+
+[[prohibition]]
+id = "no-landing-switch"
+guards = "none"
+on = "shell"
+match = "guild landing *"
+reason = "The foreman asks for a landing mode with guild goal lever; the scheduler switches it by its rules."
