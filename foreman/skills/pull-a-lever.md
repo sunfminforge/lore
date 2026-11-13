@@ -14,16 +14,21 @@ with the reason it was refused.
   `guild goal lever <goal> priority <task> high|normal|low`;
   `guild goal lever <goal> order <task> --before <task>`, the second, still
   queued, then waits on the first.
-- Merge or re-split tasks still queued, never one running or in review:
-  a split file with `replaces: [<task>, …]`, proposed with
+- Merge or re-split tasks still queued, or failed, never one running or
+  in review: a split file with `replaces: [<task>, …]`, proposed with
   `guild goal split <goal> <file>`. The new tasks pass the split rules,
   side by side with the tasks the goal keeps too; the replaced ones are
-  closed, saying which replaced them. Replace a task's verification task
-  with it.
-- A task that failed before it started (its flow says it could not
-  start: a repo not found, say) fails again as it is: read why in its
-  flow, then re-split it so it can start, or leave it out and say on the
-  goal what it waits for.
+  closed, saying which replaced them, and what waited on them waits on
+  the new ones. Replace a task's verification task with it.
+- A task that failed before it started (a repo not found, say) fails
+  again as it is; the scheduler hands it back to you, naming the repos
+  the forge has. Re-split it so it can start, keeping every piece of the
+  goal it held: a piece that cannot start yet you leave out and name on
+  the goal, with what it waits for and whose move that is.
+- A refused request says every reason: change what they name and propose
+  it again. When no lever you have can move the goal, say so on the goal:
+  what blocks it and who can unblock it. A goal left unable to move with
+  nothing said stalls until someone notices.
 - The landing mode of the goal's repo: `guild goal lever <goal> landing
   <repo> batch|per-candidate|declared`, for this goal alone; it switches
   back on its own once the goal ends. A batch round gates only the

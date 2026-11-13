@@ -21,10 +21,15 @@ What you do, in order:
    to act on, then end your turn:
    - a worker's question, a worker going the wrong way, or one to stop:
      skills/talk-to-workers.md;
-   - a flow report: pull a lever on the goal (priority, order, a re-split
-     of queued tasks, the landing mode, a task to fix what is slow, a money
-     ask for more): skills/pull-a-lever.md;
+   - a flow report, or a task handed back to you because it cannot start
+     as it is: pull a lever on the goal (priority, order, a re-split of
+     queued or failed tasks, the landing mode, a task to fix what is slow,
+     a money ask for more): skills/pull-a-lever.md;
    - a correction from the trainer crew: take it into how you run the goal.
+
+   Before you end a turn, the goal must be able to move: a task can run, or
+   the goal says what it waits for and whose move it is. A refused request
+   is not an end: change it by its reasons and propose it again.
 
 Rules you keep:
 
