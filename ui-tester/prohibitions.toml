@@ -1,0 +1,172 @@
+# What ui-tester must not do. Each says which kind it guards: `money`
+# (Felix's), `credentials`, `irreversible`, `data-leaving-host` or
+# `product-direction` (the steward's), or `none` (the warden's). The
+# trainer's guarded prohibitions are its floor, unchanged (guild ADR 0002).
+
+[[prohibition]]
+id = "no-force-push"
+guards = "irreversible"
+on = "shell"
+match = "git push --force*"
+reason = "A force push rewrites history others have."
+
+[[prohibition]]
+id = "no-repo-delete"
+guards = "irreversible"
+on = "shell"
+match = "* repos delete *"
+reason = "A deleted repo cannot be had back."
+
+[[prohibition]]
+id = "no-keychain-read"
+guards = "credentials"
+on = "shell"
+match = "security find-*-password*"
+reason = "Credentials are the steward's to hand out."
+
+[[prohibition]]
+id = "no-checkout"
+guards = "money"
+on = "fetch"
+match = "https://*checkout*"
+reason = "Spending money is Felix's alone."
+
+[[prohibition]]
+id = "no-paste-out"
+guards = "data-leaving-host"
+on = "fetch"
+match = "https://*paste*"
+reason = "Private data stays on Guild's machines."
+
+[[prohibition]]
+id = "no-token-handling"
+guards = "credentials"
+on = "shell"
+match = "guild * token *"
+reason = "This role uses only the read-only credential it is handed; tokens are the steward's to hand out, never this role's to fetch."
+
+[[prohibition]]
+id = "no-env-dump"
+guards = "credentials"
+on = "shell"
+match = "printenv*"
+reason = "The environment carries the credential; dumping it would put a secret into a log or evidence."
+
+[[prohibition]]
+id = "no-screenshot-upload"
+guards = "data-leaving-host"
+on = "fetch"
+match = "https://*upload*"
+reason = "Screenshots may show private data; evidence stays where the task puts it, on Guild's machines."
+
+[[prohibition]]
+id = "no-edit-rust"
+guards = "none"
+on = "write"
+match = "*.rs"
+reason = "This role never changes the code it walks; a bug it finds is reported, not fixed."
+
+[[prohibition]]
+id = "no-edit-tsx"
+guards = "none"
+on = "write"
+match = "*.tsx"
+reason = "This role never changes the code it walks; a bug it finds is reported, not fixed."
+
+[[prohibition]]
+id = "no-edit-jsx"
+guards = "none"
+on = "write"
+match = "*.jsx"
+reason = "This role never changes the code it walks; a bug it finds is reported, not fixed."
+
+[[prohibition]]
+id = "no-edit-css"
+guards = "none"
+on = "write"
+match = "*.css"
+reason = "This role never changes the code it walks; a bug it finds is reported, not fixed."
+
+[[prohibition]]
+id = "no-edit-html"
+guards = "none"
+on = "write"
+match = "*.html"
+reason = "This role never changes the code it walks; a bug it finds is reported, not fixed."
+
+[[prohibition]]
+id = "no-edit-vue"
+guards = "none"
+on = "write"
+match = "*.vue"
+reason = "This role never changes the code it walks; a bug it finds is reported, not fixed."
+
+[[prohibition]]
+id = "no-edit-svelte"
+guards = "none"
+on = "write"
+match = "*.svelte"
+reason = "This role never changes the code it walks; a bug it finds is reported, not fixed."
+
+[[prohibition]]
+id = "no-push-base"
+guards = "none"
+on = "shell"
+match = "git push * HEAD:main*"
+reason = "This role changes no code; nothing of it reaches a base branch."
+
+[[prohibition]]
+id = "no-push-main"
+guards = "none"
+on = "shell"
+match = "git push * main*"
+reason = "This role changes no code; nothing of it reaches a base branch."
+
+[[prohibition]]
+id = "no-review"
+guards = "none"
+on = "shell"
+match = "guild task review *"
+reason = "The warden accepts or sends back work; this role shows what it saw."
+
+[[prohibition]]
+id = "no-approve"
+guards = "none"
+on = "shell"
+match = "guild pull approve *"
+reason = "Approving a pull request is the warden's."
+
+[[prohibition]]
+id = "no-land"
+guards = "none"
+on = "shell"
+match = "guild land *"
+reason = "Landing is the code's, on the warden's approval; this role never lands."
+
+[[prohibition]]
+id = "no-role-draft"
+guards = "none"
+on = "shell"
+match = "guild role *"
+reason = "Only the trainer crew drafts, defines or restores roles."
+
+[[prohibition]]
+id = "no-goal-lever"
+guards = "none"
+on = "shell"
+match = "guild goal *"
+reason = "Goals and their levers are the foreman's; this role asks it with guild task question."
+
+[[prohibition]]
+id = "no-hard-stop"
+guards = "none"
+on = "shell"
+match = "guild stop --hard*"
+reason = "Hard-stopping an instance is the warden's or a person's."
+
+[[prohibition]]
+id = "no-decide"
+guards = "product-direction"
+on = "shell"
+match = "guild task decide *"
+reason = "A decision ticket is Felix's to decide; this role asks with guild task ask."

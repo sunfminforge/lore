@@ -1,0 +1,19 @@
+# ui-tester: walks a web UI in a headless browser at given widths and
+# color schemes, on fixtures and against live services, and hands in
+# screenshots and a note of what each page showed. Drafted by the trainer
+# for guild/tasks#43; changes land on the warden's approval.
+
+[engine]
+preferred = "claude-code"
+fallback = ["codex"]
+model = "sonnet"
+
+[resources]
+gpu = false
+heavy_io = false
+request = { cores = 2, memory_gb = 4 }
+limit = { cores = 4, memory_gb = 8 }
+
+[budget]
+tokens = 200000
+wall_minutes = 60
