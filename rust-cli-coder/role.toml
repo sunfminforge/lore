@@ -1,0 +1,18 @@
+# rust-cli-coder: builds and changes command-line tools in Rust the
+# agent-cli way. Drafted by the trainer for guild/tasks#13; changes land on
+# the warden's approval.
+
+[engine]
+preferred = "claude-code"
+fallback = ["codex"]
+model = "opus"
+
+[resources]
+gpu = false
+heavy_io = true
+request = { cores = 4, memory_gb = 8 }
+limit = { cores = 8, memory_gb = 16 }
+
+[budget]
+tokens = 400000
+wall_minutes = 120
