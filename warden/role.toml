@@ -1,0 +1,20 @@
+# The warden (guild ADR 0010): reviews every output and every pull
+# request, sends back what fails, hard-stops an instance that breaks the
+# rules, and holds the prohibitions. Never resident: each review is a new
+# instance, which runs the tests and the acceptance commands before it
+# reads the change. Changes to it land only on the steward's approval.
+
+[engine]
+preferred = "claude-code"
+fallback = ["codex"]
+model = "opus"
+
+[resources]
+gpu = false
+heavy_io = false
+request = { cores = 2, memory_gb = 4 }
+limit = { cores = 4, memory_gb = 8 }
+
+[budget]
+tokens = 300000
+wall_minutes = 60

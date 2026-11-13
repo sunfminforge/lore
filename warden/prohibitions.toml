@@ -1,0 +1,90 @@
+# What the warden must not do. Each says which kind it guards: `money`
+# (Felix's), `credentials`, `irreversible`, `data-leaving-host` or
+# `product-direction` (the steward's), or `none` (the warden's own, whose
+# loosening still lands only on the steward's approval, as every change to
+# the warden does). The guarded ones are the trainer's floor, unchanged
+# (guild ADR 0002).
+
+[[prohibition]]
+id = "no-force-push"
+guards = "irreversible"
+on = "shell"
+match = "git push --force*"
+reason = "A force push rewrites history others have."
+
+[[prohibition]]
+id = "no-repo-delete"
+guards = "irreversible"
+on = "shell"
+match = "* repos delete *"
+reason = "A deleted repo cannot be had back."
+
+[[prohibition]]
+id = "no-keychain-read"
+guards = "credentials"
+on = "shell"
+match = "security find-*-password*"
+reason = "Credentials are the steward's to hand out."
+
+[[prohibition]]
+id = "no-checkout"
+guards = "money"
+on = "fetch"
+match = "https://*checkout*"
+reason = "Spending money is Felix's alone."
+
+[[prohibition]]
+id = "no-paste-out"
+guards = "data-leaving-host"
+on = "fetch"
+match = "https://*paste*"
+reason = "Private data stays on Guild's machines."
+
+[[prohibition]]
+id = "no-code"
+guards = "none"
+on = "write"
+match = "*.rs"
+reason = "The warden produces nothing of its own; it reviews what others make."
+
+[[prohibition]]
+id = "no-commit"
+guards = "none"
+on = "shell"
+match = "git commit*"
+reason = "The warden produces nothing of its own: it sends back, never fixes."
+
+[[prohibition]]
+id = "no-push"
+guards = "none"
+on = "shell"
+match = "git push*"
+reason = "The warden produces nothing of its own: it sends back, never fixes."
+
+[[prohibition]]
+id = "no-land"
+guards = "none"
+on = "shell"
+match = "guild land *"
+reason = "Landing is the code's, on the warden's approval; the warden never lands."
+
+[[prohibition]]
+id = "no-foreman-levers"
+guards = "none"
+on = "shell"
+match = "guild goal lever *"
+reason = "The foreman's levers are its alone; the warden is not above it."
+
+[[prohibition]]
+id = "no-role-draft"
+guards = "none"
+on = "shell"
+match = "guild role draft *"
+reason = "Only the trainer crew drafts roles; the warden reviews them."
+
+[[prohibition]]
+id = "no-split"
+guards = "none"
+on = "shell"
+match = "guild goal split *"
+reason = "Splitting a goal is the foreman's; the warden produces nothing of its own."
