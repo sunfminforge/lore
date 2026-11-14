@@ -20,7 +20,7 @@ A role is a directory named after it:
   heavy_io, request and limit (cores, memory_gb); `[budget]` tokens and
   wall_minutes. Never `crew`: only the steward lets a role into the crew.
 
-The foreman starts from the sample in guild's `crates/role/foreman`.
+Guild's own roles start from its samples: `guild role sample <role> <dir>`.
 
 Check it with `guild role check <dir>`, then open it as a lore pull request
 with `guild role draft <your task> <dir> --lore <lore checkout>`: it closes
