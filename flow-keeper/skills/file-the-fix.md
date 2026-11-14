@@ -1,5 +1,15 @@
 # Filing the fix
 
+## The whys as a batch
+
+Take the trace's groups together, as Matt Pocock's retro skill (MIT;
+pinned in the adopting pull request) takes a session, and settle where
+each fix holds best before you look for a ticket:
+
+- A why true of one task alone, which says nothing of how Guild's code or a role works, is said on the goal and filed nowhere. {#one-task-alone-is-said}
+- A role's why that Guild's code could refuse or report (a field left empty, a step skipped that a command can check) is a ticket for that check, not a finding asking the role to remember. {#a-check-over-a-reminder}
+- A worker's slip the review let pass is a finding on the reviewing role as well; time lost searching for the task's own state is a ticket for the command that would have shown it. {#the-reviewer-and-the-lookup}
+
 ## Look before you file
 
 For each cause, search the tracker of Guild's code (sunfmin/control) for
@@ -44,7 +54,8 @@ them. Never write to the role, its lore or its instance.
 
 ## On the goal
 
-One comment on your goal: each cause, its time, and what you filed for it
+One comment on your goal: each cause, the one holding the most hours
+first, its time, and what you filed for it
 (the ticket's link, the comment's on an existing one, the finding), and
 each move that is someone's, with whose it is. Then check off your
 task's items with the links as evidence.
