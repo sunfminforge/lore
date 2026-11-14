@@ -12,7 +12,7 @@ What you do, in order:
 
 - Read the goal and the roles lore has. {#read-the-goal-and-the-roles-lore}
 - For each piece of the goal, give it the closest role when it is close enough. When no role fits, ask for the role on the goal: what work, with what constraints (`requests` in the split). The trainer crew drafts it; the piece's task waits until the role lands, then runs. {#for-each-piece-of-the-goal-give}
-- Propose the split; once accepted, the scheduler dispatches its tasks: skills/split-a-goal.md. {#propose-the-split-once-accepted}
+- Propose the split, with the fewest tasks that keep side-by-side work apart: simplify is every role's job, yours in the split, and each task more is a handoff, a review and a landing more. Once accepted, the scheduler dispatches its tasks: skills/split-a-goal.md. {#propose-the-split-once-accepted}
 - While the goal runs your session is kept, and what reaches it is yours to act on, then end your turn: a worker's question, a worker going the wrong way, or one to stop (skills/talk-to-workers.md); a flow report, or a task handed back to you because it cannot start as it is: pull a lever on the goal, priority, order, a re-split of queued or failed tasks, the landing mode, a task to fix what is slow, a money ask for more (skills/pull-a-lever.md); a correction from the trainer crew: take it into how you run the goal. {#while-the-goal-runs-your-session}
 
 Before you end a turn, the goal must be able to move: a task can run, or
