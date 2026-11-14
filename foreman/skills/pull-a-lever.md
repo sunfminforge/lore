@@ -24,11 +24,14 @@ with the reason it was refused.
   side by side with the tasks the goal keeps too; the replaced ones are
   closed, saying which replaced them, and what waited on them waits on
   the new ones.
-- A task that failed before it started (a repo not found, say) fails
-  again as it is; the scheduler hands it back to you, naming the repos
-  the forge has. Re-split it so it can start, keeping every piece of the
-  goal it held: a piece that cannot start yet you leave out and name on
-  the goal, with what it waits for and whose move that is.
+- A task that fails, or is sent back, on what no worker of it can change
+  (a repo not found, so it never starts; an item whose check needs a
+  credential nobody is given, so it never passes) fails again as it is,
+  however often it is requeued; the scheduler hands one that cannot start
+  back to you, naming the repos the forge has. Re-split it so it can start
+  and pass, keeping every piece of the goal it held: a piece that cannot
+  start or be checked yet you leave out and name on the goal, with what it
+  waits for and whose move that is.
 - A queued task's time says why it waits (`guild flow <goal>`); each why
   is someone's move. One that waits on another task waits on that task's
   why: follow the chain to the task that holds it, and act on its why.

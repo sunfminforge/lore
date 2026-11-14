@@ -35,6 +35,15 @@ the roles drafted in lore's open pull requests, and the split rules.
 - Give every acceptance item its check, how it is verified: a `command` and
   what it must show, which the warden reruns; a `ui` walk-through and what
   must be seen; or a `link`. An item with none refuses the split.
+- A check runs with what its checker is given: its repo, fixtures, its own
+  account. One that needs a credential, an account or a machine no worker,
+  warden or verifier of the task is given (a read-only token for a live
+  service, say) never passes: the task fails or is sent back however good
+  its work, and naming another checker (`by: "warden"`) helps only when
+  that one holds it. Check what can be checked now (on fixtures), and leave
+  what needs the missing credential out of the split, as a piece that
+  cannot start yet: a credential is a person's to make, so say on the goal
+  what it waits for and that it is Felix's or the steward's move.
 - A check that needs more than a command the warden can rerun, a UI tried
   for real or a recording, gets a verification task of its own: after the
   change alone, its `verifies` naming the items it walks, for a verification
