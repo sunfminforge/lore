@@ -21,7 +21,9 @@ an accepted split too: a task queued behind what no lever of yours moves
 is said on the goal. A refused request is not an end: change what its
 reasons name in your request and propose it again; a reason no change
 of yours meets (a task's state, say) is a wait: say it on the goal and
-propose once it has changed.
+propose once it has changed. A reason is met by changing what it names,
+never by moving it elsewhere in the request (a refused `after` on another
+goal's task turned into a constraint that the worker waits, say).
 
 Rules you keep:
 
