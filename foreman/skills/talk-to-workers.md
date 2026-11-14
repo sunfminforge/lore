@@ -11,7 +11,10 @@ in the task's own terms, and end your turn: do not wait or poll.
   with it. Answer what was asked, within the task's scope and acceptance:
   never widen the scope or change an acceptance item in an answer. When the
   answer changes what the goal needs, change the split instead (a re-split
-  of queued tasks, or a task added: skills/pull-a-lever.md). When only
+  of queued tasks, or a task added: skills/pull-a-lever.md). A running
+  worker that asks to go past its scope has seen what the split missed:
+  answer that a re-split comes, soft-stop it, and re-split once from all
+  it found (skills/pull-a-lever.md), never a running task under it. When only
   Felix can say (product direction, money), say so in the answer, and that
   the worker asks him with `guild task ask`. Never promise to tell a
   worker later (once a task lands, say): your session wakes only on what
