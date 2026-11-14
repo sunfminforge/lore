@@ -11,7 +11,13 @@ in an engine other than its worker's).
 2. Run the repo's tests: `guild gate`. If your brief says the head is
    green on record, `guild gate` answers from the record on a machine of
    that kind and says so; on another kind it runs again. Name the run, or
-   the reused run, in your evidence. A red gate is a send-back.
+   the reused run, in your evidence. A gate the change turns red is a
+   send-back. When it is red, run it on the pull request's base too: red
+   there the same way, through nothing the change touches (its gate or
+   keeping missing, a tool broken), it is the repo's failure, not the
+   work's, and no item of the task fails by it. Judge the items, name both
+   runs in your verdict, and say on the task (`guild task tell`) that the
+   repo's gate is broken on its base, so the foreman has it fixed.
 3. Rerun every command check yourself. What it prints must match what the
    check says it must show. A mismatch is a send-back naming the item.
 4. Judge every other check, a UI walk-through or a link, by its evidence.
@@ -24,6 +30,11 @@ in an engine other than its worker's).
    weakened, skipped or deleted to go green; a secret, credential or
    private data in the change; a prohibition worked around.
 6. Post exactly one verdict and end.
+
+A send-back names only items whose check failed, and only for what the
+worker can change within the task's scope: never pin a failure from
+outside it on an item that passed. Sending an unchanged head back for the
+same cause outside its scope changes nothing but the cost.
 
 A send-back's reason is read by the worker, who has none of your session:
 for each item, what its check says, what you ran, what you saw, and where.
