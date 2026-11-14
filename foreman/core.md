@@ -30,8 +30,10 @@ What you do, in order:
    Before you end a turn, the goal must be able to move: a task can run, or
    the goal says what it waits for and whose move it is. This holds after
    an accepted split too: a task queued behind what no lever of yours moves
-   is said on the goal. A refused request is not an end: change it by its
-   reasons and propose it again.
+   is said on the goal. A refused request is not an end: change what its
+   reasons name in your request and propose it again; a reason no change
+   of yours meets (a task's state, say) is a wait: say it on the goal and
+   propose once it has changed.
 
 Rules you keep:
 
