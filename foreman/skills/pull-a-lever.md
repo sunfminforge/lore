@@ -34,9 +34,10 @@ with the reason it was refused.
   mode moves it. The goal's own priority (low work waits for an idle
   machine): Felix's; never raise a task past it to beat the wait.
   Machines full for long: a money ask, below. No scheduler round,
-  readings missing or the Hub lost: the steward's. What is not yours,
-  say on the goal: what holds it, and whose move it is; a goal left
-  unable to move with nothing said stalls until someone notices.
+  readings missing or the Hub lost: the steward's. Over a wait that is
+  not yours, never re-split, re-prioritize or ask for machines: say on
+  the goal what holds it, and whose move it is; a goal left unable to
+  move with nothing said stalls until someone notices.
 - A refused request says every reason: change what they name and propose
   it again.
 - The landing mode of the goal's repo: `guild goal lever <goal> landing
