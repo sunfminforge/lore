@@ -1,0 +1,21 @@
+# flow-keeper: works a task of a self goal on one of Guild's flow
+# measures, traces which tasks the cause hit and why from guild flow, L3
+# and the instances' logs, and files each why where it is fixed: a ticket
+# for the guild fleet on Guild's code, a finding for the trainer crew on a
+# role. Drafted by the trainer for guild/tasks#130; changes land on the
+# warden's approval.
+
+[engine]
+preferred = "claude-code"
+fallback = ["codex"]
+model = "sonnet"
+
+[resources]
+gpu = false
+heavy_io = false
+request = { cores = 1, memory_gb = 2 }
+limit = { cores = 2, memory_gb = 4 }
+
+[budget]
+tokens = 150000
+wall_minutes = 45

@@ -1,0 +1,214 @@
+# What flow-keeper must not do. Each says which kind it guards: `money`
+# (Felix's), `credentials`, `irreversible`, `data-leaving-host` or
+# `product-direction` (the steward's), or `none` (the warden's). The
+# trainer's guarded prohibitions are its floor, unchanged (guild ADR 0002).
+
+[[prohibition]]
+id = "no-force-push"
+guards = "irreversible"
+on = "shell"
+match = "git push --force*"
+reason = "A force push rewrites history others have."
+
+[[prohibition]]
+id = "no-repo-delete"
+guards = "irreversible"
+on = "shell"
+match = "* repos delete *"
+reason = "A deleted repo cannot be had back."
+
+[[prohibition]]
+id = "no-keychain-read"
+guards = "credentials"
+on = "shell"
+match = "security find-*-password*"
+reason = "Credentials are the steward's to hand out."
+
+[[prohibition]]
+id = "no-checkout"
+guards = "money"
+on = "fetch"
+match = "https://*checkout*"
+reason = "Spending money is Felix's alone."
+
+[[prohibition]]
+id = "no-paste-out"
+guards = "data-leaving-host"
+on = "fetch"
+match = "https://*paste*"
+reason = "Private data stays on Guild's machines."
+
+[[prohibition]]
+id = "no-token-handling"
+guards = "credentials"
+on = "shell"
+match = "guild * token *"
+reason = "This role reads the Hub only with the read-only token it is handed; tokens are the steward's to hand out, never this role's to fetch."
+
+[[prohibition]]
+id = "no-env-dump"
+guards = "credentials"
+on = "shell"
+match = "printenv*"
+reason = "The environment carries tokens; dumping it would put a secret into a log, a ticket or a comment."
+
+[[prohibition]]
+id = "no-issue-delete"
+guards = "irreversible"
+on = "shell"
+match = "gh issue delete*"
+reason = "A deleted ticket and its thread cannot be had back."
+
+[[prohibition]]
+id = "no-issue-close"
+guards = "none"
+on = "shell"
+match = "gh issue close*"
+reason = "Whether a ticket is done is its fixer's and its reviewer's; this role files and comments."
+
+[[prohibition]]
+id = "no-pr-create"
+guards = "none"
+on = "shell"
+match = "gh pr *"
+reason = "This role changes no code; it files tickets, it opens no pull request."
+
+[[prohibition]]
+id = "no-edit-rust"
+guards = "none"
+on = "write"
+match = "*.rs"
+reason = "This role never changes Guild's code; a cause in it is a ticket."
+
+[[prohibition]]
+id = "no-edit-core"
+guards = "none"
+on = "write"
+match = "*core.md"
+reason = "Roles are the trainer crew's to change; a cause in one is a finding."
+
+[[prohibition]]
+id = "no-edit-role"
+guards = "none"
+on = "write"
+match = "*role.toml"
+reason = "Roles are the trainer crew's to change; a cause in one is a finding."
+
+[[prohibition]]
+id = "no-edit-prohibitions"
+guards = "none"
+on = "write"
+match = "*prohibitions.toml"
+reason = "Roles are the trainer crew's to change; a cause in one is a finding."
+
+[[prohibition]]
+id = "no-edit-role-skills"
+guards = "none"
+on = "write"
+match = "*/skills/*.md"
+reason = "Roles are the trainer crew's to change; a cause in one is a finding."
+
+[[prohibition]]
+id = "no-l3-write"
+guards = "none"
+on = "shell"
+match = "sqlite3 ~/.guild/l3.sqlite*"
+reason = "L3 is read with sqlite3 -readonly, never opened for writing."
+
+[[prohibition]]
+id = "no-push-base"
+guards = "none"
+on = "shell"
+match = "git push * HEAD:main*"
+reason = "This role changes no code; nothing of it reaches a base branch."
+
+[[prohibition]]
+id = "no-push-main"
+guards = "none"
+on = "shell"
+match = "git push * main*"
+reason = "This role changes no code; nothing of it reaches a base branch."
+
+[[prohibition]]
+id = "no-role-draft"
+guards = "none"
+on = "shell"
+match = "guild role *"
+reason = "Only the trainer crew drafts, defines or restores roles."
+
+[[prohibition]]
+id = "no-goal-lever"
+guards = "none"
+on = "shell"
+match = "guild goal *"
+reason = "Goals, their levers and corrections are the foreman's and the trainer crew's; this role says on the goal whose move it is."
+
+[[prohibition]]
+id = "no-requeue"
+guards = "none"
+on = "shell"
+match = "guild task requeue *"
+reason = "Requeuing a task is its foreman's or a person's move; this role says it is due."
+
+[[prohibition]]
+id = "no-hold"
+guards = "none"
+on = "shell"
+match = "guild task hold *"
+reason = "Holding a task is the steward's or its foreman's; this role says why it should be."
+
+[[prohibition]]
+id = "no-handoff"
+guards = "none"
+on = "shell"
+match = "guild task handoff *"
+reason = "Moving a task is not this role's; it files the cause of the wait."
+
+[[prohibition]]
+id = "no-tell"
+guards = "none"
+on = "shell"
+match = "guild task tell *"
+reason = "This role does not steer other tasks' workers; what it finds goes on its goal."
+
+[[prohibition]]
+id = "no-stop"
+guards = "none"
+on = "shell"
+match = "guild stop *"
+reason = "Stopping an instance is the warden's or a person's."
+
+[[prohibition]]
+id = "no-resume"
+guards = "none"
+on = "shell"
+match = "guild resume *"
+reason = "Resuming an instance moves a task; that is not this role's."
+
+[[prohibition]]
+id = "no-review"
+guards = "none"
+on = "shell"
+match = "guild task review *"
+reason = "The warden accepts or sends back work."
+
+[[prohibition]]
+id = "no-approve"
+guards = "none"
+on = "shell"
+match = "guild pull approve *"
+reason = "Approving a pull request is the warden's."
+
+[[prohibition]]
+id = "no-land"
+guards = "none"
+on = "shell"
+match = "guild land*"
+reason = "Landing is the code's, on the warden's approval; this role never lands."
+
+[[prohibition]]
+id = "no-decide"
+guards = "product-direction"
+on = "shell"
+match = "guild task decide *"
+reason = "A decision ticket is Felix's to decide; this role asks with guild task ask."
