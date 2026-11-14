@@ -6,30 +6,13 @@ objective, scope, constraints, acceptance items each with its check, and
 the review's round (a high-risk task is reviewed twice, the second time
 in an engine other than its worker's).
 
-1. Check out the head of the pull request whose body says
-   `Closes <task>`, with nothing uncommitted.
-2. Run the repo's tests: `guild gate`. If your brief says the head is
-   green on record, `guild gate` answers from the record on a machine of
-   that kind and says so; on another kind it runs again. Name the run, or
-   the reused run, in your evidence. A gate the change turns red is a
-   send-back. When it is red, run it on the pull request's base too: red
-   there the same way, through nothing the change touches (its gate or
-   keeping missing, a tool broken), it is the repo's failure, not the
-   work's, and no item of the task fails by it. Judge the items, name both
-   runs in your verdict, and say on the task (`guild task tell`) that the
-   repo's gate is broken on its base, so the foreman has it fixed.
-3. Rerun every command check yourself. What it prints must match what the
-   check says it must show. A mismatch is a send-back naming the item.
-4. Judge every other check, a UI walk-through or a link, by its evidence.
-   A UI check's evidence comes from a verification task of its own; one
-   that does not match its check, or does not look real (a screenshot of
-   something else, a recording that stops early, a link that does not
-   resolve), is a send-back naming the item.
-5. Read the diff. Send back, naming the item it breaks or the constraint:
-   a path outside the task's scope; a constraint not kept; a test
-   weakened, skipped or deleted to go green; a secret, credential or
-   private data in the change; a prohibition worked around.
-6. Post exactly one verdict and end.
+- Check out the head of the pull request whose body says `Closes <task>`, with nothing uncommitted. {#check-out-the-head-of-the-pull}
+- Run the repo's tests: `guild gate`. If your brief says the head is green on record, `guild gate` answers from the record on a machine of that kind and says so; on another kind it runs again. Name the run, or the reused run, in your evidence. A gate the change turns red is a send-back. When it is red, run it on the pull request's base too: red there the same way, through nothing the change touches (its gate or keeping missing, a tool broken), it is the repo's failure, not the work's, and no item of the task fails by it. Judge the items, name both runs in your verdict, and say on the task (`guild task tell`) that the repo's gate is broken on its base, so the foreman has it fixed. {#run-the-repo-s-tests-guild-gate}
+- Rerun every command check yourself. What it prints must match what the check says it must show. A mismatch is a send-back naming the item. A check marked `by: warden` is yours alone to run, with the credential its worker is not given; without it, it is no pass. {#rerun-every-command-check}
+- Judge every other check, a UI walk-through or a link, by its evidence. A UI check's evidence comes from a verification task of its own; one that does not match its check, or does not look real (a screenshot of something else, a recording that stops early, a link that does not resolve), is a send-back naming the item. {#judge-every-other-check-a-ui}
+- Read the diff. Send back, naming the item it breaks or the constraint: a path outside the task's scope; a constraint not kept; a test weakened, skipped or deleted to go green; a secret, credential or private data in the change; a prohibition worked around. {#read-the-diff-send-back-naming}
+- Then ask whether a materially simpler way meets the same acceptance: fewer lines, fewer moving parts, one principle where the change writes a long procedure, an existing tool or a line in a skill where it adds a tool, a layer that only wraps another. Send back only when it is clearly better and loses no item, and name it in your reason: what to remove or merge, and what then meets each item. {#ask-simpler}
+- Post exactly one verdict and end. {#post-exactly-one-verdict-and-end}
 
 A send-back names only items whose check failed, and only for what the
 worker can change within the task's scope: never pin a failure from
