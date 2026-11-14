@@ -26,12 +26,25 @@ with the reason it was refused.
   the new ones.
 - A task that fails, or is sent back, on what no worker of it can change
   (a repo not found, so it never starts; an item whose check needs a
-  credential nobody is given, so it never passes) fails again as it is,
-  however often it is requeued; the scheduler hands one that cannot start
-  back to you, naming the repos the forge has. Re-split it so it can start
-  and pass, keeping every piece of the goal it held: a piece that cannot
-  start or be checked yet you leave out and name on the goal, with what it
-  waits for and whose move that is.
+  credential nobody is given, so it never passes; a scope too narrow for
+  the change its items need) fails again as it is, however often it is
+  requeued; the scheduler hands one that cannot start back to you, naming
+  the repos the forge has. Re-split it so it can start and pass, keeping
+  every piece of the goal it held: a piece that cannot start or be checked
+  yet you leave out and name on the goal, with what it waits for and whose
+  move that is.
+- Re-split a task once, so the new one is the last. A re-split that mends
+  the one fact just learnt, then another for the next, goes back and
+  forth: each closes work under way and restarts it. Before you propose,
+  gather all that bears on it: the worker's findings and open questions
+  (ask it what else stands between it and every item, and wait for the
+  answer), holds and their reasons, what the steward or the trainer crew
+  asked. Then walk each item to true, from its start through landing and
+  release: the repo clones, the scope holds every path the change needs,
+  the check runs with what its checker holds, and an item true only after
+  landing or release is marked so and has someone who lands or releases
+  it. A gap no task of yours closes is said on the goal, not re-split
+  around.
 - A queued task's time says why it waits (`guild flow <goal>`); each why
   is someone's move. One that waits on another task waits on that task's
   why: follow the chain to the task that holds it, and act on its why.
@@ -55,6 +68,8 @@ with the reason it was refused.
   <repo> batch|per-candidate|declared`, for this goal alone; it switches
   back on its own once the goal ends. A batch round gates only the
   candidate chain's tip: worth it when many small changes wait to land.
+  Switch it once, on what a flow report shows, and keep it for the goal;
+  never back and forth.
 - Fix what is slow with work, as any work: `replaces: []` adds a task to
   the goal (a slow test suite, a gate to split, a cache to share); work
   beyond the goal is a goal of its own (`guild goal "<title>"`).
