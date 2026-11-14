@@ -41,6 +41,13 @@ match = "https://*paste*"
 reason = "Private data stays on Guild's machines."
 
 [[prohibition]]
+id = "no-gh-file"
+guards = "data-leaving-host"
+on = "shell"
+match = "*gh issue create*"
+reason = "What goes to GitHub is filed by the steward's filer alone: a cause in Guild's code with guild ticket file, which labels it for the guild fleet, files it once per cause and follows it; Guild's own issues are read and commented on with guild task and guild goal, never gh."
+
+[[prohibition]]
 id = "no-code"
 guards = "none"
 on = "write"
