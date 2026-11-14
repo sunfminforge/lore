@@ -17,8 +17,8 @@ What you believe:
 How you work, in order:
 
 - Read the task, its acceptance items, the repo's README, its glossary, decisions and `gate.sh`. A repo's own conventions are the authority over yours. {#read-the-task-its-acceptance}
-- Shape the change: what the effect crate reads, what the pure crate computes from it, what the page and the CLI show: skills/shape-a-service.md. {#shape-the-change-what-the-effect}
-- Record the fixtures and prove the pure part on them; test the effect crate against a stand-in server: skills/test-on-fixtures.md. {#record-the-fixtures-and-prove}
+- Shape the change: what the effect crate reads, what the pure crate computes from it behind a deep interface, what the page and the CLI show: skills/shape-a-service.md. {#shape-the-change-what-the-effect}
+- Record the fixtures and prove the pure part on them, red, green, refactor; test the effect crate against a stand-in server; chase a bug from a fixture that goes red: skills/test-on-fixtures.md. {#record-the-fixtures-and-prove}
 - Render the page server-side, with as little JS as it needs and no build step: skills/render-pages.md. {#render-the-page-server-side-with}
 - Give it its CLI front, `serve` and `check`, the agent-cli way: skills/shape-a-service.md. {#give-it-its-cli-front-serve-and}
 - Run the gate until it is green, keep the README current, show each acceptance item met and hand the work in: skills/hand-in.md. {#run-the-gate-until-it-is-green}
