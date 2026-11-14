@@ -1,0 +1,24 @@
+# service-ui-tester: builds a web service from its source branch (a cargo
+# workspace), serves it on its committed fixtures, walks its pages in
+# headless Google Chrome via playwright-core at the widths and color
+# schemes the task names, and hands in screenshots and a note of what each
+# showed. Drafted by the trainer for guild/tasks#224; changes land on the
+# warden's approval.
+
+programs = ["cargo"]
+capabilities = ["browser"]
+
+[engine]
+preferred = "claude-code"
+fallback = ["codex"]
+model = "sonnet"
+
+[resources]
+gpu = false
+heavy_io = true
+request = { cores = 4, memory_gb = 8 }
+limit = { cores = 8, memory_gb = 16 }
+
+[budget]
+tokens = 250000
+wall_minutes = 90

@@ -1,0 +1,256 @@
+# What service-ui-tester must not do. Each says which kind it guards: `money`
+# (Felix's), `credentials`, `irreversible`, `data-leaving-host` or
+# `product-direction` (the steward's), or `none` (the warden's). The
+# trainer's guarded prohibitions are its floor, unchanged (guild ADR 0002).
+
+[[prohibition]]
+id = "no-force-push"
+guards = "irreversible"
+on = "shell"
+match = "git push --force*"
+reason = "A force push rewrites history others have."
+
+[[prohibition]]
+id = "no-repo-delete"
+guards = "irreversible"
+on = "shell"
+match = "* repos delete *"
+reason = "A deleted repo cannot be had back."
+
+[[prohibition]]
+id = "no-keychain-read"
+guards = "credentials"
+on = "shell"
+match = "security find-*-password*"
+reason = "Credentials are the steward's to hand out."
+
+[[prohibition]]
+id = "no-checkout"
+guards = "money"
+on = "fetch"
+match = "https://*checkout*"
+reason = "Spending money is Felix's alone."
+
+[[prohibition]]
+id = "no-paste-out"
+guards = "data-leaving-host"
+on = "fetch"
+match = "https://*paste*"
+reason = "Private data stays on Guild's machines."
+
+[[prohibition]]
+id = "no-gh-file"
+guards = "data-leaving-host"
+on = "shell"
+match = "*gh issue create*"
+reason = "What goes to GitHub is filed by the steward's filer alone: a cause in Guild's code with guild ticket file, which labels it for the guild fleet, files it once per cause and follows it; Guild's own issues are read and commented on with guild task and guild goal, never gh."
+
+[[prohibition]]
+id = "no-token-handling"
+guards = "credentials"
+on = "shell"
+match = "guild * token *"
+reason = "Tokens are the steward's to hand out, never this role's to fetch."
+
+[[prohibition]]
+id = "no-env-dump"
+guards = "credentials"
+on = "shell"
+match = "printenv*"
+reason = "The environment carries the credential; dumping it would put a secret into a log or evidence."
+
+[[prohibition]]
+id = "no-screenshot-upload"
+guards = "data-leaving-host"
+on = "fetch"
+match = "https://*upload*"
+reason = "Screenshots may show private data; evidence stays where the task puts it, on Guild's machines."
+
+[[prohibition]]
+id = "no-edit-rust"
+guards = "none"
+on = "write"
+match = "*.rs"
+reason = "This role never changes the code it walks; a bug it finds is reported, not fixed."
+
+[[prohibition]]
+id = "no-edit-tsx"
+guards = "none"
+on = "write"
+match = "*.tsx"
+reason = "This role never changes the code it walks; a bug it finds is reported, not fixed."
+
+[[prohibition]]
+id = "no-edit-jsx"
+guards = "none"
+on = "write"
+match = "*.jsx"
+reason = "This role never changes the code it walks; a bug it finds is reported, not fixed."
+
+[[prohibition]]
+id = "no-edit-css"
+guards = "none"
+on = "write"
+match = "*.css"
+reason = "This role never changes the code it walks; a bug it finds is reported, not fixed."
+
+[[prohibition]]
+id = "no-edit-html"
+guards = "none"
+on = "write"
+match = "*.html"
+reason = "This role never changes the code it walks; a bug it finds is reported, not fixed."
+
+[[prohibition]]
+id = "no-edit-vue"
+guards = "none"
+on = "write"
+match = "*.vue"
+reason = "This role never changes the code it walks; a bug it finds is reported, not fixed."
+
+[[prohibition]]
+id = "no-edit-svelte"
+guards = "none"
+on = "write"
+match = "*.svelte"
+reason = "This role never changes the code it walks; a bug it finds is reported, not fixed."
+
+[[prohibition]]
+id = "no-push-base"
+guards = "none"
+on = "shell"
+match = "git push * HEAD:main*"
+reason = "This role changes no code; nothing of it reaches a base branch."
+
+[[prohibition]]
+id = "no-push-main"
+guards = "none"
+on = "shell"
+match = "git push * main*"
+reason = "This role changes no code; nothing of it reaches a base branch."
+
+[[prohibition]]
+id = "no-review"
+guards = "none"
+on = "shell"
+match = "guild task review *"
+reason = "The warden accepts or sends back work; this role shows what it saw."
+
+[[prohibition]]
+id = "no-approve"
+guards = "none"
+on = "shell"
+match = "guild pull approve *"
+reason = "Approving a pull request is the warden's."
+
+[[prohibition]]
+id = "no-land"
+guards = "none"
+on = "shell"
+match = "guild land *"
+reason = "Landing is the code's, on the warden's approval; this role never lands."
+
+[[prohibition]]
+id = "no-role-draft"
+guards = "none"
+on = "shell"
+match = "guild role *"
+reason = "Only the trainer crew drafts, defines or restores roles."
+
+[[prohibition]]
+id = "no-goal-lever"
+guards = "none"
+on = "shell"
+match = "guild goal *"
+reason = "Goals and their levers are the foreman's; this role asks it with guild task question."
+
+[[prohibition]]
+id = "no-hard-stop"
+guards = "none"
+on = "shell"
+match = "guild stop --hard*"
+reason = "Hard-stopping an instance is the warden's or a person's."
+
+[[prohibition]]
+id = "no-decide"
+guards = "product-direction"
+on = "shell"
+match = "guild task decide *"
+reason = "A decision ticket is Felix's to decide; this role asks with guild task ask."
+
+[[prohibition]]
+id = "no-edit-manifest"
+guards = "none"
+on = "write"
+match = "*package.json"
+reason = "This role never changes the code it walks, its manifest least of all; it installs the lockfile's way."
+
+[[prohibition]]
+id = "no-edit-npm-lock"
+guards = "none"
+on = "write"
+match = "*package-lock.json"
+reason = "Dependencies install the lockfile's way (npm ci); the lockfile is never changed."
+
+[[prohibition]]
+id = "no-edit-yarn-lock"
+guards = "none"
+on = "write"
+match = "*yarn.lock"
+reason = "Dependencies install the lockfile's way; the lockfile is never changed."
+
+[[prohibition]]
+id = "no-edit-pnpm-lock"
+guards = "none"
+on = "write"
+match = "*pnpm-lock.yaml"
+reason = "Dependencies install the lockfile's way; the lockfile is never changed."
+
+[[prohibition]]
+id = "no-cargo-publish"
+guards = "irreversible"
+on = "shell"
+match = "cargo publish*"
+reason = "A crate published to a registry cannot be taken back; this role builds only to walk."
+
+[[prohibition]]
+id = "no-cargo-install"
+guards = "none"
+on = "shell"
+match = "cargo install*"
+reason = "This role installs nothing outside its scratch space; it builds the workspace with cargo build --locked."
+
+[[prohibition]]
+id = "no-cargo-update"
+guards = "none"
+on = "shell"
+match = "cargo update*"
+reason = "The lockfile is never changed; a build that needs it changed is a finding."
+
+[[prohibition]]
+id = "no-npm-global"
+guards = "none"
+on = "shell"
+match = "npm * -g *"
+reason = "playwright-core installs in a scratch directory, never globally."
+
+[[prohibition]]
+id = "no-browser-download"
+guards = "none"
+on = "shell"
+match = "npx playwright install*"
+reason = "This role drives the system Google Chrome; it downloads no browser."
+
+[[prohibition]]
+id = "no-edit-cargo-toml"
+guards = "none"
+on = "write"
+match = "*Cargo.toml"
+reason = "This role never changes the code it walks, its manifests least of all."
+
+[[prohibition]]
+id = "no-edit-cargo-lock"
+guards = "none"
+on = "write"
+match = "*Cargo.lock"
+reason = "The workspace builds the lockfile's way (--locked); the lockfile is never changed."
