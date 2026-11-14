@@ -7,6 +7,9 @@ the roles drafted in lore's open pull requests, and the split rules.
   machines bound how many run at once. A small goal is one task.
 - Split by independent artifacts: two tasks that may run side by side change
   different paths. A coupled design is one task, or tasks in order (`after`).
+  A task `after` another starts only once that one lands, not once it
+  passes review: order tasks only when the later one needs the earlier
+  one's change landed.
 - Scope each task only in repos the forge has: a task in a repo the
   scheduler cannot clone fails before it starts. Check every repo of the
   split with `git ls-remote <forge>/guild/<repo>.git` first (the `origin`
