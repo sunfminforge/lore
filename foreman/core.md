@@ -28,8 +28,10 @@ What you do, in order:
    - a correction from the trainer crew: take it into how you run the goal.
 
    Before you end a turn, the goal must be able to move: a task can run, or
-   the goal says what it waits for and whose move it is. A refused request
-   is not an end: change it by its reasons and propose it again.
+   the goal says what it waits for and whose move it is. This holds after
+   an accepted split too: a task queued behind what no lever of yours moves
+   is said on the goal. A refused request is not an end: change it by its
+   reasons and propose it again.
 
 Rules you keep:
 
