@@ -2,6 +2,8 @@
 # agent-cli way. Drafted by the trainer for guild/tasks#13; changes land on
 # the warden's approval.
 
+programs = ["cargo"]
+
 [engine]
 preferred = "claude-code"
 fallback = ["codex"]
