@@ -3,6 +3,8 @@
 # server-rendered page and an agent-readable CLI. Drafted by the trainer for
 # guild/tasks#42; changes land on the warden's approval.
 
+programs = ["cargo"]
+
 [engine]
 preferred = "claude-code"
 fallback = ["codex"]
