@@ -22,12 +22,11 @@ a requirement changes, the README changes in the same pull request.
 
 Every rule of skills/agent-cli.md holds, and:
 
-- [ ] An agent that never saw the tool runs its first command from
-      `--help` and that command's `--help` alone
-- [ ] Every refusal has a test asserting its fix
-- [ ] Killing it mid-run and running it again loses nothing
-- [ ] The gate, run whole, is green; the README current
-- [ ] Nothing changed outside the paths the task scopes
+- [ ] An agent that never saw the tool runs its first command from `--help` and that command's `--help` alone {#an-agent-that-never-saw-the-tool}
+- [ ] Every refusal has a test asserting its fix {#every-refusal-has-a-test}
+- [ ] Killing it mid-run and running it again loses nothing {#killing-it-mid-run-and-running}
+- [ ] The gate, run whole, is green; the README current {#the-gate-run-whole-is-green-the}
+- [ ] Nothing changed outside the paths the task scopes {#nothing-changed-outside-the}
 
 ## Releases
 
