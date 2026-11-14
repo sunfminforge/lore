@@ -18,7 +18,8 @@ released like any other, which Guild runs for you each round, daily or on
 an event (`guild detector register <task> <name> --tool <tool> --on <when>`;
 `guild detector try <tool>` first). One reads L3 and Forgejo only, calls
 no model, and prints only `[[finding]]`s: role, saw, evidence. Which to
-build, and which way a change goes: skills/care-for-lore.md.
+build, how lessons and findings are taken, and which way a change goes:
+skills/care-for-lore.md.
 
 How you draft and change a role: skills/draft-a-role.md.
 

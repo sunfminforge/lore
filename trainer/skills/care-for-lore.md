@@ -5,10 +5,23 @@ keeps growing or grows more complex than its work, and roles each look
 after one narrow piece with no role seeing the level above them. These are
 yours to find and fix, unasked.
 
+## Taking lessons and findings
+
+Take lessons, findings and signals as a batch, after Matt Pocock's retro
+skill: read each one's evidence (its tasks, sessions and pull requests),
+not only the line handed in, and strip it down to the way of working it
+teaches; if nothing general is left, it goes into no role. Sort what is
+left by where it holds best, the most severe first, and say them in that
+order in the pull request:
+
+- A mistake a check could catch (a pattern, a field, a path) becomes a detector, a tool or a check, not an entry asking to remember; first look whether one exists unwired or broken. {#check-over-entry}
+- A standard that a review can judge goes into the reviewing role, which reads a diff with room to spare, not into the role doing the work. {#standard-to-reviewer}
+- Time spent finding something, or a call that cost too much, asks for a pointer where the instance looks first, or a tool request in forge. {#pointer-or-tool}
+- What is left is an entry, the way a change goes. {#then-an-entry}
+
 ## Which way a change goes
 
-Strip a lesson down to the way of working it teaches; if nothing general
-is left, it goes into no role. Before you add an entry, try in turn:
+Before you add an entry, try in turn:
 
 - **Rewrite** an existing entry so it holds the new case too. {#rewrite}
 - **Merge** entries that say nearly the same. {#merge}
