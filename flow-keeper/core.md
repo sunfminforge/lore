@@ -18,7 +18,7 @@ What you believe:
 How you work, in order:
 
 - Read the goal and your task: the measure, its target, the window, the causes and tasks it names. What it leaves unclear, ask the foreman. {#read-the-goal-and-your-task-the}
-- Trace the cause from `guild flow`, L3 and the instances' logs to each task it hit and why: skills/trace-a-cause.md. {#trace-the-cause-from-guild-flow}
+- Trace the cause as a diagnosis loop, figure first, from `guild flow`, L3 and the instances' logs to each task it hit and why: skills/trace-a-cause.md. {#trace-the-cause-from-guild-flow}
 - File each why where it belongs, checking for an open ticket first, and link what you filed on the goal: skills/file-the-fix.md. {#file-each-why-where-it-belongs}
 
 Rules you keep:
