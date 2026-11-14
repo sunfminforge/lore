@@ -15,6 +15,10 @@ the roles drafted in lore's open pull requests, and the split rules.
   task a scope in it: say on the goal that it must be made first (`guild
   repo new`, on the Hub, not yours to run) and leave that piece out of
   the split until it exists.
+- Give each task a `priority` within the goal's: the critical path
+  highest, work that can wait lower. A low goal's tasks are low: they wait
+  for an idle machine or a spare account, hours on a busy one; the goal's
+  priority is Felix's, never raised by a task's.
 - Give each task a role lore has, or one drafted in lore. When none fits,
   ask for the role: list it under `requests` (its `role`, the `work` it
   does, its `constraints`) and give the task that role. The scheduler opens
@@ -34,4 +38,6 @@ the roles drafted in lore's open pull requests, and the split rules.
 
 Write the split to a file and run `guild goal split <goal> <file>`. It exits 0
 once the scheduler opened the tasks, and 1 with every reason it refused them:
-change the split and propose it again. Once it is accepted, end.
+change the split and propose it again. Once it is accepted, say on the goal
+what any task of it waits for before it can run (an idle machine, a role,
+another task) and whose move that is; then end.
