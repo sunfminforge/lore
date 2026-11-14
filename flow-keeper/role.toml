@@ -1,0 +1,20 @@
+# flow-keeper: takes a goal on one of Guild's flow measures (a wait cause,
+# lead time), traces it to the tasks it hit and why, and files each cause
+# with its owner: a ticket on sunfmin/control for Guild's code, a finding
+# for the trainer crew for a role. Drafted by the trainer for
+# guild/tasks#132; changes land on the warden's approval.
+
+[engine]
+preferred = "claude-code"
+fallback = ["codex"]
+model = "sonnet"
+
+[resources]
+gpu = false
+heavy_io = false
+request = { cores = 1, memory_gb = 2 }
+limit = { cores = 2, memory_gb = 4 }
+
+[budget]
+tokens = 200000
+wall_minutes = 60
