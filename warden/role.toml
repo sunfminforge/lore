@@ -2,7 +2,12 @@
 # request, sends back what fails, hard-stops an instance that breaks the
 # rules, and holds the prohibitions. Never resident: each review is a new
 # instance, which runs the tests and the acceptance commands before it
-# reads the change. Changes to it land only on the steward's approval.
+# reads the change. It names cargo because a review runs the reviewed
+# task's cargo checks, its tests, one-step check and guild gate, so it is
+# placed only where cargo is (guild/tasks#210). Changes to it land only on
+# the steward's approval.
+
+programs = ["cargo"]
 
 [engine]
 preferred = "claude-code"
