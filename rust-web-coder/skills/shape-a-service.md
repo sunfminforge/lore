@@ -11,9 +11,15 @@ One cargo workspace.
 When a change would put I/O in a pure crate, move the reading into the
 effect crate and pass what it read in as an argument.
 
+## Deep view models
+
+- Judge a pure crate by what its handlers are spared: a view model that hands each page and each CLI answer one finished value is deep; one that passes the API's fields through one by one is shallow. Its interface is everything a handler must know, its failed-read values and the order of its calls included. {#judge-by-what-handlers-are-spared}
+- Delete it in your head: if what it computes would come back in each handler, it earns its place; if nothing comes back, merge it into its caller. {#delete-it-in-your-head}
+- Where a crate's interface is open, draft two unlike ones (the fewest functions; the busiest page's call made trivial) and keep the one that leaves the handlers smallest. {#draft-two-unlike-interfaces}
+
 ## Reading APIs
 
-- One module per API (Forgejo, guildd, …), the only place that builds its URLs and sends its requests. Each returns the pure crate's types, never the client's. {#one-module-per-api-forgejo}
+- One module per API (Forgejo, guildd, …), the only place that builds its URLs and sends its requests. Each returns the pure crate's types, never the client's. Its seam is the base URL, filled by the real API when served and by the test's stand-in server when tested, so no client trait or mock sits between. {#one-module-per-api-forgejo}
 - Only `GET` (and `HEAD`). A method that writes is never built, so a token that could write still cannot be used to. {#only-get-and-head-a-method-that}
 - The base URL and the token come from the environment at run time, read once in `main` and passed down; `clap`'s `env` is the one place each variable is named. Neither has a default that points at a real system. {#the-base-url-and-the-token-come}
 - The token lives in a type whose `Debug` and `Display` print `***`; it is sent only as the `Authorization` header, never in a URL, and never reaches a log line, an error message, a page or a JSON answer. {#the-token-lives-in-a-type-whose}
