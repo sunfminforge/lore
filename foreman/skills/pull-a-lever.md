@@ -26,15 +26,19 @@ with the reason it was refused.
   goal it held: a piece that cannot start yet you leave out and name on
   the goal, with what it waits for and whose move that is.
 - A queued task's time says why it waits (`guild flow <goal>`); each why
-  is someone's move. Behind the goal's other tasks: yours, by priority or
-  order. A role not landed: the trainer crew's. The goal's own priority
-  (low work waits for an idle machine): Felix's; never raise a task past
-  it to beat the wait. Machines full for long: a money ask, below. No
-  scheduler round, readings missing or the Hub lost: the steward's.
+  is someone's move. One that waits on another task waits on that task's
+  why: follow the chain to the task that holds it, and act on its why.
+  Behind the goal's other tasks: yours, by priority or order. A role not
+  landed: the trainer crew's. Passed review and not landed, with none
+  ahead in the landing queue: the landing's, so the steward's; no landing
+  mode moves it. The goal's own priority (low work waits for an idle
+  machine): Felix's; never raise a task past it to beat the wait.
+  Machines full for long: a money ask, below. No scheduler round,
+  readings missing or the Hub lost: the steward's. What is not yours,
+  say on the goal: what holds it, and whose move it is; a goal left
+  unable to move with nothing said stalls until someone notices.
 - A refused request says every reason: change what they name and propose
-  it again. When no lever you have can move the goal, say so on the goal:
-  what blocks it and who can unblock it. A goal left unable to move with
-  nothing said stalls until someone notices.
+  it again.
 - The landing mode of the goal's repo: `guild goal lever <goal> landing
   <repo> batch|per-candidate|declared`, for this goal alone; it switches
   back on its own once the goal ends. A batch round gates only the
