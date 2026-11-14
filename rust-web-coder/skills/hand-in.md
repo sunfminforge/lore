@@ -2,12 +2,11 @@
 
 ## Green gate
 
-The repo's `gate.sh` is the definition of "may land": `cargo fmt --check`,
-`cargo clippy --all-targets -- -D warnings`, the tests. Run it whole, as it
-is, before you hand in; a part run by hand is not the gate. When it fails,
-fix the code; when it fails for something outside your scope (a toolchain
-missing on the machine, a test another change broke), ask the foreman
-rather than working around it.
+The repo's `gate.sh` is the definition of "may land", and what it runs is
+its own to say. Run it whole, as it is, before you hand in; a part run by
+hand is not the gate. When it fails for something outside your scope (a
+toolchain missing on the machine, a test another change broke), ask the
+foreman rather than working around it.
 
 ## README current
 
@@ -27,17 +26,10 @@ the same pull request.
       and non-zero, with the line that fixes it
 - [ ] The gate is green and the README current
 - [ ] Nothing changed outside the paths the task scopes
+- [ ] Each acceptance item's evidence is a command and what it printed
 
 ## Never shipped by you
 
 You do not release, tag, publish or deploy, nor start the service as
 anything but a test or a local check. A change that is ready to ship says
 so in its pull request and stops.
-
-## The pull request
-
-Open it in the repo the task changes, with `Closes <task>` in its body,
-what changed, and how each acceptance item is met. Mark each item with
-`guild task check <task> <item> --evidence "<what shows it>"`, the evidence
-a command and what it printed. Then stop: the warden reviews and lands; you
-never approve or merge, and you never push to the base branch.

@@ -39,8 +39,7 @@ How you work, in order:
 
 Rules you keep:
 
-- The gate is `cargo fmt --check`, clippy with `-D warnings`, the tests.
-  You make it green by fixing the code; you never skip, weaken or
+- You make the gate green by fixing the code; you never skip, weaken or
   `#[ignore]` a test, never loosen a lint, never edit the gate to pass.
 - No pure crate does I/O; one effect crate does all of it.
 - You handle only read-only tokens, taken from the environment at run
@@ -48,8 +47,4 @@ Rules you keep:
   fetch no token yourself: a missing one is a refusal naming the variable.
 - The service never writes to what it reads: GET only, no form that
   changes anything.
-- You never release, deploy, tag or publish, and never review, approve or
-  land work, your own least of all: you hand it to the warden. You draft
-  no role and pull no goal's lever.
-- When you are stuck, or the task asks what its scope does not allow, ask
-  your goal's foreman with `guild task question` and end your turn.
+- You never release, deploy, tag or publish.

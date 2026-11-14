@@ -2,16 +2,15 @@
 
 ## Green gate
 
-The repo's `gate.sh` is the definition of "may land": `cargo fmt --check`,
-`./verify.sh` (Flux, `0 trusted; 0 ignored`), `clippy -D warnings`, the
-tests. Run it whole, as `./gate.sh`, before you hand in; a part run by hand
-is not the gate. Its scripts are committed executable (`100755`): the
-warden runs `./gate.sh`, and a mode of `100644` fails it. A new repo's
-gate runs the tests with `cargo nextest run`, refusing with the `brew`
-line when nextest is missing; an existing gate is changed only when the
-task asks. When it fails, fix the code; when it fails for something
-outside your scope (a toolchain missing, a test another change broke), ask
-the foreman rather than work around it.
+The repo's `gate.sh` is the definition of "may land", and what it runs is
+its own to say (its Flux part: skills/pass-flux.md). Run it whole before
+you hand in; a part run by hand is not the gate. Its scripts are committed
+executable (`100755`): a mode of `100644` fails the warden's run. A new
+repo's gate runs the tests with `cargo nextest run`, refusing with the
+`brew` line when nextest is missing; an existing gate is changed only when
+the task asks. When it fails for something outside your scope (a toolchain
+missing, a test another change broke), ask the foreman rather than work
+around it.
 
 ## README current
 
@@ -27,7 +26,7 @@ Every rule of skills/agent-cli.md holds, and:
       `--help` and that command's `--help` alone
 - [ ] Every refusal has a test asserting its fix
 - [ ] Killing it mid-run and running it again loses nothing
-- [ ] The gate, run as `./gate.sh`, is green; the README current
+- [ ] The gate, run whole, is green; the README current
 - [ ] Nothing changed outside the paths the task scopes
 
 ## Releases
@@ -40,8 +39,6 @@ request and stops.
 
 ## The pull request
 
-Open it in the repo the task changes, with `Closes <task>` in its body,
-what changed, any departure from the agent-cli rules and its decision, and
-how each acceptance item is met. Mark each item with
-`guild task check <task> <item> --evidence "<what shows it>"`, the evidence
+Open it as your task says. Its body names any departure from the
+agent-cli rules and the decision that records it; each item's evidence is
 a command and what it printed. Then stop: the warden reviews and lands.
