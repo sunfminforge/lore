@@ -13,7 +13,11 @@ in the task's own terms, and end your turn: do not wait or poll.
   answer changes what the goal needs, change the split instead (a re-split
   of queued tasks, or a task added: skills/pull-a-lever.md). When only
   Felix can say (product direction, money), say so in the answer, and that
-  the worker asks him with `guild task ask`.
+  the worker asks him with `guild task ask`. Never promise to tell a
+  worker later (once a task lands, say): your session wakes only on what
+  reaches it. When a task cannot go on until other work lands, say so on
+  the goal: what it waits for and whose move that is
+  (skills/pull-a-lever.md).
 - **Redirect a worker.** When a working worker goes the wrong way (another
   task's paths, a design the goal rules out, work the task does not ask),
   `guild task tell <task> --message "<text>"`: it takes it once its current

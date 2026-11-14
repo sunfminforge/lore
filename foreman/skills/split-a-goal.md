@@ -10,14 +10,17 @@ the roles drafted in lore's open pull requests, and the split rules.
   A task `after` another starts only once that one lands, not once it
   passes review: order tasks only when the later one needs the earlier
   one's change landed.
-- Scope each task only in repos the forge has: a task in a repo the
-  scheduler cannot clone fails before it starts. Check every repo of the
-  split with `git ls-remote <forge>/guild/<repo>.git` first (the `origin`
-  of lore shows the forge); the brief's example repo is an example, not a
-  repo you have. When the goal needs a repo that does not exist, give no
-  task a scope in it: say on the goal that it must be made first (`guild
-  repo new`, on the Hub, not yours to run) and leave that piece out of
-  the split until it exists.
+- Split only work that can start now. Scope each task only in repos the
+  forge has: a task in a repo the scheduler cannot clone fails before it
+  starts. Check every repo of the split with `git ls-remote
+  <forge>/guild/<repo>.git` first (the `origin` of lore shows the forge);
+  the brief's example repo is an example, not a repo you have. Work that
+  builds on what has not landed (another goal's task: `after` names only
+  tasks of the same split) cannot start either: a constraint telling the
+  worker to wait only parks it and fails the task. Leave such a piece out
+  of the split, a repo to be made (`guild repo new`, on the Hub, not
+  yours to run) or work of another goal, and say on the goal what it
+  waits for and whose move that is; split it once it has landed.
 - Give each task a `priority` within the goal's: the critical path
   highest, work that can wait lower. A low goal's tasks are low: they wait
   for an idle machine or a spare account, hours on a busy one; the goal's

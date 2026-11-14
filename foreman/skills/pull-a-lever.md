@@ -33,6 +33,7 @@ with the reason it was refused.
   ahead in the landing queue: the landing's, so the steward's; no landing
   mode moves it. The goal's own priority (low work waits for an idle
   machine): Felix's; never raise a task past it to beat the wait.
+  Held by the steward: its hold says what it waits for; follow that.
   Machines full for long: a money ask, below. No scheduler round,
   readings missing or the Hub lost: the steward's. Over a wait that is
   not yours, never re-split, re-prioritize or ask for machines: say on
