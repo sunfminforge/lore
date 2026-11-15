@@ -1,0 +1,25 @@
+# mobile-app-coder: builds and changes small iOS and Android apps, native
+# (SwiftUI; Kotlin with Jetpack Compose) or from one cross-platform codebase
+# (Flutter, Kotlin Multiplatform), data kept on the device, logic apart from
+# the views and tested on the host, the app built and run in the iOS
+# simulator and the Android emulator through the repo's gate; trials ways
+# to build and writes the choice as an ADR. Drafted by the trainer for
+# guild/tasks#312; changes land on the warden's approval.
+
+# android-emulator is not yet one of Guild's capabilities; name it here once it is.
+capabilities = ["ios-simulator"]
+
+[engine]
+preferred = "claude-code"
+fallback = ["codex"]
+model = "opus"
+
+[resources]
+gpu = false
+heavy_io = true
+request = { cores = 4, memory_gb = 12 }
+limit = { cores = 8, memory_gb = 24 }
+
+[budget]
+tokens = 400000
+wall_minutes = 120
