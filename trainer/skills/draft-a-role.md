@@ -9,7 +9,7 @@ A role is a directory named after it:
 
 - `core.md`: who the role is and how it works, engine-neutral, within the core memory cap; it names each of its skills as `skills/<name>.md`, and keeps the simplest-change floor. {#core-md}
 - `skills/<name>.md`: one file per skill. {#skills-md}
-- Each list item of its core and of its skills is an entry: one line ending in its ID, `{#<id>}`, unique in its file, short and saying what the entry is; an instance names the entries it used by it, and the tally counts them. `guild lore ids <dir>` gives each item without one an ID from its first words. {#entry-ids}
+- Each list item of its core and of its skills is an entry: one line `- <text>` ending in its ID, never numbered, wrapped or nested, since `guild role check` refuses those; its ID unique in its file, short and saying what the entry is; an instance names the entries it used by it, and the tally counts them. Write items flat, then `guild lore ids <dir>` gives each without one an ID from its first words; it also converts a role, even an untouched one, that fails check on a newer memory format, but flattens nested lists: fold their sub-items by hand. {#entry-ids}
 - `prohibitions.toml`: one `[[prohibition]]` each, with `id`, `guards` (one of `money` for spending money, `credentials` for an account or a credential, `irreversible`, `data-leaving-host`, `product-direction`, or `none`), `on` (`shell`, `write` or `fetch`), `match` and `reason`. Copy every prohibition of yours that guards a kind, unchanged; add what the role needs and what its request's constraints say. {#prohibitions-toml}
 - `role.toml`: `[engine]` preferred, fallback and model; `[resources]` gpu, heavy_io, request and limit (cores, memory_gb); `[budget]` tokens and wall_minutes. Never `crew`: only the steward lets a role into the crew. {#role-toml}
 
@@ -19,7 +19,7 @@ diff lore's role against the sample, keep what lore's role learnt since,
 and take what the sample adds, by the way a change goes.
 
 Check it with `guild role check <dir>`, then open it as a lore pull request
-with `guild role draft <your task> <dir> --lore <lore checkout>`: it closes
+with `guild role draft <your task's bare number> <dir> --lore <lore checkout>`: it closes
 your task once it lands. It refuses a draft that is not sound, and says when
 the draft loosens a guarded kind: then only Felix's approval lands it where it
 guards money, and the task waiting on the role asks him; for credentials or
@@ -49,3 +49,12 @@ what the instance does. After Matt Pocock's writing-for-agents skill:
 - Leave to `--help`, a config or the layout what one look finds; write down only what looking cannot: the reason, the unwritten convention, the pitfall. A sentence the model already obeys without it is deleted whole. {#no-cache-no-op}
 
 Which way the change goes, and the level above: skills/care-for-lore.md.
+
+## When it comes back
+
+A task reopened, a follow-up, a send-back, a replay to run:
+
+- First find what is already there: the task's pulls (`guild tool forge-pull find <repo>#<n>`) and its branch's log; the fix is often pushed and waiting on review, and a second pull or a redo only adds noise. {#find-what-is-pushed}
+- A branch that predates what landed since (another change to the role, or the repo's own keeping that turns its gate red): rebase onto main, re-apply on top, drop what the landed change contradicts, and resubmit without waiting on reviews; `guild role draft` keeps the old pull's body, so rewrite it too. {#rebase-on-main}
+- An acceptance or gate item that needs a file outside the task's scope: say so in the pull request, and leave the item unclaimed. {#say-what-is-out-of-reach}
+- A replay of a reviewing role's change: run each review command once per head, since its output does not depend on the role, judge each role version's verdict from that one output, and say so in the body. A send-back counts as not holding where the steward or the foreman ruled the work stands unchanged, even if later reviews repeated it. {#replay-once-per-head}

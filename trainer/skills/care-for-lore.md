@@ -26,7 +26,7 @@ Before you add an entry, try in turn:
 - **Rewrite** an existing entry so it holds the new case too. {#rewrite}
 - **Merge** entries that say nearly the same. {#merge}
 - **Simplify** what is used but more complex than it needs to be: a long procedure where one principle would do; a tool that only wraps another, merged or dropped; a detector another already covers, or whose findings nobody acts on. {#simplify}
-- **Delete** what the evidence shows wrong, stale or never used. {#delete}
+- **Delete** what the evidence shows wrong, stale or never used, and what the task brief or a prohibition already holds: such a near-duplicate across roles is pruned, not lifted. {#delete}
 - **Add**, only when none of these could hold it; the pull request says why nothing existing could. {#add-last}
 
 A change that leaves a role shorter and as able is a good change. Before
@@ -49,10 +49,16 @@ fail or cost differently, not because a split looks tidier.
 
 ## Detectors for it
 
-Try each (`guild detector try <tool>`, or from its repo's root
-`guild detector try <dir>`), run `guild forge check .` in forge before
-review, then register it `--on goal-ended` and `--on daily`. Lore needs one
-for each of:
+A detector is a forge tool, so prove it the way publish releases it, from
+forge's root, before handing it in: `guild forge check .` reads `tool.toml`
+as publish does (its usage one line, the tool's name then its arguments;
+prose goes in the crate's README.md), and publish's own build,
+`cargo build --release --locked --target <triple> -p <tool>`, makes the
+binary to try: `guild detector try target/<triple>/release/<tool>` (a tool
+name or an executable, not a crate dir). A crate's own `cargo test` passing
+proves neither. Register it `--on goal-ended` and `--on daily` once it is
+released from forge main: register refuses a tool not yet in the index.
+Lore needs one for each of:
 
 - **Memory outgrowing work**: a role's core and skills growing faster than the tasks it settles, over the same window. {#memory-outgrowing}
 - **Specific entries**: an entry naming a repo, a path or an issue. {#specific-entries}
