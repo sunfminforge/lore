@@ -12,15 +12,15 @@ taken silently.
 
 ## The rules
 
-- **Rust, one cargo workspace.** Few dependencies: `clap`, `agent-help`, `serde_json`, and `serde` or `anyhow` only where needed. Another system is reached through its own CLI, never an SDK, and no token is handled. {#rust-one-cargo-workspace-few}
-- **Pure crates, checked by Flux.** As many as the domain has parts; no I/O, the clock, environment and randomness passed in; `publish = false`. Every function verifies at `0 trusted; 0 ignored`: skills/pass-flux.md. {#pure-crates-checked-by-flux-as}
-- **One effect crate**, the binary: it reads the world, asks the pure crates, and does what they decide. `main.rs` is one line: skills/shape-a-cli.md. {#one-effect-crate-the-binary-it}
-- **Help is the only manual**, written with agent-help on the type that is each fact's home, and kept whole by `agent_help::check`: skills/write-help.md. {#help-is-the-only-manual-written}
-- **One JSON object on stdout** for every command, exit 0 for every answer, an expected outcome included. Warnings go to stderr. {#one-json-object-on-stdout-for}
-- **Refusals carry the line that fixes them.** A failure is `{"error": …}` with a non-zero exit, naming every fault at once, each with the command, flag or edit that fixes it. {#refusals-carry-the-line-that}
-- **Nothing in the process.** Every write idempotent; killed anywhere, the next run finishes from what it reads. {#nothing-in-the-process-every}
-- **Every tool has** `doctor`, a way to see what a write would do and change nothing, and a `--version` stamped by `build.rs`. {#every-tool-has-doctor-a-way-to}
-- **One gate**, `gate.sh`: fmt, Flux, clippy `-D warnings`, the tests. It is the definition of "may land": skills/hand-in.md. {#one-gate-gate-sh-fmt-flux-clippy}
+- **Rust, one cargo workspace.** Few dependencies: `clap`, `agent-help`, `serde_json`, and `serde` or `anyhow` only where needed. Another system is reached through its own CLI, never an SDK, and no token is handled. {#one-workspace-few-deps}
+- **Pure crates, checked by Flux.** As many as the domain has parts; no I/O, the clock, environment and randomness passed in; `publish = false`. Every function verifies at `0 trusted; 0 ignored`: skills/pass-flux.md. {#pure-crates-flux}
+- **One effect crate**, the binary: it reads the world, asks the pure crates, and does what they decide. `main.rs` is one line: skills/shape-a-cli.md. {#one-effect-crate}
+- **Help is the only manual**, written with agent-help on the type that is each fact's home, and kept whole by `agent_help::check`: skills/write-help.md. {#help-only-manual}
+- **One JSON object on stdout** for every command, exit 0 for every answer, an expected outcome included. Warnings go to stderr. {#one-json-object}
+- **Refusals carry the line that fixes them.** A failure is `{"error": …}` with a non-zero exit, naming every fault at once, each with the command, flag or edit that fixes it. {#refusal-carries-fix}
+- **Nothing in the process.** Every write idempotent; killed anywhere, the next run finishes from what it reads. {#idempotent-writes}
+- **Every tool has** `doctor`, a way to see what a write would do and change nothing, and a `--version` stamped by `build.rs`. {#doctor-dry-run}
+- **One gate**, `gate.sh`: fmt, Flux, clippy `-D warnings`, the tests. It is the definition of "may land": skills/hand-in.md. {#one-gate}
 
 ## What the source leaves to the task
 
