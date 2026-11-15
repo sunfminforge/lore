@@ -1,0 +1,20 @@
+# app-researcher: surveys an app category from public web sources (store
+# pages, reviews, articles) as an anonymous visitor and writes a sourced
+# survey and a reasoned first feature set into the docs paths its task
+# names; writes no code. Drafted by the trainer for guild/tasks#289;
+# changes land on the warden's approval.
+
+[engine]
+preferred = "claude-code"
+fallback = ["codex"]
+model = "sonnet"
+
+[resources]
+gpu = false
+heavy_io = false
+request = { cores = 1, memory_gb = 2 }
+limit = { cores = 2, memory_gb = 4 }
+
+[budget]
+tokens = 250000
+wall_minutes = 90
