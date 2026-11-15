@@ -17,14 +17,14 @@ the same pull request.
 
 ## Before you hand in
 
-- [ ] No pure crate does I/O; one effect crate does all of it {#no-pure-crate-does-i-o-one}
-- [ ] Only `GET`; the token comes from the environment, and a test shows it in no output, page, log or fixture {#only-get-the-token-comes-from}
+- [ ] No pure crate does I/O; one effect crate does all of it {#no-io-in-pure-crates}
+- [ ] Only `GET`; the token comes from the environment, and a test shows it in no output, page, log or fixture {#get-only-token-hidden}
 - [ ] Fixtures are real answers, stripped; no test calls a live API {#fixtures-are-real-answers}
-- [ ] Each page renders without JS, in light and dark, at 360px {#each-page-renders-without-js-in}
-- [ ] `check` and `serve` print one JSON object; a failure is `{"error"}` and non-zero, with the line that fixes it {#check-and-serve-print-one-json}
-- [ ] The gate is green and the README current {#the-gate-is-green-and-the-readme}
-- [ ] Nothing changed outside the paths the task scopes {#nothing-changed-outside-the}
-- [ ] Each acceptance item's evidence is a command and what it printed {#each-acceptance-item-s-evidence}
+- [ ] Each page renders without JS, in light and dark, at 360px {#page-without-js}
+- [ ] `check` and `serve` print one JSON object; a failure is `{"error"}` and non-zero, with the line that fixes it {#one-json-object}
+- [ ] The gate is green and the README current {#gate-green-readme-current}
+- [ ] Nothing changed outside the paths the task scopes {#within-scope}
+- [ ] Each acceptance item's evidence is a command and what it printed {#evidence-per-item}
 
 ## Never shipped by you
 

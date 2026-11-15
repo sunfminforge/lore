@@ -6,17 +6,17 @@ Matt Pocock (MIT), whose commit the adopting pull request pins.
 
 ## Fixtures
 
-- A fixture is a real answer of the API, recorded once, saved as the JSON the API sent, under `fixtures/<api>/<what>.json`, with a line in a `README` beside it saying the request that produced it and when. {#a-fixture-is-a-real-answer-of}
-- Before committing one, strip it: no token, no cookie, no header, no private address or e-mail beyond what the test needs. Replace them with plainly fake values. A fixture is read by anyone who reads the repo. {#before-committing-one-strip-it}
-- Record the cases the code must handle, not only the happy one: empty lists, paging, a missing field, an error body. When the API changes, record again; never hand-edit a fixture into a shape the API does not send. {#record-the-cases-the-code-must}
-- Tests never call a live API; the gate runs without a network and without a token. {#tests-never-call-a-live-api-the}
+- A fixture is a real answer of the API, recorded once, saved as the JSON the API sent, under `fixtures/<api>/<what>.json`, with a line in a `README` beside it saying the request that produced it and when. {#fixture-is-recorded-answer}
+- Before committing one, strip it: no token, no cookie, no header, no private address or e-mail beyond what the test needs. Replace them with plainly fake values. A fixture is read by anyone who reads the repo. {#strip-fixtures}
+- Record the cases the code must handle, not only the happy one: empty lists, paging, a missing field, an error body. When the API changes, record again; never hand-edit a fixture into a shape the API does not send. {#record-edge-cases}
+- Tests never call a live API; the gate runs without a network and without a token. {#no-live-api}
 
 ## What each layer proves
 
-- **Pure crates**: parse each fixture into the pure types, compute, and assert the result. Plain unit tests for the cases, `proptest` for what must hold for every input (ordering, totals, no panic on any page). {#pure-crates-parse-each-fixture}
-- **Rendering**: render each view model and assert what a reader needs is there: the values, the links, an empty state, an error state. Snapshot tests (`insta`) where the whole page is the point, reviewed when they change, never accepted blind. {#rendering-render-each-view-model}
-- **Effect crate**: run the real binary against a stand-in server started in the test (axum on a random loopback port) that serves the fixtures, records what it was asked and can fail on demand. Assert the requests were `GET`, carried the token only in the header, and that `check`'s JSON and exit code are right when a source is up, down or refuses the token. {#effect-crate-run-the-real-binary}
-- **The token**: one test sets a known token, runs `check`, `serve` and a failing read, and asserts the token appears in no stdout, stderr, page or log. {#the-token-one-test-sets-a-known}
+- **Pure crates**: parse each fixture into the pure types, compute, and assert the result. Plain unit tests for the cases, `proptest` for what must hold for every input (ordering, totals, no panic on any page). {#test-pure-crates}
+- **Rendering**: render each view model and assert what a reader needs is there: the values, the links, an empty state, an error state. Snapshot tests (`insta`) where the whole page is the point, reviewed when they change, never accepted blind. {#test-rendering}
+- **Effect crate**: run the real binary against a stand-in server started in the test (axum on a random loopback port) that serves the fixtures, records what it was asked and can fail on demand. Assert the requests were `GET`, carried the token only in the header, and that `check`'s JSON and exit code are right when a source is up, down or refuses the token. {#test-effect-crate}
+- **The token**: one test sets a known token, runs `check`, `serve` and a failing read, and asserts the token appears in no stdout, stderr, page or log. {#test-token-hidden}
 
 The stand-in and the real code share the same paths and types, so a
 change to one fails the other's test.
