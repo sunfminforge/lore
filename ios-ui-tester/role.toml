@@ -1,0 +1,22 @@
+# ios-ui-tester: builds an iOS app's branch for the simulator, launches it
+# in a simulator device of its own and walks its screens in light and dark
+# mode with xcodebuild, simctl or the app's XCUITest target, all in scratch
+# space, and hands in screenshots and a note of what each showed. Drafted
+# by the trainer for guild/tasks#291; changes land on the warden's approval.
+
+capabilities = ["ios-simulator"]
+
+[engine]
+preferred = "claude-code"
+fallback = ["codex"]
+model = "sonnet"
+
+[resources]
+gpu = false
+heavy_io = true
+request = { cores = 4, memory_gb = 8 }
+limit = { cores = 8, memory_gb = 16 }
+
+[budget]
+tokens = 250000
+wall_minutes = 90
