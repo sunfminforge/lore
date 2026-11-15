@@ -13,6 +13,7 @@ Help is the only manual (skills/agent-cli.md). It is written with
 
 - `--help` (and `-h`) answers the index: the tool's own text, each command's line under its group, each topic's line. `<command> --help` answers that command whole, `help <topic>` that topic, `help all` the whole manual. {#help-is-the-index}
 - A command's line in the index is the first line of its text; a topic's, its first sentence, so a topic opens with one. The tool's text sends the reader to `<command> --help` before a command's first run. {#index-line}
+- A group's `<group> --help` does not list its commands by itself: the group's text carries a `## The commands` list, a line for each. {#group-help-lists-its-commands}
 - The manual says what the tool is, what it needs, what to run first, the commands grouped by who runs them, the rules to know first, and every departure from the output contract. {#manual-contents}
 - A command's help says when to run it, what it reads and writes, what it answers (every key, with an example object), what it may refuse, what trips you up. Who runs it is its group, declared where it is defined. {#command-help-contents}
 - A command's or topic's help is a page of its own: sections are `##` headings, the title left to the manual. {#page-per-command}

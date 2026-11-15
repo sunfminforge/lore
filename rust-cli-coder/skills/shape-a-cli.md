@@ -10,6 +10,7 @@ them.
 - When the format is small (a file format, a number kind), own its reader in a pure crate rather than depend on a crate Flux cannot check, and say why in a decision record. Refuse past a fixed width (`too_large`) rather than add a big-number dependency or wrap. {#own-small-formats}
 - A reader the effect crate feeds a chunk at a time lets it choose: whole below a threshold, streamed above, never `read_to_end` on stdin. {#chunked-reader}
 - Each other system's CLI gets one module per command, the only place that builds that command line. That module is a real seam, filled twice, by the command and by its stand-in on `PATH`, so it needs no trait; a trait or generic with one filler is indirection, not a seam. {#one-module-per-external-command}
+- Where a task has a tool hand a token to a CLI it runs, it goes on stdin (`curl -q --config -`), never in argv, where every process can read it; the stand-in's recorded arguments prove it absent. {#token-on-stdin-never-argv}
 
 ## Deep crates
 

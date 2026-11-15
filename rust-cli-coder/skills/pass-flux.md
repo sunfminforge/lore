@@ -10,6 +10,7 @@ Every function of every pure crate is checked by Flux refinement types
 - The proof starts at what the effect crate reports, not at the world: refine what crosses into the pure crate, and let the effect crate refuse what does not fit. {#proof-starts-at-effect-crate}
 - Let the type that knows a limit make what depends on it: an index refined by a row's width, made only by the header that has that width, needs no bounds check where it is used; a conversion that takes a value refined by its kind cannot be written across kinds. {#limit-type-makes-dependents}
 - State a struct's rule as its invariant (an id below the next id, a version that moves up by exactly one) and let only one method change it. {#struct-invariant}
+- A struct Flux refines (`#[flux_rs::refined_by]` over `#[flux_rs::field]`s) writes `Clone` by hand: a derived one does not carry the invariant. {#refined-struct-clone-by-hand}
 - What Flux cannot say, say with `proptest`. {#proptest-for-the-rest}
 - Write the refinement before the body that meets it and run Flux to see it refuse the code as it stands: red first, as in skills/test-the-binary.md. A refinement never seen to fail proves nothing new. {#refinement-before-body}
 
@@ -20,6 +21,7 @@ The gate requires `0 trusted; 0 ignored`. When a function does not verify:
 - Read the failing obligation: which refinement, at which call. {#read-the-obligation}
 - Strengthen the precondition the caller can prove, split the function so each part states what it needs, or change the type so the bad case cannot be built. {#fix-the-code-not-the-check}
 - Never add `#[flux::trusted]`, `#[flux::ignore]` or their equivalents, never move the function out of the pure crate to escape the check, and never edit the gate to accept a non-zero count. {#never-trust-or-ignore}
+- A Flux crash (an ICE, an "impossible case") is the toolchain's, not a refused proof: rewrite the construct in its plainest form until it verifies: a `for` loop for an iterator chain, separate state for a match on a tuple holding `&mut`, a char loop for `split` with a closure, a slice pattern (`split_first`) for an index, a match range pattern (`0..=MAX`) for chained comparisons, which clippy accepts too. Where a dependency's macro crashes it (clap's derive; `json!`, which unwraps), keep it out of the checked modules (`--only-check='def:<module>::'`). Name each rewrite in the pull request. {#flux-crash-rewrite-plain}
 
 If a proof is out of reach within the task's budget, ask the foreman with
 `guild task question`, naming the function and obligation.
@@ -28,5 +30,5 @@ If a proof is out of reach within the task's budget, ask the foreman with
 
 - Homebrew's Flux toolchain formula, the one `verify.sh` names, at the newest its tap has, brings its own `fixpoint` and `z3`; pin and build none of them. Depend on the Flux crates at the revision `brew info` names for that formula. A pure crate opts in with `[package.metadata.flux]`. {#flux-toolchain}
 - `verify.sh` refuses a missing or older toolchain, naming the `brew` command that fixes it; you install nothing yourself. A missing toolchain is a question to the foreman, not a reason to skip Flux. {#verify-refuses-old-toolchain}
-- The flags (`-Ftimings -Ffixpoint-timeout=20 -Fcatch-bugs`) live in `verify.sh`, so a run by hand checks what the gate checks; the gate clears any inherited `FLUXFLAGS`. A query past twenty seconds fails naming its function: split or re-state it, never give it more time. {#flags-in-verify-sh}
+- The flags (`-Ftimings -Ffixpoint-timeout=20 -Fcatch-bugs`) live in `verify.sh`, so a run by hand checks what the gate checks; the gate clears any inherited `FLUXFLAGS`. Run Flux by hand with the gate's flags: a bare `cargo flux` leaves a `log/` folder in the repo, deleted before you commit. A query past twenty seconds fails naming its function: split or re-state it, never give it more time. {#flags-in-verify-sh}
 - Flux runs alone, before the tests. Flux attributes expand to nothing in a plain build: the gate runs nightly, a release builds on stable. {#flux-runs-alone}

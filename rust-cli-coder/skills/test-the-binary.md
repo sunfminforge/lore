@@ -10,9 +10,11 @@ request that adopted them pins the commit.
 - A test crosses the seam a caller crosses: a pure crate's public functions, or the binary's arguments, stdout and exit code. One that reaches a private part, or breaks on a refactor that kept behaviour, tests past the interface: move it to the seam. {#test-at-the-seam}
 - Run the real binary; assert its JSON and its exit code. {#assert-json-and-exit}
 - Stand in for each external CLI with a cargo example placed first on `PATH`; its state is one JSON file, it records calls and injects failures, and shares the real code's constants. That stand-in, a temp directory, and the clock and seed passed in are the only fakes; a crate of your own runs as it is. {#stand-in-clis}
-- An expected value comes from outside the code: a literal worked by hand, the spec's example, the other CLI's real output. A `proptest` states a property (a round trip, an order, a bound); one that recomputes the answer the code's way is tautological and passes by construction. {#expected-from-outside-the-code}
+- A refused connection is a port bound on `127.0.0.1:0`, read, and dropped, never a fixed port: clients refuse low "unsafe" ones before they connect. {#refused-connection-port}
+- An expected value comes from outside the code: the spec's own figures (a statement's closing less its opening), its example, the other CLI's real output; a sum worked out by hand is where a wrong expectation comes from. A `proptest` states a property (a round trip, an order, a bound); one that recomputes the answer the code's way is tautological and passes by construction. {#expected-from-outside-the-code}
 - A refusal has a test asserting its fix; a write one that runs it twice, one that kills it midway, and, where it locks, many processes at once. {#test-refusals-writes-kills}
-- Where the tool can check something of its own repo (its README), the gate runs it there. {#self-check-in-gate}
+- Where the tool can check something of its own repo (its README), the gate runs it there; an end-to-end script that records each command it runs keeps the README's walkthrough in step by checking each one appears in it (`grep -qxF`). {#self-check-in-gate}
+- Porting a tool: keep the old one runnable in scratch until the new one matches it, diff the two on the same inputs and on random ones, and check the old one's outputs in as the tests' expected files. {#port-a-tool-against-the-old}
 
 ## Red, green, refactor
 

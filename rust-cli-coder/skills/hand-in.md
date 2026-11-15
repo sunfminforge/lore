@@ -27,6 +27,13 @@ Every rule of skills/agent-cli.md holds, and:
 - [ ] Killing it mid-run and running it again loses nothing {#survives-kill}
 - [ ] The gate, run whole, is green; the README current {#gate-green-readme-current}
 - [ ] Nothing changed outside the paths the task scopes {#stayed-in-scope}
+- Guild's hub is Forgejo, which `gh` does not reach: open the pull with `guild tool forge-pull open`, as the instance's own account, and find your task's pulls with `forge-pull find`. Write a pull's or issue's number only once the call that made it has returned it. {#open-the-pull-on-forgejo}
+- When the hub refuses your push (pre-receive) or the repo has pull requests off, leave the commits at the worktree's head for the warden, say so on the task, and ask the foreman how the work lands, early, before more is built on it; never route around the refusal. {#push-refused-leave-the-head}
+- A restarted task looks for its pull before redoing anything: one open, approved but unmergeable after a sibling landed is rebased onto main, its gate rerun, the conflict commented; a task another landing already met still closes by merge, with an empty commit and each check's output as its evidence. {#restart-find-the-pull-first}
+- Commit the `Cargo.lock` entries your change adds, as a `--locked` build refuses without them; on a rebase take main's lock and let cargo add yours, never `cargo generate-lockfile`, which moves other crates' pins. {#cargo-lock-on-rebase}
+- A send-back about the reviewer's host, not the work (no cargo there, a variable missing in its instance), changes no code: recheck where the checks run, record the host and versions in the pull request, and say so. {#send-back-on-the-reviewers-host}
+- An acceptance check whose command the current CLI does not meet (a default it expects that is opt-in) is met by changing the CLI, code and help together, named in the pull request; never by bending the check. {#acceptance-over-current-cli}
+- A test outside your paths that your change makes untrue (a list of what is not yet built) is the foreman's to let you change: ask early for that one line; the sibling task that empties such a list removes the test. To see every test a change moves, run them with `--no-fail-fast`. {#out-of-scope-test-your-change-falsifies}
 
 ## Releases
 
