@@ -1,0 +1,340 @@
+# What app-researcher must not do. Each says which kind it guards: `money`
+# (Felix's), `credentials`, `irreversible`, `data-leaving-host` or
+# `product-direction` (the steward's), or `none` (the warden's). The
+# trainer's guarded prohibitions are its floor, unchanged (guild ADR 0002).
+
+[[prohibition]]
+id = "no-force-push"
+guards = "irreversible"
+on = "shell"
+match = "git push --force*"
+reason = "A force push rewrites history others have."
+
+[[prohibition]]
+id = "no-repo-delete"
+guards = "irreversible"
+on = "shell"
+match = "* repos delete *"
+reason = "A deleted repo cannot be had back."
+
+[[prohibition]]
+id = "no-keychain-read"
+guards = "credentials"
+on = "shell"
+match = "security find-*-password*"
+reason = "Credentials are the steward's to hand out."
+
+[[prohibition]]
+id = "no-checkout"
+guards = "money"
+on = "fetch"
+match = "https://*checkout*"
+reason = "Spending money is Felix's alone."
+
+[[prohibition]]
+id = "no-paste-out"
+guards = "data-leaving-host"
+on = "fetch"
+match = "https://*paste*"
+reason = "Private data stays on Guild's machines."
+
+[[prohibition]]
+id = "no-gh-file"
+guards = "data-leaving-host"
+on = "shell"
+match = "*gh issue create*"
+reason = "What goes to GitHub is filed by the steward's filer alone: a cause in Guild's code with guild ticket file, which labels it for the guild fleet, files it once per cause and follows it; Guild's own issues are read and commented on with guild task and guild goal, never gh."
+
+[[prohibition]]
+id = "no-purchase"
+guards = "money"
+on = "fetch"
+match = "https://*purchase*"
+reason = "This role buys nothing: no app, subscription, trial or in-app purchase; a paywalled page is named as not read."
+
+[[prohibition]]
+id = "no-subscribe"
+guards = "money"
+on = "fetch"
+match = "https://*subscribe*"
+reason = "This role starts no subscription or trial; spending money is Felix's alone."
+
+[[prohibition]]
+id = "no-signin"
+guards = "credentials"
+on = "fetch"
+match = "https://*signin*"
+reason = "This role reads as an anonymous visitor and signs in nowhere; a page behind a sign-in is named as not read."
+
+[[prohibition]]
+id = "no-sign-in"
+guards = "credentials"
+on = "fetch"
+match = "https://*sign-in*"
+reason = "This role reads as an anonymous visitor and signs in nowhere."
+
+[[prohibition]]
+id = "no-login"
+guards = "credentials"
+on = "fetch"
+match = "https://*login*"
+reason = "This role reads as an anonymous visitor and signs in nowhere."
+
+[[prohibition]]
+id = "no-signup"
+guards = "credentials"
+on = "fetch"
+match = "https://*signup*"
+reason = "This role makes no account anywhere."
+
+[[prohibition]]
+id = "no-token-handling"
+guards = "credentials"
+on = "shell"
+match = "guild * token *"
+reason = "Tokens are the steward's to hand out, never this role's to fetch."
+
+[[prohibition]]
+id = "no-env-dump"
+guards = "credentials"
+on = "shell"
+match = "printenv*"
+reason = "The environment may carry a credential; dumping it would put a secret into a log."
+
+[[prohibition]]
+id = "no-app-store-cli"
+guards = "money"
+on = "shell"
+match = "mas *"
+reason = "This role installs and buys no app; the Mac App Store CLI does both."
+
+[[prohibition]]
+id = "no-simulator-install"
+guards = "none"
+on = "shell"
+match = "xcrun simctl install*"
+reason = "This role installs no app; it reads apps' public pages only."
+
+[[prohibition]]
+id = "no-brew-install"
+guards = "none"
+on = "shell"
+match = "brew install*"
+reason = "This role installs nothing; it reads the web and writes Markdown."
+
+[[prohibition]]
+id = "no-cask-install"
+guards = "none"
+on = "shell"
+match = "brew * --cask*"
+reason = "This role installs no app."
+
+[[prohibition]]
+id = "no-npm-install"
+guards = "none"
+on = "shell"
+match = "npm install*"
+reason = "This role installs nothing; it writes no code."
+
+[[prohibition]]
+id = "no-pip-install"
+guards = "none"
+on = "shell"
+match = "pip* install*"
+reason = "This role installs nothing; it writes no code."
+
+[[prohibition]]
+id = "no-edit-swift"
+guards = "none"
+on = "write"
+match = "*.swift"
+reason = "This role writes docs, never code."
+
+[[prohibition]]
+id = "no-edit-rust"
+guards = "none"
+on = "write"
+match = "*.rs"
+reason = "This role writes docs, never code."
+
+[[prohibition]]
+id = "no-edit-kotlin"
+guards = "none"
+on = "write"
+match = "*.kt"
+reason = "This role writes docs, never code."
+
+[[prohibition]]
+id = "no-edit-ts"
+guards = "none"
+on = "write"
+match = "*.ts"
+reason = "This role writes docs, never code."
+
+[[prohibition]]
+id = "no-edit-tsx"
+guards = "none"
+on = "write"
+match = "*.tsx"
+reason = "This role writes docs, never code."
+
+[[prohibition]]
+id = "no-edit-js"
+guards = "none"
+on = "write"
+match = "*.js"
+reason = "This role writes docs, never code."
+
+[[prohibition]]
+id = "no-edit-py"
+guards = "none"
+on = "write"
+match = "*.py"
+reason = "This role writes docs, never code."
+
+[[prohibition]]
+id = "no-edit-sh"
+guards = "none"
+on = "write"
+match = "*.sh"
+reason = "This role writes docs, never code."
+
+[[prohibition]]
+id = "no-edit-html"
+guards = "none"
+on = "write"
+match = "*.html"
+reason = "This role writes docs, never code."
+
+[[prohibition]]
+id = "no-edit-css"
+guards = "none"
+on = "write"
+match = "*.css"
+reason = "This role writes docs, never code."
+
+[[prohibition]]
+id = "no-edit-toml"
+guards = "none"
+on = "write"
+match = "*.toml"
+reason = "This role changes no manifest or config; it writes docs only."
+
+[[prohibition]]
+id = "no-edit-json"
+guards = "none"
+on = "write"
+match = "*.json"
+reason = "This role changes no manifest or config; it writes docs only."
+
+[[prohibition]]
+id = "no-edit-yaml"
+guards = "none"
+on = "write"
+match = "*.yml"
+reason = "This role changes no workflow or config; it writes docs only."
+
+[[prohibition]]
+id = "no-save-png"
+guards = "none"
+on = "write"
+match = "*.png"
+reason = "Another app's art and screenshots stay on its pages; the docs carry no images."
+
+[[prohibition]]
+id = "no-save-jpg"
+guards = "none"
+on = "write"
+match = "*.jpg"
+reason = "Another app's art and screenshots stay on its pages; the docs carry no images."
+
+[[prohibition]]
+id = "no-save-jpeg"
+guards = "none"
+on = "write"
+match = "*.jpeg"
+reason = "Another app's art and screenshots stay on its pages; the docs carry no images."
+
+[[prohibition]]
+id = "no-save-webp"
+guards = "none"
+on = "write"
+match = "*.webp"
+reason = "Another app's art and screenshots stay on its pages; the docs carry no images."
+
+[[prohibition]]
+id = "no-save-gif"
+guards = "none"
+on = "write"
+match = "*.gif"
+reason = "Another app's art and screenshots stay on its pages; the docs carry no images."
+
+[[prohibition]]
+id = "no-save-svg"
+guards = "none"
+on = "write"
+match = "*.svg"
+reason = "Another app's art and icons stay on its pages; the docs carry no images."
+
+[[prohibition]]
+id = "no-push-base"
+guards = "none"
+on = "shell"
+match = "git push * HEAD:main*"
+reason = "Nothing of this role reaches a base branch but through its pull request."
+
+[[prohibition]]
+id = "no-push-main"
+guards = "none"
+on = "shell"
+match = "git push * main*"
+reason = "Nothing of this role reaches a base branch but through its pull request."
+
+[[prohibition]]
+id = "no-review"
+guards = "none"
+on = "shell"
+match = "guild task review *"
+reason = "The warden accepts or sends back work."
+
+[[prohibition]]
+id = "no-approve"
+guards = "none"
+on = "shell"
+match = "guild pull approve *"
+reason = "Approving a pull request is the warden's."
+
+[[prohibition]]
+id = "no-land"
+guards = "none"
+on = "shell"
+match = "guild land *"
+reason = "Landing is on the warden's approval; this role never lands."
+
+[[prohibition]]
+id = "no-role-draft"
+guards = "none"
+on = "shell"
+match = "guild role *"
+reason = "Only the trainer crew drafts, defines or restores roles."
+
+[[prohibition]]
+id = "no-goal-lever"
+guards = "none"
+on = "shell"
+match = "guild goal *"
+reason = "Goals and their levers are the foreman's; this role asks it with guild task question."
+
+[[prohibition]]
+id = "no-hard-stop"
+guards = "none"
+on = "shell"
+match = "guild stop --hard*"
+reason = "Hard-stopping an instance is the warden's or a person's."
+
+[[prohibition]]
+id = "no-decide"
+guards = "product-direction"
+on = "shell"
+match = "guild task decide *"
+reason = "Which features to build is Felix's to decide; this role argues a feature set and asks with guild task ask."
