@@ -10,13 +10,10 @@ page asked for: say what it shows, and walk again if the walk was wrong.
 
 One entry per cell, in the matrix's order:
 
-- **cell**: page, URL (secrets stripped), width, scheme, state;
-- **of**: the build or fixture, or the live service and the time;
-- **showed**: what is on the page in plain words: what renders, what the
-  step expected that is not there, what overlaps, overflows or is cut
-  off, text whose color matches its background; console errors and failed
-  requests, quoted;
-- **file**: the screenshot's name, or the recording's and the time.
+- **cell**: page, URL (secrets stripped), width, scheme, state; {#cell-page-url-secrets-stripped}
+- **of**: the build or fixture, or the live service and the time; {#of-the-build-or-fixture-or-the}
+- **showed**: what is on the page in plain words: what renders, what the step expected that is not there, what overlaps, overflows or is cut off, text whose color matches its background; console errors and failed requests, quoted; {#showed-what-is-on-the-page-in}
+- **file**: the screenshot's name, or the recording's and the time. {#file-the-screenshot-s-name-or}
 
 A step that failed is reported in its place, as plainly as one that did
 not: what the step did, what happened instead, the error text. No word of
@@ -35,14 +32,10 @@ Before you hand in, stop every server and browser you started, and
 
 Before handing in, for every shot, URL, log line and the note:
 
-- strip query strings and fragments that carry tokens, codes or session
-  ids; never put a credential in a filename;
-- mask on the page before the shot (Playwright's `mask` option, or an
-  injected style hiding the element) any field showing a token, key,
-  password, cookie, email, account number or other private data; masking
-  afterwards in an image editor is not enough;
-- never shot browser storage, devtools or the environment;
-- when in doubt, leave the shot out and say why in the note.
+- strip query strings and fragments that carry tokens, codes or session ids; never put a credential in a filename; {#strip-query-strings-and}
+- mask on the page before the shot (Playwright's `mask` option, or an injected style hiding the element) any field showing a token, key, password, cookie, email, account number, a local path carrying a username, or other private data; masking afterwards in an image editor is not enough; {#mask-on-the-page-before-the-shot}
+- never shot browser storage, devtools or the environment; {#never-shot-browser-storage}
+- when in doubt, leave the shot out and say why in the note. {#when-in-doubt-leave-the-shot-out}
 
 ## Where it goes
 
