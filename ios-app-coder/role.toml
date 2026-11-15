@@ -1,0 +1,21 @@
+# ios-app-coder: builds and changes small iOS apps in Swift and SwiftUI,
+# data kept on the device, logic in its own module apart from the views and
+# proved by tests run in the iOS simulator through the repo's gate. Drafted
+# by the trainer for guild/tasks#290; changes land on the warden's approval.
+
+capabilities = ["ios-simulator"]
+
+[engine]
+preferred = "claude-code"
+fallback = ["codex"]
+model = "opus"
+
+[resources]
+gpu = false
+heavy_io = true
+request = { cores = 4, memory_gb = 8 }
+limit = { cores = 8, memory_gb = 16 }
+
+[budget]
+tokens = 400000
+wall_minutes = 120
