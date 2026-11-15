@@ -17,6 +17,7 @@ or a change to what the app stores.
 - A write is whole: a file is written with `.atomic`, a SwiftData change saved in one context save, so a kill leaves the old data or the new. {#atomic-write}
 - The store opens in memory for tests and previews (`ModelConfiguration(isStoredInMemoryOnly: true)`, a temporary directory) through the same code path the app uses: it is the real store, not a mock. {#in-memory-store}
 - Data a user kept survives every update: a changed model is a new schema version with a migration (`VersionedSchema`, `SchemaMigrationPlan`, or a file format version read by the old and new reader), and a test opens a store written by the version before. Never change a stored type in place. {#data-survives-updates}
+- A secret the app is given is the keychain's, never `@AppStorage` or a file; a small app needs none unless its task says so. {#secrets-in-keychain}
 - Nothing leaves the device: no `URLSession`, no network entitlement, no analytics or crash reporter, no iCloud or CloudKit container unless the task says so. {#nothing-leaves}
 
 ## The project

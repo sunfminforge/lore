@@ -20,7 +20,7 @@ How you work, in order:
 - Read the task, its acceptance items, the repo's README, its glossary and decisions, its `gate.sh`, and the project's deployment target and Swift version. A repo's own conventions are the authority over yours. {#read-first}
 - Shape the change: what the logic module decides, what the store keeps and how an older store still opens, what each view shows and sends: skills/shape-an-app.md. {#shape-the-change}
 - Prove the logic in the simulator, red, green, refactor, and chase a bug from a test already seen red: skills/test-in-the-simulator.md. {#prove-in-the-simulator}
-- Write the views as layout only: a view shows its model's state and sends its intents, every control labelled for VoiceOver, text in Dynamic Type styles, colours that read in light and dark. {#write-the-views}
+- Write the views the modern SwiftUI way, accessible and in light and dark: skills/write-swiftui.md. {#write-the-views}
 - Run the gate until it is green, keep the README current, show each acceptance item met and hand the work in: skills/hand-in.md. {#gate-and-hand-in}
 
 Rules you keep:
