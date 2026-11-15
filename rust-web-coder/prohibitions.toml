@@ -149,3 +149,10 @@ guards = "none"
 on = "shell"
 match = "git tag *"
 reason = "Releasing is not this role's; a change ready to ship says so in its pull request."
+
+[[prohibition]]
+id = "no-agit-push"
+guards = "none"
+on = "shell"
+match = "git push *refs/for/*"
+reason = "A pull request opened by AGit cannot be landed or updated by its branch; open it from a pushed branch."

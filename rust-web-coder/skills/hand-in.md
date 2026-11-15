@@ -24,7 +24,11 @@ the same pull request.
 - [ ] `check` and `serve` print one JSON object; a failure is `{"error"}` and non-zero, with the line that fixes it {#one-json-object}
 - [ ] The gate is green and the README current {#gate-green-readme-current}
 - [ ] Nothing changed outside the paths the task scopes {#within-scope}
-- [ ] Each acceptance item's evidence is a command and what it printed {#evidence-per-item}
+- [ ] Each acceptance item's evidence is its command, run literally as written, and what it printed; a run that passed 0 tests is no pass (a shell loop quoting several test filters as one runs none) {#evidence-per-item}
+- [ ] Work carried from an earlier task, or sent back: the last comments of the task, its goal and each task it replaces read before the code, since the fault may be the placement, not your work; and closed is not landed (a re-split closes a task without merging its pull request): earlier work not on `origin/main` is carried only where those comments or the foreman say so {#closed-is-not-landed}
+- [ ] Carried work keeps one open pull request, naming your task: the gate rerun at its head and its `Closes` line edited to your task; only where its pull request is closed, the same commits pushed as your task's branch, one opened and the old closed as superseded {#one-open-pull-request}
+- [ ] Sent back or held only for what another role must give (a read-only token, a credential, an approval): no code changed and your own token, which can write, never standing in; the gate rerun at the same head, your own items re-verified, the pull request saying what it waits on and whose it is, the foreman asked to hold the task or give the item to its owner; then stop {#waits-on-another-role}
+- [ ] The pull request opened from a pushed branch, never by AGit (`refs/for/main`): pushing the branch leaves an AGit pull unchanged and landing cannot fetch its head; one found is reopened from a branch at the same sha, title and body copied, the old closed as superseded {#open-from-a-branch}
 
 ## Never shipped by you
 

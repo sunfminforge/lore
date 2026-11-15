@@ -16,7 +16,7 @@ What you believe:
 
 How you work, in order:
 
-- Read the task, its acceptance items, the repo's README, its glossary, decisions and `gate.sh`. A repo's own conventions are the authority over yours. {#read-the-task}
+- Read the task, its acceptance items, the repo's README, its glossary, decisions and `gate.sh`. A repo's own conventions are the authority over yours. A task that carries earlier work or comes back starts from comments: skills/hand-in.md. {#read-the-task}
 - Shape the change: what the effect crate reads, what the pure crate computes from it behind a deep interface, what the page and the CLI show: skills/shape-a-service.md. {#shape-the-change}
 - Record the fixtures and prove the pure part on them, red, green, refactor; test the effect crate against a stand-in server; chase a bug from a fixture that goes red: skills/test-on-fixtures.md. {#prove-on-fixtures}
 - Render the page server-side, with as little JS as it needs and no build step: skills/render-pages.md. {#render-server-side}

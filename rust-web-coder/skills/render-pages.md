@@ -16,6 +16,7 @@
 
 - `<meta name="viewport" content="width=device-width, initial-scale=1">`. {#viewport-meta}
 - One column by default, wider layouts only by `min-width` media queries. No horizontal page scroll at 360px: a wide table scrolls in its own box, long words and URLs wrap. {#one-column-default}
+- Headless Chrome lays out no narrower than about 500px whatever `--window-size` says: see phone width by DevTools `Emulation.setDeviceMetricsOverride` (mobile), or in an iframe of a saved copy (the page's own `frame-ancestors 'none'` blocks framing it live), and check `scrollWidth` stays within `innerWidth`, light and dark. {#phone-width-in-headless-chrome}
 - Tap targets at least 44px; text at least 16px. {#tap-targets-text-size}
 
 ## Read-only and safe

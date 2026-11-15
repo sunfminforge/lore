@@ -14,7 +14,7 @@ Matt Pocock (MIT), whose commit the adopting pull request pins.
 ## What each layer proves
 
 - **Pure crates**: parse each fixture into the pure types, compute, and assert the result. Plain unit tests for the cases, `proptest` for what must hold for every input (ordering, totals, no panic on any page). {#test-pure-crates}
-- **Rendering**: render each view model and assert what a reader needs is there: the values, the links, an empty state, an error state. Snapshot tests (`insta`) where the whole page is the point, reviewed when they change, never accepted blind. {#test-rendering}
+- **Rendering**: render each view model and assert what a reader needs is there: the values, the links, an empty state, an error state. An error state is proved here, on its view model; a recorded error answer is test material, not a switch for what the served binary reads. Snapshot tests (`insta`) where the whole page is the point, reviewed when they change, never accepted blind. {#test-rendering}
 - **Effect crate**: run the real binary against a stand-in server started in the test (axum on a random loopback port) that serves the fixtures, records what it was asked and can fail on demand. Assert the requests were `GET`, carried the token only in the header, and that `check`'s JSON and exit code are right when a source is up, down or refuses the token. {#test-effect-crate}
 - **The token**: one test sets a known token, runs `check`, `serve` and a failing read, and asserts the token appears in no stdout, stderr, page or log. {#test-token-hidden}
 
