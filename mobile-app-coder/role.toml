@@ -6,8 +6,8 @@
 # to build and writes the choice as an ADR. Drafted by the trainer for
 # guild/tasks#312; changes land on the warden's approval.
 
-# android-emulator is not yet one of Guild's capabilities; name it here once it is.
 capabilities = ["ios-simulator"]
+programs = ["android"]
 
 [engine]
 preferred = "claude-code"
