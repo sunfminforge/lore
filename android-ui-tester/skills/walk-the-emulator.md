@@ -1,0 +1,25 @@
+# Walking the app in the emulator
+
+## The matrix
+
+- List every screen or flow step the task names, numbered in the order you walk them. For each, the AVDs (when the task names none, one current phone profile on the newest installed system image at or above the APK's `minSdkVersion`, and say that you chose it) and both appearances, `light` and `dark`, unless the task names one. {#list-steps-avds-appearances}
+- One screenshot per cell: step × AVD × appearance, plus each state the task cares about (empty, loading, error, long content, signed out, a larger font scale). {#one-shot-per-cell}
+- Name each file so it says its cell: `<nn>-<step>-<avd>-api<level>-<appearance>[-<state>].png`. {#file-names-its-cell}
+
+## An emulator of your own
+
+- Use an adb server of your own: export `ANDROID_ADB_SERVER_PORT` set to a free port of yours (not 5037) before the first `adb` or `emulator`, so on a shared Mac you never restart or kill another task's server. {#own-adb-server}
+- Create a fresh AVD per device, named for the task, under `ANDROID_AVD_HOME=<scratch>/avd`: `avdmanager create avd -n <task>-<device> -k "system-images;android-<api>;<tag>;<abi>" -d <device profile> --force` (`avdmanager list device` names profiles; `ls $ANDROID_HOME/system-images/*/*/` the installed images, arm64-v8a on Apple silicon). A missing system image is a question to the foreman; install none. {#create-own-avd}
+- Start it headless on an even console port of your own, free on the machine: `emulator -avd <name> -port <port> -no-window -no-audio -no-boot-anim -no-snapshot -change-locale <locale> > <scratch>/emulator.log 2>&1 &`, English unless the task names a locale; its serial is `emulator-<port>`, and every adb call names it (`export ANDROID_SERIAL=emulator-<port>`, or `adb -s`), since other tasks' emulators show in your adb server too. {#start-headless}
+- Wait until it is up: `adb wait-for-device`, then poll until `adb shell getprop sys.boot_completed` prints `1`, never a fixed sleep; record the API level (`getprop ro.build.version.sdk`) and system image for the note. {#boot-and-wait}
+- Fix what would differ between runs before the first shot: animations off (`settings put global window_animation_scale 0`, the same for `transition_animation_scale` and `animator_duration_scale`), and the status bar in demo mode (`settings put global sysui_demo_allowed 1`, then `am broadcast -a com.android.systemui.demo -e command enter`, `-e command clock -e hhmm 0941`, `-e command battery -e level 100 -e plugged false`, `-e command network -e wifi show -e level 4`, `-e command notifications -e visible false`). {#fix-the-status-bar}
+- Set the appearance with `adb shell cmd uimode night yes|no`, then relaunch the app (`am force-stop <id>`, then start it) so every screen draws in it, and confirm it took (`cmd uimode night` prints the mode); a larger font with `settings put system font_scale <scale>`. {#set-the-appearance}
+- Install and launch the built app (`adb install -r <apk>`, `adb shell am start -W -n <id>/<launcher activity>`), and capture what the app says beside what it shows: `adb logcat -c` before the walk, then `adb logcat -v time` into scratch while you walk, and whether it crashed or hung (`FATAL EXCEPTION` or `ANR in <id>` in the log, `adb logcat -b crash -d`, a `pidof <id>` that prints nothing after launch). {#install-launch-capture}
+
+## Reaching each screen
+
+- Shoot with `adb exec-out screencap -p > <file>` once the screen is settled: its content drawn, no spinner, the app's activity on top (`dumpsys activity activities | grep -m1 ResumedActivity`); take the shot again until two in a row match, never a fixed sleep alone. {#shoot-when-settled}
+- Reach a screen the way the app already offers, read-only: a deep link its manifest declares (`am start -W -a android.intent.action.VIEW -d <url> <id>`), an exported activity or intent extra it documents (`am start -n <id>/<activity> --es <key> <value>`), taps and text on what is on screen (`input tap <x> <y>`, `input text`, `input keyevent`, with coordinates read from `uiautomator dump /sdcard/ui.xml` pulled to scratch, never guessed from a picture), or its own instrumented test target run against your emulator (`ANDROID_SERIAL=emulator-<port> ./gradlew :<module>:connected<Flavour>DebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=<Class>#<test>` in the scratch copy, its screenshots and results pulled from where the test writes them and from `<module>/build/outputs/androidTest-results`). {#reach-the-app-s-way}
+- A screen none of these reach is named as not seen, and how you tried; an instrumented test the app lacks is not yours to write, so where the task needs that screen, ask the foreman. {#unreached-is-not-seen}
+- Where a step would send, buy, delete or sign in with a real account, stop before it and say so in the note; the emulator walk uses no credential of anyone's, and its image adds no Google account. {#stop-before-real-actions}
+- When a step fails or the app crashes, keep the shot of where it stopped and the log lines around it; relaunch and go on with the other cells. {#keep-the-failed-step}
