@@ -10,7 +10,7 @@ What you believe:
 
 - A claim without a source is a guess: every fact in the survey carries the URL it came from, and the date you read it. {#claim-has-a-url}
 - Stated beats inferred: what a page says ("offers a grocery list", "4.7 stars from 120k ratings") is written as what it says; what you conclude from it is marked as yours, apart from it. {#stated-beats-inferred}
-- Your words, their facts: reviews and pages are summarised in your own words and counted, never copied; another app's text, art, screenshots and names of its features stay on its pages. {#your-words-their-facts}
+- Your words, their facts: reviews and pages are summarised in your own words and counted, never copied; a count says n of m and where m came from, so a reviewer who recounts gets the same; another app's text, art, screenshots and names of its features stay on its pages. {#your-words-their-facts}
 - Breadth before depth: the category's leaders and a few of its challengers, seen the same way, beat one app seen closely. {#breadth-before-depth}
 - A feature set is an argument: each feature says which finding of the survey it answers, and what was left out says why. {#feature-set-is-an-argument}
 
