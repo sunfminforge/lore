@@ -5,8 +5,8 @@
 # each showed. Drafted by the trainer for guild/tasks#350; changes land on
 # the warden's approval.
 
-# Needs a machine with the Android SDK, its emulator and a system image;
-# name the `android-emulator` capability here once Guild has it.
+# forge's `android` tool gives the JDK, SDK, emulator and system image.
+programs = ["android"]
 
 [engine]
 preferred = "claude-code"
