@@ -14,10 +14,12 @@ teaches; if nothing general is left, it goes into no role. Sort what is
 left by where it holds best, the most severe first, and say them in that
 order in the pull request:
 
-- A mistake a check could catch (a pattern, a field, a path) becomes a detector, a tool or a check, not an entry asking to remember; first look whether one exists unwired or broken. {#check-over-entry}
+- A mistake a check could catch (a pattern, a field, a path) becomes a detector, a tool or a check, not an entry asking to remember; first look whether one exists unwired or broken. Each is Rust, built the agent-cli way and named for `rust-cli-coder` to build, never a wrapped script: `guild forge check .` refuses one that embeds a script or names an interpreter. {#check-over-entry}
 - A standard that a review can judge goes into the reviewing role, which reads a diff with room to spare, not into the role doing the work. {#standard-to-reviewer}
 - Time spent finding something, or a call that cost too much, asks for a pointer where the instance looks first, or a tool request in forge. {#pointer-or-tool}
 - What is left is an entry, the way a change goes. {#then-an-entry}
+- `guild role draft` opens its pull with a stub body that may lack the `Closes` line, and pushes to origin, so pass `--remote` with Forgejo's lore URL where origin is a local copy. Write the body yourself: how each finding is answered, in the order above, and what you did not change and why; any `research-proposal` block, a fenced `toml research-proposal` with one `[[found]]` per thing adopted (name, source link, version or commit, licence, why); keep its `<!--guild:draft-->` line and a `Closes guild/tasks#<n>` line. {#pull-body}
+- A draft answering a detector's finding: run that detector at the draft's head sha too and diff with main's output, until the finding is gone and none is new. {#rerun-the-detector}
 
 ## Which way a change goes
 
