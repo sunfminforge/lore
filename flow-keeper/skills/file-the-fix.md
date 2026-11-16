@@ -28,11 +28,12 @@ traced; one that covers part of it covers that part.
 One ticket for what is left, labelled for the guild fleet as the task or
 goal says. It holds:
 
-- **What happens**: the mechanism, in a sentence a test can check. {#what-happens-the-mechanism-in-a}
+- **What happens**: one mechanism, in a sentence a test can check. A measure is no cause, and a cause the brief names that holds two mechanisms is two tickets. {#what-happens-the-mechanism-in-a}
 - **Evidence**: each task, its goal, the time the cause held it and the record that shows it; the measure and its figures over the window. {#evidence-each-task-its-goal-the}
-- **What should happen instead**: per part, the behaviour wanted, never the code to write. {#what-should-happen-instead-per}
+- **What should happen instead**: per part, the behaviour wanted, never the code to write; where it changes how a measure is reckoned, the change to the ADR that sets the reckoning, proposed in the ticket. {#what-should-happen-instead-per}
 - **Acceptance**: criteria a test can check, one per part. {#acceptance-criteria-a-test-can}
 - **Related**: the tickets it relies on or splits from. {#related-the-tickets-it-relies-on}
+- File it with `guild ticket file`: the steward's filer files it later, so it gives no number yet; name its slug on the goal, and its number once the tracker shows it. {#filed-by-the-steward-s-filer}
 
 No token, no secret, no person's private data in it; instances and
 tasks by name, people by role.
