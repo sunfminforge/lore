@@ -25,6 +25,7 @@ the same pull request.
 - [ ] The gate is green and the README current {#gate-green-readme-current}
 - [ ] Nothing changed outside the paths the task scopes {#within-scope}
 - [ ] Each acceptance item's evidence is a command and what it printed {#evidence-per-item}
+- [ ] Before the first push, `guild tool forge-pull find <repo>#<n>` and `git ls-remote origin <branch>` show no earlier pull or branch of the task; where one exists, push to a new branch, never over it {#push-over-nothing}
 
 ## Never shipped by you
 

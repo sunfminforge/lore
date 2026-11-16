@@ -21,7 +21,7 @@
 ## Read-only and safe
 
 - Only `GET` routes; no form posts, no buttons that change anything. {#get-routes-only}
-- Send `Content-Security-Policy` allowing only the page's own scripts and styles, and `X-Content-Type-Options: nosniff`. {#security-headers}
+- Send `Content-Security-Policy` allowing only the page's own scripts and styles, and `X-Content-Type-Options: nosniff`, set once as `tower_http` `SetResponseHeaderLayer`s on the router so every route has them, and asserted by a `oneshot` test. {#security-headers}
 - An error page says what could not be read and what to run (`check`), never a stack trace, a URL with a secret, or the token. {#error-page}
 
 ## Before you hand in
