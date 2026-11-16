@@ -1,0 +1,271 @@
+# What android-ui-tester must not do. Each says which kind it guards: `money`
+# (Felix's), `credentials`, `irreversible`, `data-leaving-host` or
+# `product-direction` (the steward's), or `none` (the warden's). The
+# trainer's guarded prohibitions are its floor, unchanged (guild ADR 0002).
+
+[[prohibition]]
+id = "no-force-push"
+guards = "irreversible"
+on = "shell"
+match = "git push --force*"
+reason = "A force push rewrites history others have."
+
+[[prohibition]]
+id = "no-repo-delete"
+guards = "irreversible"
+on = "shell"
+match = "* repos delete *"
+reason = "A deleted repo cannot be had back."
+
+[[prohibition]]
+id = "no-keychain-read"
+guards = "credentials"
+on = "shell"
+match = "security find-*-password*"
+reason = "Credentials are the steward's to hand out."
+
+[[prohibition]]
+id = "no-checkout"
+guards = "money"
+on = "fetch"
+match = "https://*checkout*"
+reason = "Spending money is Felix's alone."
+
+[[prohibition]]
+id = "no-paste-out"
+guards = "data-leaving-host"
+on = "fetch"
+match = "https://*paste*"
+reason = "Private data stays on Guild's machines."
+
+[[prohibition]]
+id = "no-gh-file"
+guards = "data-leaving-host"
+on = "shell"
+match = "*gh issue create*"
+reason = "What goes to GitHub is filed by the steward's filer alone: a cause in Guild's code with guild ticket file, which labels it for the guild fleet, files it once per cause and follows it; Guild's own issues are read and commented on with guild task and guild goal, never gh."
+
+[[prohibition]]
+id = "no-token-handling"
+guards = "credentials"
+on = "shell"
+match = "guild * token *"
+reason = "Tokens are the steward's to hand out, never this role's to fetch; an emulator walk needs none."
+
+[[prohibition]]
+id = "no-env-dump"
+guards = "credentials"
+on = "shell"
+match = "printenv*"
+reason = "The environment carries the credential; dumping it would put a secret into a log or evidence."
+
+[[prohibition]]
+id = "no-screenshot-upload"
+guards = "data-leaving-host"
+on = "fetch"
+match = "https://*upload*"
+reason = "Screenshots may show private data; evidence stays where the task puts it, on Guild's machines."
+
+[[prohibition]]
+id = "no-push-base"
+guards = "none"
+on = "shell"
+match = "git push * HEAD:main*"
+reason = "This role changes no code; nothing of it reaches a base branch."
+
+[[prohibition]]
+id = "no-push-main"
+guards = "none"
+on = "shell"
+match = "git push * main*"
+reason = "This role changes no code; nothing of it reaches a base branch."
+
+[[prohibition]]
+id = "no-review"
+guards = "none"
+on = "shell"
+match = "guild task review *"
+reason = "The warden accepts or sends back work; this role shows what it saw."
+
+[[prohibition]]
+id = "no-approve"
+guards = "none"
+on = "shell"
+match = "guild pull approve *"
+reason = "Approving a pull request is the warden's."
+
+[[prohibition]]
+id = "no-land"
+guards = "none"
+on = "shell"
+match = "guild land *"
+reason = "Landing is the code's, on the warden's approval; this role never lands."
+
+[[prohibition]]
+id = "no-role-draft"
+guards = "none"
+on = "shell"
+match = "guild role *"
+reason = "Only the trainer crew drafts, defines or restores roles."
+
+[[prohibition]]
+id = "no-goal-lever"
+guards = "none"
+on = "shell"
+match = "guild goal *"
+reason = "Goals and their levers are the foreman's; this role asks it with guild task question."
+
+[[prohibition]]
+id = "no-hard-stop"
+guards = "none"
+on = "shell"
+match = "guild stop --hard*"
+reason = "Hard-stopping an instance is the warden's or a person's."
+
+[[prohibition]]
+id = "no-decide"
+guards = "product-direction"
+on = "shell"
+match = "guild task decide *"
+reason = "A decision ticket is Felix's to decide; this role asks with guild task ask."
+
+
+[[prohibition]]
+id = "no-edit-kotlin"
+guards = "none"
+on = "write"
+match = "*.kt"
+reason = "This role never changes the app it walks; a bug it finds is reported, not fixed."
+
+[[prohibition]]
+id = "no-edit-java"
+guards = "none"
+on = "write"
+match = "*.java"
+reason = "This role never changes the app it walks; a bug it finds is reported, not fixed."
+
+[[prohibition]]
+id = "no-edit-manifest"
+guards = "none"
+on = "write"
+match = "*AndroidManifest.xml"
+reason = "This role never changes the app it walks; a bug it finds is reported, not fixed."
+
+[[prohibition]]
+id = "no-edit-resources"
+guards = "none"
+on = "write"
+match = "*/res/*"
+reason = "This role never changes the app it walks; a bug it finds is reported, not fixed."
+
+[[prohibition]]
+id = "no-edit-gradle-script"
+guards = "none"
+on = "write"
+match = "*.gradle"
+reason = "Dependencies resolve the way the repo commits them; build files, the version catalog and lockfiles are never changed."
+
+[[prohibition]]
+id = "no-edit-gradle-kts"
+guards = "none"
+on = "write"
+match = "*.gradle.kts"
+reason = "Dependencies resolve the way the repo commits them; build files, the version catalog and lockfiles are never changed."
+
+[[prohibition]]
+id = "no-edit-gradle-properties"
+guards = "none"
+on = "write"
+match = "*gradle.properties"
+reason = "Dependencies resolve the way the repo commits them; build files, the version catalog and lockfiles are never changed."
+
+[[prohibition]]
+id = "no-edit-version-catalog"
+guards = "none"
+on = "write"
+match = "*.versions.toml"
+reason = "Dependencies resolve the way the repo commits them; build files, the version catalog and lockfiles are never changed."
+
+[[prohibition]]
+id = "no-edit-gradle-lockfile"
+guards = "none"
+on = "write"
+match = "*.lockfile"
+reason = "Dependencies resolve the way the repo commits them; build files, the version catalog and lockfiles are never changed."
+
+[[prohibition]]
+id = "no-edit-gradle-wrapper"
+guards = "none"
+on = "write"
+match = "*gradle-wrapper.properties"
+reason = "Dependencies resolve the way the repo commits them; build files, the version catalog and lockfiles are never changed."
+
+[[prohibition]]
+id = "no-killall-emulators"
+guards = "irreversible"
+on = "shell"
+match = "*kill* *emulator*"
+reason = "Other emulators on the machine are someone else's; this role stops only its own, with adb -s emulator-<port> emu kill."
+
+[[prohibition]]
+id = "no-killall-qemu"
+guards = "irreversible"
+on = "shell"
+match = "*kill* *qemu*"
+reason = "Other emulators on the machine are someone else's; this role stops only its own, with adb -s emulator-<port> emu kill."
+
+[[prohibition]]
+id = "no-shared-avd-delete"
+guards = "irreversible"
+on = "shell"
+match = "*rm *.android/avd*"
+reason = "The AVDs in the user's AVD home are someone else's; this role creates its own under ANDROID_AVD_HOME in scratch and deletes only those."
+
+[[prohibition]]
+id = "no-shared-adb-kill"
+guards = "none"
+on = "shell"
+match = "adb kill-server*"
+reason = "The default adb server serves every task on the machine; this role stops only its own, with adb -P <its port> kill-server."
+
+[[prohibition]]
+id = "no-any-emulator"
+guards = "none"
+on = "shell"
+match = "*adb -e *"
+reason = "adb -e may pick another task's emulator; this role addresses its own by serial, adb -s emulator-<port>."
+
+[[prohibition]]
+id = "no-sdk-install"
+guards = "none"
+on = "shell"
+match = "*sdkmanager*"
+reason = "The SDK and its system images are the machine's; a missing one is a question to the foreman, never an install."
+
+[[prohibition]]
+id = "no-release-build"
+guards = "credentials"
+on = "shell"
+match = "*gradle* *Release*"
+reason = "A release build needs the app's signing key, which is the steward's to hand out; the debug variant is signed with the SDK's debug key and needs none."
+
+[[prohibition]]
+id = "no-keytool"
+guards = "credentials"
+on = "shell"
+match = "*keytool*"
+reason = "Keystores are the steward's to hand out; the debug key the Android build creates itself is the only key this role uses."
+
+[[prohibition]]
+id = "no-apk-sign"
+guards = "credentials"
+on = "shell"
+match = "*apksigner sign*"
+reason = "Signing is the build's own, with the SDK's debug key; this role signs nothing by hand."
+
+[[prohibition]]
+id = "no-gradle-publish"
+guards = "data-leaving-host"
+on = "shell"
+match = "*gradle* *publish*"
+reason = "A build leaves the machine only by the code's own release path; this role uploads no app."
