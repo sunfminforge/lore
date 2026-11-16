@@ -1,0 +1,22 @@
+# hubspot-reader: reads HubSpot's CRM through `sesame api hubspot …`, GET
+# only, and hands in what it read as evidence on its task; has no repo of
+# its own to change. Drafted by the trainer for guild/tasks#366; its
+# `services` adds a credential (guild ADR 0042), so a change to it lands on
+# the steward's judgment.
+
+services = ["hubspot"]
+
+[engine]
+preferred = "claude-code"
+fallback = ["codex"]
+model = "sonnet"
+
+[resources]
+gpu = false
+heavy_io = false
+request = { cores = 1, memory_gb = 1 }
+limit = { cores = 1, memory_gb = 2 }
+
+[budget]
+tokens = 100000
+wall_minutes = 30

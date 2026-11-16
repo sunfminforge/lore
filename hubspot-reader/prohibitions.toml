@@ -1,0 +1,214 @@
+# What hubspot-reader must not do. Each says which kind it guards: `money`
+# (Felix's), `credentials`, `irreversible`, `data-leaving-host` or
+# `product-direction` (the steward's), or `none` (the warden's). The
+# trainer's guarded prohibitions are its floor, unchanged (guild ADR 0002).
+
+[[prohibition]]
+id = "no-force-push"
+guards = "irreversible"
+on = "shell"
+match = "git push --force*"
+reason = "A force push rewrites history others have."
+
+[[prohibition]]
+id = "no-repo-delete"
+guards = "irreversible"
+on = "shell"
+match = "* repos delete *"
+reason = "A deleted repo cannot be had back."
+
+[[prohibition]]
+id = "no-keychain-read"
+guards = "credentials"
+on = "shell"
+match = "security find-*-password*"
+reason = "Credentials are the steward's to hand out."
+
+[[prohibition]]
+id = "no-checkout"
+guards = "money"
+on = "fetch"
+match = "https://*checkout*"
+reason = "Spending money is Felix's alone."
+
+[[prohibition]]
+id = "no-paste-out"
+guards = "data-leaving-host"
+on = "fetch"
+match = "https://*paste*"
+reason = "Private data stays on Guild's machines."
+
+[[prohibition]]
+id = "no-gh-file"
+guards = "data-leaving-host"
+on = "shell"
+match = "*gh issue create*"
+reason = "What goes to GitHub is filed by the steward's filer alone: a cause in Guild's code with guild ticket file, which labels it for the guild fleet, files it once per cause and follows it; Guild's own issues are read and commented on with guild task and guild goal, never gh."
+
+[[prohibition]]
+id = "no-token-print"
+guards = "credentials"
+on = "shell"
+match = "sesame token*"
+reason = "The token stays inside sesame; this role calls sesame api, which sends it to HubSpot's hosts only."
+
+[[prohibition]]
+id = "no-sesame-setup"
+guards = "credentials"
+on = "shell"
+match = "sesame provider*"
+reason = "A provider's scopes and definition are the steward's to set; a read that needs another scope is asked of the foreman."
+
+[[prohibition]]
+id = "no-sesame-login"
+guards = "credentials"
+on = "shell"
+match = "sesame login*"
+reason = "This role signs in nowhere; the Hub's sesame hands its token with each start."
+
+[[prohibition]]
+id = "no-sesame-logout"
+guards = "credentials"
+on = "shell"
+match = "sesame logout*"
+reason = "This role changes no credential, its own or another's."
+
+[[prohibition]]
+id = "no-sesame-client"
+guards = "credentials"
+on = "shell"
+match = "sesame client*"
+reason = "An OAuth client is the steward's to store; this role uses the token handed to it."
+
+[[prohibition]]
+id = "no-sesame-setup-steps"
+guards = "credentials"
+on = "shell"
+match = "sesame setup*"
+reason = "Registering a provider's sign-in is the steward's; this role uses the token handed to it."
+
+[[prohibition]]
+id = "no-handed-token-read"
+guards = "credentials"
+on = "shell"
+match = "*SESAME_TOKEN*"
+reason = "The handed token lives in the environment for sesame alone; naming its variable in a command would put it into a log."
+
+[[prohibition]]
+id = "no-sesame-store"
+guards = "credentials"
+on = "shell"
+match = "sqlite3 *sesame*"
+reason = "sesame's store may hold tokens; this role reads HubSpot through sesame api alone."
+
+[[prohibition]]
+id = "no-env-dump"
+guards = "credentials"
+on = "shell"
+match = "printenv*"
+reason = "The environment may carry a credential; dumping it would put a secret into a log."
+
+[[prohibition]]
+id = "no-env-list"
+guards = "credentials"
+on = "shell"
+match = "env"
+reason = "The environment may carry a credential; listing it would put a secret into a log."
+
+[[prohibition]]
+id = "no-guild-token"
+guards = "credentials"
+on = "shell"
+match = "guild * token *"
+reason = "Tokens are the steward's to hand out, never this role's to fetch."
+
+[[prohibition]]
+id = "no-hubspot-method"
+guards = "irreversible"
+on = "shell"
+match = "sesame api *-X*"
+reason = "This role reads only: every call is a GET, which sesame sends when no method is set."
+
+[[prohibition]]
+id = "no-hubspot-method-long"
+guards = "irreversible"
+on = "shell"
+match = "sesame api *--method*"
+reason = "This role reads only: every call is a GET, which sesame sends when no method is set."
+
+[[prohibition]]
+id = "no-hubspot-body"
+guards = "irreversible"
+on = "shell"
+match = "sesame api *-d*"
+reason = "A body makes the call a POST, which can create or change CRM records; this role reads with GET only."
+
+[[prohibition]]
+id = "no-hubspot-data"
+guards = "irreversible"
+on = "shell"
+match = "sesame api *--data*"
+reason = "A body makes the call a POST, which can create or change CRM records; this role reads with GET only."
+
+[[prohibition]]
+id = "no-hubspot-direct"
+guards = "credentials"
+on = "fetch"
+match = "https://api.hubapi.com/*"
+reason = "HubSpot is reached through sesame api alone, which holds the token; a direct call would need it in hand."
+
+[[prohibition]]
+id = "no-git-push"
+guards = "none"
+on = "shell"
+match = "git push*"
+reason = "This role has no repo to change; its work is handed in as evidence on its task."
+
+[[prohibition]]
+id = "no-review"
+guards = "none"
+on = "shell"
+match = "guild task review *"
+reason = "The warden accepts or sends back work."
+
+[[prohibition]]
+id = "no-approve"
+guards = "none"
+on = "shell"
+match = "guild pull approve *"
+reason = "Approving a pull request is the warden's."
+
+[[prohibition]]
+id = "no-land"
+guards = "none"
+on = "shell"
+match = "guild land *"
+reason = "Landing is on the warden's approval; this role never lands."
+
+[[prohibition]]
+id = "no-role-draft"
+guards = "none"
+on = "shell"
+match = "guild role *"
+reason = "Only the trainer crew drafts, defines or restores roles."
+
+[[prohibition]]
+id = "no-goal-lever"
+guards = "none"
+on = "shell"
+match = "guild goal *"
+reason = "Goals and their levers are the foreman's; this role asks it with guild task question."
+
+[[prohibition]]
+id = "no-hard-stop"
+guards = "none"
+on = "shell"
+match = "guild stop --hard*"
+reason = "Hard-stopping an instance is the warden's or a person's."
+
+[[prohibition]]
+id = "no-brew-install"
+guards = "none"
+on = "shell"
+match = "brew install*"
+reason = "This role installs nothing; sesame comes with its service."
