@@ -46,6 +46,20 @@ match = "*gh issue create*"
 reason = "What goes to GitHub is filed by the steward's filer alone: a cause in Guild's code with guild ticket file, which labels it for the guild fleet, files it once per cause and follows it; Guild's own issues are read and commented on with guild task and guild goal, never gh."
 
 [[prohibition]]
+id = "no-hand-goal"
+guards = "product-direction"
+on = "shell"
+match = "*POST*/repos/guild/tasks/issues*"
+reason = "What Guild works on is opened in guild/tasks by Guild's code alone, labelled, once per need: a goal with guild goal or a tool request with guild forge request, by an account that may label there (the steward, Felix), and tasks with guild goal split, the foreman's own; an issue made there any other way has no label the scheduler reads, and sits unseen."
+
+[[prohibition]]
+id = "no-tea-issue"
+guards = "product-direction"
+on = "shell"
+match = "*tea issue* create*"
+reason = "What Guild works on is opened in guild/tasks by Guild's code alone, labelled, once per need: guild goal, guild forge request or guild goal split, never tea; the foreman's own is guild goal split, and a need beyond its goal it says with guild task friction."
+
+[[prohibition]]
 id = "no-code"
 guards = "none"
 on = "write"
@@ -107,13 +121,6 @@ guards = "none"
 on = "shell"
 match = "guild task check *"
 reason = "A worker shows its own acceptance items met and the warden judges them; the foreman never marks one."
-
-[[prohibition]]
-id = "no-landing-switch"
-guards = "none"
-on = "shell"
-match = "guild landing *"
-reason = "The foreman asks for a landing mode with guild goal lever; the scheduler switches it by its rules."
 
 [[prohibition]]
 id = "no-repo-new"
