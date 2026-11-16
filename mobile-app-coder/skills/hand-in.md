@@ -2,10 +2,11 @@
 
 ## The simulator and the emulator
 
-- The gate names its iOS destination (`platform=iOS Simulator,name=…,OS=…`) and its Android emulator (an AVD name and API level); a run by hand uses the same, so it checks what the gate checks. A destination or system image missing on the machine is a question to the foreman, not a reason to change the gate. {#gate-names-devices}
+- Build for `generic/platform=iOS Simulator`, so no device has to exist, and install on a device you make with `xcrun simctl create` in your own simulator set, named by its UDID, never `booted`; a gate you write does the same, and a hand run uses the gate's AVD and API level. A runtime or system image missing on the machine is a question to the foreman, not a reason to change the gate. {#gate-names-devices}
 - Builds for them need no signing identity: an iOS simulator build is unsigned (`CODE_SIGNING_ALLOWED=NO` where it asks for one), an Android build is the debug variant with the SDK's own debug key. A build that asks for a certificate or a release keystore is wrong, never fed one. {#no-signing}
-- The simulators and emulators are the machine's, shared with others: boot, use and erase only the device your run made or names, run an emulator headless (`-no-window`), and stop what you started; delete none. {#shared-devices}
-- Run means launched: the app installed on each, started, and its first screen up without a crash in the log (`xcrun simctl launch`, `adb shell am start`, then the log read). {#run-means-launched}
+- The simulators and emulators are the machine's, shared with others: boot, use and erase only the device your run made or names, run an emulator headless (`-no-window`), and stop what you started; delete none. Talk to the emulator through adb on your own `ANDROID_ADB_SERVER_PORT`, reconnecting (`adb start-server`, then wait for `get-state`) before each step, since the shared server is killed under you. {#shared-devices}
+- Run means launched: the app installed on each, started, and its first screen up without a crash in the log. Wait for the device first (`xcrun simctl bootstatus <udid> -b`, `adb wait-for-device`); a first launch on a new device can take ~20 s and show a blank screen, so poll for the app's process and take the screenshot again before calling it a crash. Send the log to a file: `simctl launch --console-pty` passes signals on, so stopping it kills the app. {#run-means-launched}
+- Each walk step starts from a clean task: `simctl terminate` then `launch` with the step's argument, `adb shell am start -S --activity-clear-task` with its extra; on Android 14+ the share sheet is another package's and stays over a plain relaunch. {#launch-each-step-clean}
 
 ## Green gate
 
@@ -26,11 +27,11 @@ the README changes in the same pull request.
 
 - [ ] The logic module imports no UI framework, and every behaviour the task adds has a host test on it, seen red before green {#logic-tested-apart}
 - [ ] A changed stored type has a migration and a test that opens the version before {#migration-tested}
-- [ ] A search of the sources and manifests for network clients, the `INTERNET` permission, analytics, cloud sync and in-app purchase finds nothing the task did not ask for {#nothing-leaves-the-device}
+- [ ] A search of the sources, and of the merged Android manifest rather than your own, for network clients, the `INTERNET` permission, analytics, cloud sync and in-app purchase finds nothing the task did not ask for {#nothing-leaves-the-device}
 - [ ] No name, icon, text, art or data of another app is in the repo; the app's text is in the task's language, in string resources {#nothing-copied}
 - [ ] The build has no warnings the project did not already have; the gate, run whole, is green on both platforms; the README current {#gate-green-readme-current}
 - [ ] Nothing changed outside the paths the task scopes {#within-scope}
-- [ ] Each acceptance item's evidence is a command and what it printed; a screen the task asks to be seen is a screenshot from the simulator or emulator (`xcrun simctl io <device> screenshot`, `adb exec-out screencap -p`) named in the pull request {#evidence-per-item}
+- [ ] Each acceptance item's evidence is a command and what it printed; a screen the task asks to be seen is a screenshot from the simulator or emulator (`xcrun simctl io <udid> screenshot`, `adb exec-out screencap -p`) named in the pull request; for dark, a headless simulator takes `simctl ui <udid> appearance dark` only after a shutdown and boot, so a relaunch alone shows the old look {#evidence-per-item}
 
 ## Never shipped by you
 

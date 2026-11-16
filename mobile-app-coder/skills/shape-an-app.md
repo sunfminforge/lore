@@ -9,7 +9,7 @@ or a change to what the app stores.
 - With two native apps, the logic is written twice to one spec: the same rules, the same test cases in both, so the two cannot drift; a test case added to one is added to the other in the same change. {#one-spec-two-apps}
 - A module earns its place by depth: much deciding behind few public types. Were it gone, would every view re-decide what it decides? If not, fold it in. {#deep-module}
 - What varies is passed in: the time as an argument or a clock, randomness as a generator, the store as a value made by its caller. A function that reads the current time itself cannot be tested at midnight. {#pass-in-what-varies}
-- A screen's state lives in one model per screen (an `@Observable` class, a `ViewModel` with a `StateFlow`, a `ChangeNotifier` or the like) whose methods are the intents the view sends, each one line of the view's control. {#one-model-per-screen}
+- A screen's state lives in one model per screen (an `@Observable` class, a `ViewModel` with a `StateFlow`, a `ChangeNotifier` or the like) whose methods are the intents the view sends, each one line of the view's control. Where the app is (tab, pushed screen, sheet) is state too, kept in the logic module's model, not in the views: then a debug-only launch argument drives the same intents to a named step, a walk reaches every screen without a tap, and a host test proves each step lands where it names. {#one-model-per-screen}
 - A rule the app keeps (a count never negative, a name never empty) is a type whose only constructor checks it, so nothing past the edge has to re-check. {#rule-as-type}
 
 ## Data on the device
@@ -18,7 +18,7 @@ or a change to what the app stores.
 - A write is whole: a file written to a temporary name and renamed, a database change in one transaction, so a kill leaves the old data or the new. {#atomic-write}
 - The store opens in memory or in a temporary directory for tests through the same code path the app uses: it is the real store, not a mock. {#in-memory-store}
 - Data a user kept survives every update: a changed stored type is a new schema or file version with a migration, and a test opens a store written by the version before. Never change a stored type in place. {#data-survives-updates}
-- Nothing leaves the device: no network client, no `INTERNET` permission or network entitlement, no analytics, crash reporter, cloud backup or sync unless the task says so; Android's `allowBackup` is off where children's data is kept. {#nothing-leaves}
+- Nothing leaves the device: no network client, no `INTERNET` permission or network entitlement, no analytics, crash reporter, cloud backup or sync unless the task says so; Android's `allowBackup` is off where children's data is kept. A package can bring a permission in through its own manifest (Google's ML libraries add `INTERNET` for their telemetry): remove it with `tools:node="remove"` and read the merged manifest; iOS has no such switch, so a package that reports home is weighed in the ADR before it is taken. {#nothing-leaves}
 - A child's data: keep the fewest fields the feature needs, no real name, school or location unless the task asks, and a way in the app to delete it all; each rule of the research's minors' information section the app meets is named in the README. {#least-child-data}
 
 ## The project
