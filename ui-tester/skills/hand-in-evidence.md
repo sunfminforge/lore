@@ -13,7 +13,7 @@ One entry per cell, in the matrix's order:
 - **cell**: page, URL (secrets stripped), width, scheme, state; {#note-cell}
 - **of**: the build or fixture, or the live service and the time; {#note-of}
 - **showed**: what is on the page in plain words: what renders, what the step expected that is not there, what overlaps, overflows or is cut off, text whose color matches its background; console errors and failed requests, quoted; {#note-showed}
-- **file**: the screenshot's name, or the recording's and the time. {#note-file}
+- **file**: the screenshot's name and its aria snapshot's, or the recording's and the time. {#note-file}
 
 A step that failed is reported in its place, as plainly as one that did
 not: what the step did, what happened instead, the error text. No word of
@@ -30,10 +30,10 @@ Before you hand in, stop every server and browser you started, and
 
 ## No secret in evidence
 
-Before handing in, for every shot, URL, log line and the note:
+Before handing in, for every shot, aria snapshot, URL, log line and the note:
 
 - strip query strings and fragments that carry tokens, codes or session ids; never put a credential in a filename; {#strip-secret-urls}
-- mask on the page before the shot (Playwright's `mask` option, or an injected style hiding the element) any field showing a token, key, password, cookie, email, account number, a local path carrying a username, or other private data; masking afterwards in an image editor is not enough; {#mask-before-the-shot}
+- mask on the page before the shot (the screenshot's `mask` option, or its `style` option hiding the element) any field showing a token, key, password, cookie, email, account number, a local path carrying a username, or other private data; masking afterwards in an image editor is not enough, and a masked field's text still reads in the aria snapshot: leave that snapshot out, or take it of a locator that excludes the field; {#mask-before-the-shot}
 - never shot browser storage, devtools or the environment; {#never-shoot-storage}
 - when in doubt, leave the shot out and say why in the note. {#doubt-leaves-it-out}
 
