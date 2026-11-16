@@ -10,6 +10,8 @@ request that adopted them pins the commit.
 - A test crosses the seam a caller crosses: a pure crate's public functions, or the binary's arguments, stdout and exit code. One that reaches a private part, or breaks on a refactor that kept behaviour, tests past the interface: move it to the seam. {#test-at-the-seam}
 - Run the real binary; assert its JSON and its exit code. {#assert-json-and-exit}
 - Stand in for each external CLI with a cargo example placed first on `PATH`; its state is one JSON file, it records calls and injects failures, and shares the real code's constants. That stand-in, a temp directory, and the clock and seed passed in are the only fakes; a crate of your own runs as it is. {#stand-in-clis}
+- A stand-in is as awkward as the real system where the tool depends on it: unique ids, pages, an order its docs do not promise. What the tool relies on (an order, a filter) it does itself in the pure crate, and the stand-in serves out of order to prove it. {#stand-in-as-awkward}
+- A fixture that is itself a cargo project carries its own empty `[workspace]` table and committed `Cargo.lock`, and runs from a copy under `std::env::temp_dir()`, its target dir there too: in the source tree it joins the enclosing workspace and leaves build output, and under `target/` a walker honouring `.gitignore` never sees it. {#fixture-projects}
 - An expected value comes from outside the code: a literal worked by hand, the spec's example, the other CLI's real output. A `proptest` states a property (a round trip, an order, a bound); one that recomputes the answer the code's way is tautological and passes by construction. {#expected-from-outside-the-code}
 - A refusal has a test asserting its fix; a write one that runs it twice, one that kills it midway, and, where it locks, many processes at once. {#test-refusals-writes-kills}
 - Where the tool can check something of its own repo (its README), the gate runs it there. {#self-check-in-gate}
@@ -17,7 +19,7 @@ request that adopted them pins the commit.
 ## Red, green, refactor
 
 - One behaviour per cycle, a tracer bullet: one failing test at one seam, the least code that passes it, then the next. Tests written all ahead test a shape you imagined. {#one-behaviour-per-cycle}
-- Red is seen, not assumed: run it and read it fail on its own assertion, not on a compile error or a missing stand-in. In a pure crate the red may be a refinement Flux refuses: skills/pass-flux.md. {#red-is-seen}
+- Red is seen, not assumed: run it and read it fail on its own assertion, not on a compile error or a missing stand-in. Where the test or check already exists, break the code or its input once (a constant, a format width, a scratch copy of a file it reads) and watch that one go red, naming what you broke. In a pure crate the red may be a refinement Flux refuses: skills/pass-flux.md. {#red-is-seen}
 - Refactor only on green, before you hand in, with the tests as they are; the gate runs after. {#refactor-on-green}
 
 ## When something is broken: the diagnosis loop

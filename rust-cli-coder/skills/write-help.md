@@ -20,7 +20,7 @@ Help is the only manual (skills/agent-cli.md). It is written with
 
 ## What it never does
 
-- A number, an exit code or a code list is written once, in code, and placed in help by a placeholder; a message names a topic by its reference, not its name written out. {#numbers-written-once}
+- A number, an exit code or a code list is written once, in code, and placed in help by a placeholder; a message names a topic by its reference, not its name written out. agent-help leaves a placeholder inside a `.constant()` value as written: substitute it yourself, and a test asserts no help text holds `{const:`. {#numbers-written-once}
 - Help names nothing its reader cannot open: no decision-record numbers, no repository paths, no internal documents. {#nothing-unopenable}
 
 ## Shipping it

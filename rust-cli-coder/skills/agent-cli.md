@@ -1,10 +1,10 @@
 # The agent-cli way
 
-The source is sunfmin/agent-cli's `skills/agent-cli/SKILL.md`, adopted at
-commit `f506df826a97b2fd834e1d65b9057001a6a6e796` (MIT):
-https://github.com/sunfmin/agent-cli/blob/f506df826a97b2fd834e1d65b9057001a6a6e796/skills/agent-cli/SKILL.md
+The source is sunfmin's agent-cli skill (MIT); the pull request that
+adopted it pins the commit.
 
-Read it whole before you start a new tool or touch a release. This page is
+Where the repo carries a copy, read it whole before you start a new tool or
+touch a release. This page is
 the rules you keep from it; the skills it names say how. A repo's own copy
 of the skill and its decision records outrank both, and a departure from a
 rule here is named in the repo's decisions and in its top-level help, never
