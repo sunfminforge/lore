@@ -3,9 +3,10 @@
 ## Where to look
 
 - `guild flow <goal>`: each task of a goal, its time by phase and the why of each wait; start from the goals the evidence names. `guild flow --since <date> [--until <date>] --by week` gives the measure itself, to check the figures you were handed. {#guild-flow-goal-each-task-of-a}
-- L3 (`~/.guild/l3.sqlite`, opened read-only: `sqlite3 -readonly`): `flow` holds each task's records over time, `task_runs` each run with its kind, outcome, tokens and seconds; `reviews`, `levers`, `signals` and `findings` say what else touched the task. Read the schema (`.schema <table>`) before you query; never write. {#l3-guild-l3-sqlite-opened-read}
+- L3 (`~/.guild/l3.sqlite`, opened read-only: `sqlite3 -readonly`): `flow` holds each task's records over time, `task_runs` each run with its kind, outcome, tokens and seconds; `reviews`, `levers`, `signals` and `findings` say what else touched the task. Read the schema (`.schema <table>`) before you query; never write. Count `flow`'s rows first: a host whose `flow` is empty keeps no flow, and `guild flow` there prints nothing true; say so on the goal at once, with whatever else this host lacks (a logged-out `gh`), and work from the Hub. {#l3-guild-l3-sqlite-opened-read}
 - An instance's directory (`~/.guild/instances/<instance>/`): `events.jsonl` is what its session did, step by step, `at` in Unix seconds; `task.md` what it was handed; `status.json` how it ended. Read the events with jq over the hours the cause held (`jq -c 'select(.at >= <from> and .at <= <to>) | {at, event, message}'`), never whole: a message carries a whole tool call. The last events before a run ended say why it ended. {#an-instance-s-directory-guild}
-- The tasks and goals on the Hub, read with `$GUILD_HUB_READ_TOKEN`: the body, the comments, what the foreman and the warden said. {#the-tasks-and-goals-on-the-hub}
+- The tasks and goals on the Hub, read with `$GUILD_HUB_READ_TOKEN`: the body, the comments, what the foreman and the warden said. Where L3 is empty they are the records: the landing's `Flow of <goal>` comment on each goal holds its tasks' phases and whys, read first; each settlement's time and `seconds:` place a run, and `guild:*` signals and comment times place the rest. {#the-tasks-and-goals-on-the-hub}
+- Times come in different zones (the Hub's comments in local time, GitHub's in UTC); put every time in one zone, said, before you compare, order or subtract two. {#one-time-zone}
 
 ## The trace, as a diagnosis loop
 
@@ -15,6 +16,8 @@ in records: the figure stands where the failing test stood.
 
 - Figure first: one `guild flow` command or read-only query, already run, that prints the figure you were handed (the measure over its window, the hours the cause held), the same on every run. A theory of why, read off a log before that command exists, is the guess the loop is there to stop. Where it prints another figure, that gap is the first thing you say. {#figure-first}
 - Narrow it: take tasks, goals and days out of the query one at a time, rerunning it after each, until every task left carries part of the cause's hours; those are the tasks the cause hit. A task the cause still holds counts too, by its age so far: a figure over finished tasks alone leaves out the longest waits. {#narrow-to-the-tasks-it-hit}
+- Account in full: sum the cause's seconds per task over the window (a goal outside it does not count), then place every second, until the parts you name add to the figure. A span no record places still gets its seconds, from the times around it, marked estimated with how; a part left without a number is what a review sends back. {#account-every-second}
+- A task's queue time runs from the record that queued it (a send-back, a requeue) to its next run's start, which is that run's settlement time less its seconds; sum it per task before you say a cause cannot be placed. {#queue-time}
 
 For each of them, one line: the task, its goal, how long the cause held
 it, and the why, as the records give it: the run that ended, how it
