@@ -4,7 +4,7 @@
 
 - The gate names its iOS destination (`platform=iOS Simulator,name=…,OS=…`) and its Android emulator (an AVD name and API level); a run by hand uses the same, so it checks what the gate checks. A destination or system image missing on the machine is a question to the foreman, not a reason to change the gate. {#gate-names-devices}
 - Builds for them need no signing identity: an iOS simulator build is unsigned (`CODE_SIGNING_ALLOWED=NO` where it asks for one), an Android build is the debug variant with the SDK's own debug key. A build that asks for a certificate or a release keystore is wrong, never fed one. {#no-signing}
-- The simulators and emulators are the machine's, shared with others: boot, use and erase only the device your run made or names, run an emulator headless (`-no-window`), and stop what you started; delete none. {#shared-devices}
+- The simulators and emulators are the machine's, shared with others: boot, use and erase only the device your run made or names, address it by its own serial or UDID (`adb -s emulator-<port>`, `xcrun simctl … <udid>`), since a bare `adb` command takes whichever device it lists first, run an emulator headless and leaving its snapshot as it found it (`-no-window -no-snapshot-save`), and stop what you started; delete none. {#shared-devices}
 - Run means launched: the app installed on each, started, and its first screen up without a crash in the log (`xcrun simctl launch`, `adb shell am start`, then the log read). {#run-means-launched}
 
 ## Green gate
@@ -28,7 +28,7 @@ the README changes in the same pull request.
 - [ ] A changed stored type has a migration and a test that opens the version before {#migration-tested}
 - [ ] A search of the sources and manifests for network clients, the `INTERNET` permission, analytics, cloud sync and in-app purchase finds nothing the task did not ask for {#nothing-leaves-the-device}
 - [ ] No name, icon, text, art or data of another app is in the repo; the app's text is in the task's language, in string resources {#nothing-copied}
-- [ ] The build has no warnings the project did not already have; the gate, run whole, is green on both platforms; the README current {#gate-green-readme-current}
+- [ ] The build has no warnings the project did not already have, nor do the analyzer, linter and formatter the repo configures (`flutter analyze`, `dart format --set-exit-if-changed`, `./gradlew lint`, ktlint or detekt or Spotless, `swift format lint`); the gate, run whole, is green on both platforms; the README current {#gate-green-readme-current}
 - [ ] Nothing changed outside the paths the task scopes {#within-scope}
 - [ ] Each acceptance item's evidence is a command and what it printed; a screen the task asks to be seen is a screenshot from the simulator or emulator (`xcrun simctl io <device> screenshot`, `adb exec-out screencap -p`) named in the pull request {#evidence-per-item}
 
