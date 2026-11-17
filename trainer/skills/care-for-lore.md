@@ -15,7 +15,8 @@ left by where it holds best, the most severe first, and say them in that
 order in the pull request:
 
 - A mistake a check could catch (a pattern, a field, a path) becomes a detector, a tool or a check, not an entry asking to remember; first look whether one exists unwired or broken. {#check-over-entry}
-- A standard that a review can judge goes into the reviewing role, which reads a diff with room to spare, not into the role doing the work. {#standard-to-reviewer}
+- A standard that a review can judge goes into the reviewing role, which reads a diff with room to spare, not into the role doing the work. Before making an absence a send-back, read how Guild sequences its own checks (the lander's code and ADRs), and check that past passing work carries what the rule demands. {#standard-to-reviewer}
+- A finding that a reviewing role is too strict: sort its send-backs by whether the worker could fix the cause, since repeats on an unchanged head for what blocked the reviewer are the excess, and count verdicts by author, since the steward posts them too. {#too-strict-review}
 - Time spent finding something, or a call that cost too much, asks for a pointer where the instance looks first, or a tool request in forge; a gap in Guild's own CLI (`guild …`) is no forge tool: tell it on the task, `guild task tell <task> --message <text>`, which posts it there for the steward to file. {#pointer-or-tool}
 - On a tooling review, first find what meets each need already: the tools' index (`~/.guild/tools/index.toml`: purpose, roles, released), where friction older than a tool's release is met and two tools half-serving one need ask for a merge, not a new tool; and the tool requests of every state, where a held one naming a step sequence often hides the plain need: file the need, naming the request it can close. Read the steps behind a run of the same command before judging it a need: parallel subagents are no missing tool. {#tooling-review}
 - What is left is an entry, the way a change goes, written against the failure it came from and only as much as its replay needs to pass, never for a case imagined (evaluation first, after Anthropic's skill-authoring guide). {#then-an-entry}
@@ -66,6 +67,7 @@ Lore needs one for each of:
 - **Near-duplicates**: entries that say nearly the same, within a role or across roles. {#near-duplicates}
 - **One failure, several roles**: the same failure or send-back reason in the tasks of several roles. {#one-failure-many-roles}
 - **Bouncing tasks**: a piece of work passed between narrow roles, task after task, before it lands. {#bouncing-tasks}
+- **Hand-edited generated files**: a pull request that edits by hand a file a generator owns, or a machine-format project file, with no change to a generator source beside it; the role is the one whose worker opened it, and the fix is the shared entry on how that toolchain is set up. {#hand-edited-generated}
 
 When you build a new one, run it over lore as it stands and propose what
 it finds, each as its own role draft with its evidence.
