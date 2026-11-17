@@ -2,7 +2,7 @@
 
 ## Server-side, no build step
 
-- HTML is rendered on the server from a view model the pure crate built, by a template engine checked at compile time. Every value is escaped by the engine; nothing is built by string concatenation. {#server-rendered-html}
+- HTML is rendered on the server from a view model the pure crate built, by a template engine checked at compile time. Every value is escaped by the engine; nothing is built by string concatenation. askama picks its escaper from the template's extension, so a template is a `.html` file, or an inline one says `ext = "html"`; `|safe` is never applied to what an API sent. {#server-rendered-html}
 - CSS and JS are plain files in the repo, embedded in the binary at compile time (`include_str!`) and served with the page. No npm, no bundler, no framework, nothing fetched from a CDN at run time. {#embedded-css-js}
 - JS is a progressive touch: refresh, sort, copy, a relative time. The page is whole and readable with it off. A few dozen lines, not an app. {#js-is-a-progressive-touch}
 - Links are real links; filters and pages are query strings, so every view has a URL an agent or a person can share. {#real-links}
@@ -21,7 +21,7 @@
 ## Read-only and safe
 
 - Only `GET` routes; no form posts, no buttons that change anything. {#get-routes-only}
-- Send `Content-Security-Policy` allowing only the page's own scripts and styles, and `X-Content-Type-Options: nosniff`. {#security-headers}
+- Send `Content-Security-Policy` allowing only the page's own scripts and styles, and `X-Content-Type-Options: nosniff`, set once as a layer on the router so every answer has them, the error and not-found pages too. {#security-headers}
 - An error page says what could not be read and what to run (`check`), never a stack trace, a URL with a secret, or the token. {#error-page}
 
 ## Before you hand in
