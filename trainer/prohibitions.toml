@@ -60,3 +60,17 @@ guards = "none"
 on = "shell"
 match = "guild goal lever *"
 reason = "The foreman's levers are its alone; the trainer corrects it with guild goal correct."
+
+[[prohibition]]
+id = "no-hand-goal"
+guards = "product-direction"
+on = "shell"
+match = "*POST*/repos/guild/tasks/issues*"
+reason = "What Guild works on is opened in guild/tasks by Guild's code alone, labelled, once per need: a goal with guild goal, a tool request with guild forge request, tasks with guild goal split; an issue made there any other way has no label the scheduler reads, and sits unseen (sunfmin/control#1025)."
+
+[[prohibition]]
+id = "no-tea-issue"
+guards = "product-direction"
+on = "shell"
+match = "*tea issue* create*"
+reason = "What Guild works on is opened in guild/tasks by Guild's code alone, labelled, once per need: guild goal, guild forge request or guild goal split, never tea (sunfmin/control#1025)."
