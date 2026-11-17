@@ -6,14 +6,14 @@ reported broken.
 ## Where tests go
 
 - Tests are Swift Testing (`@Test`, `#expect`, `#require`) on the logic module's public types, run by `xcodebuild test` on the simulator the gate names. A test that reaches a private part, or breaks on a refactor that kept behaviour, tests past the interface: move it to the public seam. {#test-at-the-seam}
-- The in-memory store, a temporary directory, and the clock and seed passed in are the only fakes; the logic module runs as it is, never mocked. {#only-fakes}
+- The in-memory store, a temporary directory, and the clock and seed passed in are the only fakes; the logic module runs as it is, never mocked. Swift Testing runs tests in parallel and in any order, so each test makes its own store and directory and shares no state with another. {#only-fakes}
 - A stored type has a round-trip test, and a changed one a test that opens a store written by the version before: skills/shape-an-app.md. {#test-the-store}
 - A UI test (XCUITest) is for a flow no unit test reaches: it launches the app with a launch argument that opens an in-memory store with known data, and finds elements by accessibility identifier, never by position or text that a translation changes. {#ui-test-when-needed}
 
 ## Running them
 
 - A test is seen red before the code that makes it pass, failing on its own `#expect`, not on a build error or a missing simulator; a bug starts from a test that goes red on it as reported. {#red-is-seen}
-- Run one test while you work (`-only-testing:<target>/<suite>/<test>`) and the whole gate before you hand in. When a run fails, read the failing test's message from its result bundle (`xcrun xcresulttool`), not from the end of the log. {#run-one-then-all}
+- While you work, run the logic package's tests on the host, `swift test --filter <Suite>/<test>`, in seconds and with no simulator; this needs the package to build for macOS (macOS among its `platforms`, no iOS-only API), which a logic module importing only Foundation does. A UI test, or a project whose logic is not yet a package, runs one test with `xcodebuild test -only-testing:<target>/<suite>/<test>`. Run the whole gate before you hand in. When an `xcodebuild` run fails, read the failing test's message from its result bundle (`-resultBundlePath`, then `xcrun xcresulttool`), not from the end of the log. {#run-one-then-all}
 - A failure that comes and goes: pin the clock, the seed and the order of async work, and run it repeated (`-test-iterations`, `-run-tests-until-failure`) until it fails often enough to chase; with none after trying, ask the foreman with `guild task question`, naming what you tried. {#flaky-repeated}
 
 ## The simulator
