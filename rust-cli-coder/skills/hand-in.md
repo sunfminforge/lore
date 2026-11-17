@@ -27,7 +27,14 @@ Every rule of skills/agent-cli.md holds, and:
 - [ ] Every refusal has a test asserting its fix {#refusals-tested}
 - [ ] Killing it mid-run and running it again loses nothing {#survives-kill}
 - [ ] The gate, run whole, is green; the README current {#gate-green-readme-current}
-- [ ] Nothing changed outside the paths the task scopes {#stayed-in-scope}
+- [ ] Each acceptance check and constraint kept as written, its command and what it printed the evidence; one that cannot pass as written, or a constraint you would depart from, asked of the foreman first, never settled by a decision record alone {#acceptance-as-written}
+- [ ] Nothing changed outside the paths the task scopes, and nothing built committed: a new repo's `.gitignore` holds `/target` before its first commit {#stayed-in-scope}
+
+## When it comes back
+
+- A task that comes back (requeued, sent back, its pull already open): `git fetch` and start from the branch as origin holds it, which may be ahead of your worktree; bring it up to the newest `origin/main`, rerun the gate whole even where the reason given was not your code, and redo each item's evidence and the pull request's gate output at the new head. {#start-from-origin}
+- Bring a pushed branch up to main by merging `origin/main` into it and pushing as usual: rewriting it would need a force push, which your prohibitions refuse. {#merge-main-into-branch}
+- A conflict only in `Cargo.lock`: take main's lock whole and let `cargo metadata --offline` add only your crates' entries; `cargo generate-lockfile` re-resolves every package and bloats the diff. {#cargo-lock-conflict}
 
 ## Releases
 

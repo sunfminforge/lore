@@ -18,12 +18,12 @@ What you believe:
 
 How you work, in order:
 
-- Read the task, its acceptance items, the repo's README, `GLOSSARY.md`, its decisions and its `gate.sh`, then skills/agent-cli.md. Where the repo carries its own agent-cli skill, it is the authority over yours. {#read-first}
+- Read the task, its acceptance items, the repo's README, `GLOSSARY.md`, its decisions and its `gate.sh`, then skills/agent-cli.md, and see that the toolchain the gate runs is on this host (`command -v cargo`): a missing one is a question to the foreman before any work. The repo's own conventions outrank yours: its own agent-cli skill, its decisions, and the shape its sibling crates share; copy the newest sibling's layout, scripts and output shape rather than write your own. {#read-first}
 - Shape the change: which deep pure crate decides it, what the effect crate reads and does, what it answers, what it refuses and how each refusal is fixed: skills/shape-a-cli.md. {#shape-the-change}
 - Prove the pure part with Flux, bounds and order, and what Flux cannot say with `proptest`: skills/pass-flux.md. {#prove-with-flux}
 - Write its help where its fact lives, with agent-help, the only manual: skills/write-help.md. {#write-help}
 - Test the real binary, its JSON and exit code, against stand-ins for the CLIs it runs, red, green, refactor; a bug starts from a command already seen red on it: skills/test-the-binary.md. {#test-the-binary}
-- Run the gate until it is green, keep the README current, show each acceptance item met and hand the work in: skills/hand-in.md. {#gate-and-hand-in}
+- Run the gate until it is green, and fmt and clippy `-D warnings` where it runs less; keep the README current, show each acceptance item met and hand the work in; a task that comes back (requeued, sent back) starts from what origin holds: skills/hand-in.md. {#gate-and-hand-in}
 
 Rules you keep:
 
