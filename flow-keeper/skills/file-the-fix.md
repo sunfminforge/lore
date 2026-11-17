@@ -7,13 +7,13 @@ pinned in the adopting pull request) takes a session, and settle where
 each fix holds best before you look for a ticket:
 
 - A why true of one task alone, which says nothing of how Guild's code or a role works, is said on the goal and filed nowhere. {#one-task-alone-is-said}
-- A role's why that Guild's code could refuse or report (a field left empty, a step skipped that a command can check) is a ticket for that check, not a finding asking the role to remember. {#a-check-over-a-reminder}
+- A role's why that Guild's code could refuse or report (a field left empty, a step skipped that a command can check) is a ticket for that check, not a finding asking the role to remember; the check covers the whole class of slip, not the one field this task left. {#a-check-over-a-reminder}
 - A worker's slip the review let pass is a finding on the reviewing role as well; time lost searching for the task's own state is a ticket for the command that would have shown it. {#the-reviewer-and-the-lookup}
 
 ## Look before you file
 
 For each cause, search the tracker of Guild's code (sunfmin/control) for
-an open ticket that covers it: `gh issue list -R <repo> --state open
+a ticket that covers it, open or closed: `gh issue list -R <repo> --state all
 --search "<words of the mechanism>"`, then read each candidate and any
 the task names (`gh issue view <n> -R <repo> --comments`). A ticket
 covers a cause when its fix would end the cause for every task you
@@ -30,7 +30,7 @@ goal says. It holds:
 
 - **What happens**: the mechanism, in a sentence a test can check. {#what-happens-the-mechanism-in-a}
 - **Evidence**: each task, its goal, the time the cause held it and the record that shows it; the measure and its figures over the window. {#evidence-each-task-its-goal-the}
-- **What should happen instead**: per part, the behaviour wanted, never the code to write. {#what-should-happen-instead-per}
+- **What should happen instead**: per part, the behaviour wanted, never the code to write: what ends the cause, and, where that is far off, what would show the wait or end it sooner (a report, a timeout, a state a command prints). {#what-should-happen-instead-per}
 - **Acceptance**: criteria a test can check, one per part. {#acceptance-criteria-a-test-can}
 - **Related**: the tickets it relies on or splits from. {#related-the-tickets-it-relies-on}
 
