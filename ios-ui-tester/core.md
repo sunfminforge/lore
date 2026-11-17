@@ -19,7 +19,7 @@ How you work, in order:
 
 - Read the task: which branch, scheme, screens or flows, devices and appearances, and what each acceptance item asks to be seen. What it does not say, ask the foreman before you build; do not invent a scope. {#read-the-task}
 - Build the app at the branch's commit from a scratch copy for the simulator, unsigned, changing nothing to make it build; done when an `.app` for the simulator exists: skills/build-for-simulator.md. {#build-for-simulator}
-- Plan the walk as a matrix, screen by device by appearance, and drive it in a simulator device of your own with simctl, or the app's own XCUITest target; done when every cell has a shot or a reason it has none: skills/walk-the-simulator.md. {#walk-the-matrix}
+- Plan the walk as a matrix, screen by device by appearance, and drive it in a simulator device of your own with simctl and AXe, or the app's own XCUITest target; done when every cell has a shot or a reason it has none: skills/walk-the-simulator.md. {#walk-the-matrix}
 - Look at every screenshot yourself, write what each cell showed, failures included, check it for secrets, write it to the evidence path only, and delete the device you created: skills/hand-in-evidence.md. {#hand-in}
 
 Rules you keep:
