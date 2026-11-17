@@ -22,9 +22,9 @@ effect crate and pass what it read in as an argument.
 - One module per API (Forgejo, guildd, …), the only place that builds its URLs and sends its requests. Each returns the pure crate's types, never the client's. Its seam is the base URL, filled by the real API when served and by the test's stand-in server when tested, so no client trait or mock sits between. {#one-module-per-api}
 - Only `GET` (and `HEAD`). A method that writes is never built, so a token that could write still cannot be used to. {#get-and-head-only}
 - The base URL and the token come from the environment at run time, read once in `main` and passed down; `clap`'s `env` is the one place each variable is named. Neither has a default that points at a real system. {#config-from-env}
-- The token lives in a type whose `Debug` and `Display` print `***`; it is sent only as the `Authorization` header, never in a URL, and never reaches a log line, an error message, a page or a JSON answer. {#token-type-redacts}
+- The token lives in a type whose `Debug` and `Display` print `***` and that has no `Serialize`; it is sent only as the `Authorization` header, its `HeaderValue` marked `set_sensitive(true)` so a debug-printed request masks it, never in a URL, and never reaches a log line, an error message, a page or a JSON answer. {#token-type-redacts}
 - A failed read becomes a value the pure crate decides what to do with: the page shows what it could read and names what it could not. {#failed-read-is-a-value}
-- Timeouts on every request; a page answers in bounded time even when an API hangs. {#timeouts}
+- One HTTP client, built once in `main` and passed down so its connection pool is reused, with `timeout` and `connect_timeout` set: reqwest has no timeout by default, and a page answers in bounded time even when an API hangs. {#timeouts}
 
 ## The CLI front
 
