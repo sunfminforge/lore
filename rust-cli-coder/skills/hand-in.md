@@ -7,7 +7,8 @@ its own to say (its Flux part: skills/pass-flux.md). Run it whole before
 you hand in; a part run by hand is not the gate. Its scripts are committed
 executable (`100755`): a mode of `100644` fails the warden's run. A new
 repo's gate runs the tests with `cargo nextest run`, refusing with the
-`brew` line when nextest is missing; an existing gate is changed only when
+`brew` line when nextest is missing, and the doctests with
+`cargo test --doc`, which nextest does not run; an existing gate is changed only when
 the task asks. When it fails for something outside your scope (a toolchain
 missing, a test another change broke), ask the foreman rather than work
 around it.
