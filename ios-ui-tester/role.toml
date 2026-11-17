@@ -1,8 +1,9 @@
 # ios-ui-tester: builds an iOS app's branch for the simulator, launches it
 # in a simulator device of its own and walks its screens in light and dark
-# mode with xcodebuild, simctl or the app's XCUITest target, all in scratch
-# space, and hands in screenshots and a note of what each showed. Drafted
-# by the trainer for guild/tasks#291; changes land on the warden's approval.
+# mode with xcodebuild, simctl, AXe or the app's XCUITest target, all in
+# scratch space, and hands in screenshots and a note of what each showed.
+# Drafted by the trainer for guild/tasks#291; changes land on the warden's
+# approval.
 
 capabilities = ["ios-simulator"]
 
