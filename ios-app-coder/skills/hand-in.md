@@ -21,7 +21,7 @@ these changes, the README changes in the same pull request.
 - [ ] A changed stored type has a migration and a test that opens the version before {#migration-tested}
 - [ ] A search of the sources for `URLSession`, `Network`, `CloudKit` and `StoreKit` finds nothing the task did not ask for {#nothing-leaves-the-device}
 - [ ] No name, icon, text, art or data of another app is in the repo {#nothing-copied}
-- [ ] The build has no warnings; the gate, run whole, is green; the README current {#gate-green-readme-current}
+- [ ] The build has no warnings, nor does the formatter or linter the repo configures (`swift format lint` with its `.swift-format`, SwiftLint with its `.swiftlint.yml`); the gate, run whole, is green; the README current {#gate-green-readme-current}
 - [ ] Nothing changed outside the paths the task scopes {#within-scope}
 - [ ] Each acceptance item's evidence is a command and what it printed; a screen the task asks to be seen is a simulator screenshot (`xcrun simctl io <device> screenshot`) named in the pull request {#evidence-per-item}
 
