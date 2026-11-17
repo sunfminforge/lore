@@ -27,4 +27,4 @@ them.
 
 - A write is whole: to a temp file beside the target, flushed, renamed over it, so a kill leaves the old file or the new. {#atomic-write}
 - Writes that may run at once take an exclusive lock on a file of its own (the rename replaces the target's inode); a read needs none. Without a lock, the help says to run one at a time. {#lock-concurrent-writes}
-- Writing what is already there changes nothing, version included, and answers `"changed": false`; a write answers `changed` and takes `--dry-run`. A tool that only reads needs no dry run. {#idempotent-no-change}
+- Writing what is already there changes nothing, version included, and answers `"changed": false`; a write answers `changed` and takes `--dry-run`, which decides from its arguments alone, reading no credential or environment, so it runs and is tested without them. A tool that only reads needs no dry run. {#idempotent-no-change}
