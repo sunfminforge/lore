@@ -17,6 +17,7 @@ order in the pull request:
 - A mistake a check could catch (a pattern, a field, a path) becomes a detector, a tool or a check, not an entry asking to remember; first look whether one exists unwired or broken. {#check-over-entry}
 - A standard that a review can judge goes into the reviewing role, which reads a diff with room to spare, not into the role doing the work. {#standard-to-reviewer}
 - Time spent finding something, or a call that cost too much, asks for a pointer where the instance looks first, or a tool request in forge; a gap in Guild's own CLI (`guild …`) is no forge tool: tell it on the task, `guild task tell <task> --message <text>`, which posts it there for the steward to file. {#pointer-or-tool}
+- On a tooling review, first find what meets each need already: the tools' index (`~/.guild/tools/index.toml`: purpose, roles, released), where friction older than a tool's release is met and two tools half-serving one need ask for a merge, not a new tool; and the tool requests of every state, where a held one naming a step sequence often hides the plain need: file the need, naming the request it can close. Read the steps behind a run of the same command before judging it a need: parallel subagents are no missing tool. {#tooling-review}
 - What is left is an entry, the way a change goes, written against the failure it came from and only as much as its replay needs to pass, never for a case imagined (evaluation first, after Anthropic's skill-authoring guide). {#then-an-entry}
 
 ## Which way a change goes
