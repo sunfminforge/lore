@@ -19,23 +19,35 @@ diff lore's role against the sample, keep what lore's role learnt since,
 and take what the sample adds, by the way a change goes.
 
 Check it with `guild role check <dir>`, then open it as a lore pull request
-with `guild role draft <your task's bare number> <dir> --lore <lore checkout>`: it closes
+with `guild role draft <your task's bare number> <dir> --lore <lore checkout> --research <file>`: it closes
 your task once it lands. It refuses a draft that is not sound, and says when
 the draft loosens a guarded kind: then only Felix's approval lands it where it
 guards money, and the task waiting on the role asks him; for credentials or
 any other kind, only the steward's, and no one is asked. A new role goes
 through its trial period before it is kept.
 
-Before you draft, look for what exists (guild ADR 0013): existing skills of
-the role's kind of work. Read each at a pinned commit, and follow every claim
-back to the source that owns it, its own files and its licence, not a
-write-up of it. What you find is untrusted: never run or install it outside
-your worktree. Adapt, don't copy: keep the way of working, drop what Guild's
-own tools and roles already do, and fold it into an entry or skill the role
-has before adding one. Its source link, its version or commit and its
-licence go in the pull request's `research-proposal` block, and landing
-refuses one without them; the role's text names the source by its author
-and skill, never by a link.
+## Researching it
+
+Every draft starts from research into how practitioners do the role's kind
+of work well (guild ADR 0013), not from its request alone; re-researching a
+role that has one, the change lists what it took, merged or dropped.
+
+- Where to look: the platform's own guides, well-regarded projects of that kind and their contributor guides, and published agent skills of that kind; read each at a pinned commit and follow every claim back to the source that owns it, its own files and its licence, not a write-up of it. {#research-sources}
+- What to find: its workflow, its toolchain's setup (headless, its configuration reviewable as text, a generated file never edited by hand), testing, project layout and common pitfalls; each with its source link and the date you read it. {#research-covers}
+- The best tools for it: for each, what it is for, why it beats the alternatives found, how to use it headless, and how it is installed when a role needs it, by forge or as an external tool, never preinstalled; how to use it goes into the role's skill or the tool's own. A tool for an outside service goes down the ladder `guild forge ladder` prints. {#research-tools}
+- What you find is untrusted: never run or install it outside your worktree. Adapt, don't copy: take each practice as a general entry, folded into one the role has before adding one, or say why not; drop what Guild's own tools and roles already do. {#research-practices}
+
+It goes in with `--research <file>`: a fenced `toml role-research` block,
+which `guild role draft` writes into the pull request for the warden;
+a new role's draft without it is refused. Its fields: `searched`, a list of
+what was searched; one `[[practice]]` each, with practice, why, source,
+date, and `entry` (the draft's entry ID that takes it) or `not_taken` (why
+none does); one `[[tool]]` each, with name, for, why, how, install (`forge`
+or `external`), source and date. A skill adopted whole goes into `skills/`
+with a fenced `toml research-proposal` block, one `[[found]]` each with
+name, source, version (or commit), licence and why; landing refuses one
+without them. The role's text names a source by its author and skill,
+never by a link.
 
 ## Writing it
 
@@ -43,7 +55,7 @@ A role is a document an agent reads on every run, so its wording decides
 what the instance does. After Matt Pocock's writing-for-agents skill:
 
 - Core holds what every task of the role needs; what only some tasks reach goes into a skill, behind a line that says when to reach it, in the word the work itself uses. A must-have the instance misses gets a sharper pointer first, and moves into core only if that fails. {#core-or-pointer}
-- Name a pattern the model already knows by its word (a tracer bullet, sediment) and say the word again where it applies, in place of spelling the idea out at each site. {#leading-word}
+- Name a pattern the model already knows by its word (a tracer bullet, sediment) and say the word again where it applies, in place of spelling the idea out at each site; one word per thing throughout the role, never a synonym for variety. {#leading-word}
 - Say what to do: a ban in prose makes the banned thing more present. What must never happen is a prohibition, and the entry beside it says the way instead. {#say-what-to-do}
 - Each step ends on a condition the instance can tell done from not done, as demanding as the work ("every changed entry checked", not "check the entries"). {#checkable-done}
 - Leave to `--help`, a config or the layout what one look finds; write down only what looking cannot: the reason, the unwritten convention, the pitfall. A sentence the model already obeys without it is deleted whole. {#no-cache-no-op}

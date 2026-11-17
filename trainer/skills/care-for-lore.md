@@ -16,17 +16,17 @@ order in the pull request:
 
 - A mistake a check could catch (a pattern, a field, a path) becomes a detector, a tool or a check, not an entry asking to remember; first look whether one exists unwired or broken. {#check-over-entry}
 - A standard that a review can judge goes into the reviewing role, which reads a diff with room to spare, not into the role doing the work. {#standard-to-reviewer}
-- Time spent finding something, or a call that cost too much, asks for a pointer where the instance looks first, or a tool request in forge. {#pointer-or-tool}
-- What is left is an entry, the way a change goes. {#then-an-entry}
+- Time spent finding something, or a call that cost too much, asks for a pointer where the instance looks first, or a tool request in forge; a gap in Guild's own CLI (`guild …`) is no forge tool: tell it on the task, `guild task tell <task> --message <text>`, which posts it there for the steward to file. {#pointer-or-tool}
+- What is left is an entry, the way a change goes, written against the failure it came from and only as much as its replay needs to pass, never for a case imagined (evaluation first, after Anthropic's skill-authoring guide). {#then-an-entry}
 
 ## Which way a change goes
 
 Before you add an entry, try in turn:
 
-- **Rewrite** an existing entry so it holds the new case too. {#rewrite}
+- **Rewrite** an existing entry so it holds the new case too, by entry edits (`guild lore curate`), never a file written anew in one go: such a rewrite drops what the entries held unseen (context collapse, after Zhang et al.'s Agentic Context Engineering). {#rewrite}
 - **Merge** entries that say nearly the same. {#merge}
 - **Simplify** what is used but more complex than it needs to be: a long procedure where one principle would do; a tool that only wraps another, merged or dropped; a detector another already covers, or whose findings nobody acts on. {#simplify}
-- **Delete** what the evidence shows wrong, stale or never used, and what the task brief or a prohibition already holds: such a near-duplicate across roles is pruned, not lifted. {#delete}
+- **Delete** what the evidence shows wrong, stale or never used (its tally: no use, or harmful more than helpful), and what the task brief or a prohibition already holds: such a near-duplicate across roles is pruned, not lifted. {#delete}
 - **Add**, only when none of these could hold it; the pull request says why nothing existing could. {#add-last}
 
 A change that leaves a role shorter and as able is a good change. Before
