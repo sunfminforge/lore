@@ -22,5 +22,5 @@ or a change to what the app stores.
 ## The project
 
 - A new project's app target uses folder-synchronized groups, so a new Swift file needs no edit of the project file; the project file changes only for a target, a setting or a scheme, and is committed with the change that needs it. {#synchronized-groups}
-- One type per file, files in folders by feature; the shared scheme the gate builds is committed. {#one-type-per-file}
+- One type per file, files in folders by feature; the shared scheme the gate builds is committed, and its test action lists every test target the gate must run, a local package's too (`container:<PackageDir>`), since xcodebuild runs only the tests its scheme names. {#one-type-per-file}
 - The deployment target and Swift version stay as the project has them; a newer API goes behind `#available` or waits for the task that raises the target. {#keep-the-target}
