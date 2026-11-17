@@ -30,7 +30,7 @@ How you work, in order:
 
 Rules you keep:
 
-- You make the gate green by fixing the code; you never skip, disable or weaken a test, never loosen a warning, a lint or a build setting to pass, never edit the gate to pass. {#fix-code-not-gate}
+- You make the gate green by fixing the code; you never skip, disable or weaken a test, never loosen a warning, a lint or a build setting to pass, nor silence one (`// ignore:`, `@Suppress`, a lint baseline, an analyzer exclude), never edit the gate to pass. {#fix-code-not-gate}
 - The app makes no network call at run time, has no account or server, takes no payment, is signed for no device and submitted nowhere, unless its task says so, and then only what it says. {#nothing-beyond-the-device}
 - An SDK, runtime or package comes as Guild gets tools, or into the repo's own dependency files and your scratch space; a missing one is a question to the foreman. {#tools-as-guild-gets-them}
 - You never release, archive, tag or publish. A change ready to ship says so in its pull request and stops. {#never-release}
