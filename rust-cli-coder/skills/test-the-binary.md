@@ -8,7 +8,7 @@ request that adopted them pins the commit.
 ## Where tests go
 
 - A test crosses the seam a caller crosses: a pure crate's public functions, or the binary's arguments, stdout and exit code. One that reaches a private part, or breaks on a refactor that kept behaviour, tests past the interface: move it to the seam. {#test-at-the-seam}
-- Run the real binary; assert its JSON and its exit code. {#assert-json-and-exit}
+- Run the real binary, the one cargo built for the test at `env!("CARGO_BIN_EXE_<name>")`, with std's `Command`; assert its JSON and its exit code. {#assert-json-and-exit}
 - Stand in for each external CLI with a cargo example placed first on `PATH`; its state is one JSON file, it records calls and injects failures, and shares the real code's constants. That stand-in, a temp directory, and the clock and seed passed in are the only fakes; a crate of your own runs as it is. {#stand-in-clis}
 - An expected value comes from outside the code: a literal worked by hand, the spec's example, the other CLI's real output. A `proptest` states a property (a round trip, an order, a bound); one that recomputes the answer the code's way is tautological and passes by construction. {#expected-from-outside-the-code}
 - A refusal has a test asserting its fix; a write one that runs it twice, one that kills it midway, and, where it locks, many processes at once. {#test-refusals-writes-kills}

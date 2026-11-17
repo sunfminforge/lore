@@ -12,7 +12,7 @@ taken silently.
 
 ## The rules
 
-- **Rust, one cargo workspace.** Few dependencies: `clap`, `agent-help`, `serde_json`, and `serde` or `anyhow` only where needed. Another system is reached through its own CLI, never an SDK, and no token is handled. {#one-workspace-few-deps}
+- **Rust, one cargo workspace.** Few dependencies: `clap`, `agent-help`, `serde_json`, and `serde` or `anyhow` only where needed, their versions and the lints set once at the root (`[workspace.dependencies]`, `[workspace.lints]`) and each member taking them with `workspace = true`; a member without `[lints] workspace = true` goes unlinted with no sign. Another system is reached through its own CLI, never an SDK, and no token is handled. {#one-workspace-few-deps}
 - **Pure crates, checked by Flux.** As many as the domain has parts; no I/O, the clock, environment and randomness passed in; `publish = false`. Every function verifies at `0 trusted; 0 ignored`: skills/pass-flux.md. {#pure-crates-flux}
 - **One effect crate**, the binary: it reads the world, asks the pure crates, and does what they decide. `main.rs` is one line: skills/shape-a-cli.md. {#one-effect-crate}
 - **Help is the only manual**, written with agent-help on the type that is each fact's home, and kept whole by `agent_help::check`: skills/write-help.md. {#help-only-manual}

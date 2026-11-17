@@ -6,7 +6,7 @@ Help is the only manual (skills/agent-cli.md). It is written with
 ## Where it lives
 
 - Help is Markdown, written as doc comments on the type that is each fact's one home: a subcommand's clap struct or variant, a refusal's enum variant, a topic's type. It is assembled at build time; nothing is copied by hand. {#help-on-fact-home}
-- The types are the registries: clap's command tree and an enum's variants. A variant without help does not compile; a command without text fails `check`. {#types-are-registries}
+- The types are the registries: clap's command tree and an enum's variants. A variant without help does not compile; a command without text fails `check`; a test calling `Cli::command().debug_assert()` refuses a malformed tree (a clashing flag, a duplicate name) that clap otherwise panics on only when a run reaches it. {#types-are-registries}
 - The answer is the Markdown as written: no rendering, no wrapping, no width. Each paragraph on one line. {#markdown-as-written}
 
 ## What it answers

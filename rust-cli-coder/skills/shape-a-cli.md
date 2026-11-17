@@ -8,7 +8,7 @@ them.
 - A crate is pure or it is not; no crate is mostly pure. When a change would put I/O in a pure crate, the effect crate reads it and passes what it read in as an argument. {#pure-or-not}
 - A bound is a type whose only constructor checks it (a key's length, a value's size, a version from 1); every later function takes the type, so nothing out of bounds gets past the edge. {#bound-as-checked-type}
 - When the format is small (a file format, a number kind), own its reader in a pure crate rather than depend on a crate Flux cannot check, and say why in a decision record. Refuse past a fixed width (`too_large`) rather than add a big-number dependency or wrap. {#own-small-formats}
-- A reader the effect crate feeds a chunk at a time lets it choose: whole below a threshold, streamed above, never `read_to_end` on stdin. {#chunked-reader}
+- A reader the effect crate feeds a chunk at a time lets it choose: whole below a threshold, streamed above, never `read_to_end` on stdin. The answer is written with `writeln!` on `stdout().lock()`, a broken pipe a quiet end: `println!` panics, exit 101, when the reader closes early. {#chunked-reader}
 - Each other system's CLI gets one module per command, the only place that builds that command line. That module is a real seam, filled twice, by the command and by its stand-in on `PATH`, so it needs no trait; a trait or generic with one filler is indirection, not a seam. {#one-module-per-external-command}
 
 ## Deep crates
