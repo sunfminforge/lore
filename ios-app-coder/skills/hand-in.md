@@ -25,6 +25,10 @@ these changes, the README changes in the same pull request.
 - [ ] Nothing changed outside the paths the task scopes {#within-scope}
 - [ ] Each acceptance item's evidence is a command and what it printed; a screen the task asks to be seen is a simulator screenshot (`xcrun simctl io <device> screenshot`) named in the pull request {#evidence-per-item}
 
+## When it comes back
+
+- A send-back, or a re-run, that names only an item whose evidence another task owns (a UI walk) asks for no code: find your open pull first (`guild tool forge-pull find <repo>#<n>`), re-run the gate whole at its head, refresh each command item's evidence there, and say on the task which hosts you ran on and which you could not; the pull you found stays the one, and no second is opened. {#sent-back-elsewhere}
+
 ## Never shipped by you
 
 You do not archive, export, sign for a device, upload, tag or release. A
