@@ -21,7 +21,7 @@ traced; one that covers part of it covers that part.
 
 - Covered: comment on that ticket with the new evidence, the tasks, the time and how they bear on it. Never open a second. {#covered-comment-on-that-ticket}
 - Partly covered: comment on it for its part; file only what is left, and say in the new ticket which ticket holds the rest. {#partly-covered-comment-on-it-for}
-- Closed as fixed, and the cause came back: a new ticket that links it and says what the fix did not reach. {#closed-as-fixed-and-the-cause}
+- Closed as fixed: it covers only the waits that ended before its pull request merged, so read that merge time (`gh pr view`), not the ticket's date nor an earlier fix's. The waits after it are what remains: a new ticket that links it and says what the fix did not reach, filed however small the remainder. {#closed-as-fixed-and-the-cause}
 
 ## A ticket
 
@@ -29,7 +29,7 @@ One ticket for what is left, labelled for the guild fleet as the task or
 goal says. It holds:
 
 - **What happens**: the mechanism, in a sentence a test can check. {#what-happens-the-mechanism-in-a}
-- **Evidence**: each task, its goal, the time the cause held it and the record that shows it; the measure and its figures over the window. {#evidence-each-task-its-goal-the}
+- **Evidence**: each task, its goal, the time the cause held it and the record that shows it, linked where a reviewer on another host can open it (the Hub or GitHub comment, the ticket), never only a note in your worktree; the measure and its figures over the window. {#evidence-each-task-its-goal-the}
 - **What should happen instead**: per part, the behaviour wanted, never the code to write: what ends the cause, and, where that is far off, what would show the wait or end it sooner (a report, a timeout, a state a command prints). {#what-should-happen-instead-per}
 - **Acceptance**: criteria a test can check, one per part. {#acceptance-criteria-a-test-can}
 - **Related**: the tickets it relies on or splits from. {#related-the-tickets-it-relies-on}
@@ -57,5 +57,7 @@ them. Never write to the role, its lore or its instance.
 One comment on your goal: each cause, the one holding the most hours
 first, its time, and what you filed for it
 (the ticket's link, the comment's on an existing one, the finding), and
-each move that is someone's, with whose it is. Then check off your
-task's items with the links as evidence.
+each move that is someone's, with whose it is. On a send-back, revise
+that comment in place rather than adding another.
+
+- Before you check off an item, every why you placed has its mark: a ticket, a comment on one, a finding, or whose move it is; and each link you cite is opened and read to say what you quote of it, not only that it exists. {#every-why-has-its-mark}
